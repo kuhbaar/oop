@@ -15,20 +15,20 @@ public class Musikgruppe {
   }
 
   public List<Event> getProben(Date begin, Date end) {
-    return filter(events, begin, end, Probe.class);
+    return elementsBetween(events, begin, end, Probe.class);
   }
 
   public List<Event> getAuftritte(Date begin, Date end) {
-    return filter(events, begin, end, Auftritt.class);
+    return elementsBetween(events, begin, end, Auftritt.class);
   }
 
 
   public List<Event> getEvents(Date begin, Date end) {
-    return filter(events, begin, end, Event.class);
+    return elementsBetween(events, begin, end, Event.class);
   }
 
   // can be used for mitglieder and repertoir too
-  protected <T extends Timespan> List<T> filter(List<T> in, Date begin, Date end, Class cls) {
+  protected <T extends Timespan> List<T> elementsBetween(List<T> in, Date begin, Date end, Class cls) {
     final List<T> out = new ArrayList<T>();
     for(T e : in)
       if(e.getClass().isInstance(cls) && (e.getBegin().after(begin) || 
