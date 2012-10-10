@@ -3,6 +3,15 @@ import java.util.ArrayList;
 
 // all test classes should extend AbstractTest to get useful utility methods
 public class SampleTest extends AbstractTest {
+  List<String> l;
+
+  @BeforeClass
+  public void MySetupMethod() {
+    l = new ArrayList<String>();
+    l.add("hello");
+    l.add("world");
+  }
+
   // all tests need to be annotated with @UnitTest and have a void () signature
   @UnitTest
   public void IsOneEqualToTwo() {
@@ -31,9 +40,7 @@ public class SampleTest extends AbstractTest {
 
   @UnitTest
   public void ElementShouldBeInList() {
-    List<String> l = new ArrayList<String>();
-    l.add("hello");
-    l.add("world");
+    // l is created in the setup method MySetupMethod
     assertIn("hello", l);
   }
 

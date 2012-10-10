@@ -31,8 +31,8 @@ public class Musikgruppe {
   protected <T extends Timespan> List<T> elementsBetween(List<T> in, Date begin, Date end, Class cls) {
     final List<T> out = new ArrayList<T>();
     for(T e : in)
-      if(e.getClass().isInstance(cls) && (e.getBegin().after(begin) || 
-                                                     e.getEnd().before(end)))
+      if(cls.isInstance(e) && (e.getBegin().after(begin) || 
+                               e.getEnd().before(end)))
         out.add(e);
     return out;
   }

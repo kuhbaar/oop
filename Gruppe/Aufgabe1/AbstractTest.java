@@ -41,12 +41,12 @@ public class AbstractTest {
   }
 
   void assertIsInstance(Object a, Class cls) {
-    if(!a.getClass().isInstance(cls)) throw new AssertException(
+    if(!cls.isInstance(a)) throw new AssertException(
       String.format("%s is not an instance of %s", a, cls.getName()));
   }
 
   void assertIsNotInstance(Object a, Class cls) {
-    if(a.getClass().isInstance(cls)) throw new AssertException(
+    if(cls.isInstance(a)) throw new AssertException(
       String.format("%s is an instance of %s", a, cls.getName()));
   }
 }
