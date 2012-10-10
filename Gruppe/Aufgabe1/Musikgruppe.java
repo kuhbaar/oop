@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import javax.xml.datatype.Duration;
 
 public class Musikgruppe {
-  protected List<Event> events;
+  protected List<Record<Event>> events;
 
   Musikgruppe() {
-    this.events = new ArrayList<Event>();
+    this.events = new ArrayList<Record<Event>>();
   }
 
-  public void neuesEreignis(Event e) {
-    events.add(e);
+  public void newEvent(Event e, Date begin, Date end) {
+    events.add(new Record<Event>(e, begin, end));
   }
 
-  public List<Event> getProben(Date beginn, Date ende) {
-    return getEvents(beginn, ende, Probe.class);
+  public List<Event> getProben(Date begin, Date end) {
+    return filter(events, begin, end, Probe.class);
   }
 
-  public List<Event> getAuftritte(Date beginn, Date ende) {
-    return getEvents(beginn, ende, Auftritt.class);
+  public List<Event> getAuftritte(Date begin, Date end) {
+    return filter(events, begin, end, Auftritt.class);
   }
 
 
-  public List<Event> getEvents(Date beginn, Date ende) {
-    return getEvents(beginn, ende, Event.class);
+  public List<Event> getEvents(Date begin, Date end) {
+    return filter(events, begin, end, Event.class);
   }
 
-  protected List<Event> getEvents(Date beginn, Date ende, Class cls) {
-    final List<Event> out = new ArrayList<Event>();
-    for(Event e : this.events)
-      if(e.getClass().isInstance(cls) && (e.getBeginn().after(beginn) || 
-                                          e.getEnde().before(ende)))
-        out.add(e);
+  protected <T> List<T> filter(List<Record<T>> in, Date begin, Date end, Class cls) {
+    final List<T> out = new ArrayList<T>();
+    for(Record<T> e : in)
+      if(e.getValue().getClass().isInstance(cls) && (e.getBegin().after(begin) || 
+                                                     e.getEnd().before(end)))
+        out.add(e.getValue());
     return out;
   }
 }
