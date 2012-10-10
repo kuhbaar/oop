@@ -27,6 +27,7 @@ public class Musikgruppe {
     return filter(events, begin, end, Event.class);
   }
 
+  // can be used for mitglieder and repertoir too
   protected <T> List<T> filter(List<Record<T>> in, Date begin, Date end, Class cls) {
     final List<T> out = new ArrayList<T>();
     for(Record<T> e : in)
