@@ -15,7 +15,6 @@ public class SampleTest extends AbstractTest {
     assertNotEqual(null, 2);
   }
 
-
   @UnitTest
   public void CheckStringAddition() {
     String str = new String("ha");
@@ -43,6 +42,10 @@ public class SampleTest extends AbstractTest {
     assertTrue(false);
   }
 
+  @UnitTest
+  public void StringShouldntBeAnInteger () {
+    assertIsNotInstance("hello", Integer.class);
+  }
 
 
   // if a method isn't annotated, it will never run
