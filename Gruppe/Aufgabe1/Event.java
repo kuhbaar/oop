@@ -11,9 +11,12 @@ public class Event implements Timespan {
 
   public String getOrt() { return ort; }       
   public BigDecimal getKosten() { return kosten; }
-
   public Date getBegin() { return begin; }
   public Date getEnd() { return end; }
+
+  public String toString() {
+    return String.format("Event in %s von %s bis %s, %s $", ort, begin, end, kosten);
+  }
 
   protected String ort;
   protected Date begin;

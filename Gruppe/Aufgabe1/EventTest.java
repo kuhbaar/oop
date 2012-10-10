@@ -39,7 +39,25 @@ public class EventTest extends AbstractTest {
 
     assertIsInstance(auf, Event.class);
     assertIsInstance(prb, Event.class);
+  }
 
+  @UnitTest
+  public void testMusikgruppeEventGetters() {
+    Musikgruppe m = new Musikgruppe();
+
+    m.newAuftritt("wien", a, b, new BigDecimal("100.10"));
+    m.newAuftritt("salzburg", a, b, new BigDecimal("500.0"));
+    m.newProbe("tirol", b, c, new BigDecimal("20.16"));
+
+    List<Probe> ps = m.getProben(a, c);
+    assertEqual(ps.size(), 1);
+    assertEqual(ps.get(0).getOrt(), "tirol");
+
+    assertEqual(m.getAuftritte(a, c).size(), 2);
+    assertEqual(m.getEvents(a, c).size(), 3);
+
+    assertEqual(m.getEvents(b, c).size(), 1);
+    assertEqual(m.getEvents(a, b).size(), 2);
   }
 
 }

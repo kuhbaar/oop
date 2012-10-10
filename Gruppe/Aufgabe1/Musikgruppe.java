@@ -2,6 +2,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import javax.xml.datatype.Duration;
+import java.math.BigDecimal;
 
 public class Musikgruppe {
   protected List<Event> events;
@@ -10,30 +11,37 @@ public class Musikgruppe {
     this.events = new ArrayList<Event>();
   }
 
-  public void newEvent(Event e) {
-    events.add(e);
+  public void newProbe(String ort, Date begin, Date end,  BigDecimal raummiete) {
+    events.add(new Probe(ort, begin, end, raummiete));
   }
 
-  public List<Event> getProben(Date begin, Date end) {
+  public void newAuftritt(String ort, Date begin, Date end, BigDecimal gage) {
+    events.add(new Auftritt(ort, begin, end, gage));
+  }
+
+  public List<Probe> getProben(Date begin, Date end) {
     return elementsBetween(events, begin, end, Probe.class);
   }
 
-  public List<Event> getAuftritte(Date begin, Date end) {
+  public List<Auftritt> getAuftritte(Date begin, Date end) {
     return elementsBetween(events, begin, end, Auftritt.class);
   }
-
 
   public List<Event> getEvents(Date begin, Date end) {
     return elementsBetween(events, begin, end, Event.class);
   }
 
   // can be used for mitglieder and repertoir too
-  protected <T extends Timespan> List<T> elementsBetween(List<T> in, Date begin, Date end, Class cls) {
-    final List<T> out = new ArrayList<T>();
+  // some template trickery to make it return a List of the requested type, not
+  // the common supertype
+  protected <T extends Timespan, U extends Timespan> List<U> elementsBetween(List<T> in, Date begin, Date end, Class<U> cls) {
+    final List<U> out = new ArrayList<U>();
     for(T e : in)
-      if(cls.isInstance(e) && (e.getBegin().after(begin) || 
-                               e.getEnd().before(end)))
-        out.add(e);
+      if(cls.isInstance(e) && (e.getBegin().after(begin) && e.getBegin().before(begin) ||
+                               e.getBegin().equals(begin) ||  // before and after are > and <, so we need == too
+                               e.getEnd().after(begin) && e.getEnd().before(end) ||
+                               e.getEnd().equals(end)))
+        out.add(cls.cast(e));
     return out;
   }
 }
