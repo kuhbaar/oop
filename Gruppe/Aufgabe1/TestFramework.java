@@ -1,6 +1,7 @@
 import java.lang.reflect.Method;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public class TestFramework {
   // coloring might not work on windows
@@ -23,31 +24,48 @@ public class TestFramework {
     System.out.println(ANSI_RED + "  - " + name + " failed: " + cause + ANSI_RESET);
   }
 
-  static void runTest(Class cls) {
-    try {
-      Object o = cls.newInstance();
-      System.out.println("Testing " + cls.getName());
+  static void runTests(List<Class> cs) {
+    int failed_tests = 0;
+    int total_tests = 0;
 
-      // run all setup methods
-      for(Method m : cls.getDeclaredMethods())
-        if(m.getAnnotation(BeforeClass.class) != null)
-          m.invoke(o);
-      
-      // run all test methods
-      for(Method m : cls.getDeclaredMethods()) {
-        if(m.getAnnotation(UnitTest.class) != null) {
-          // method declared as unittest
-          try {
+    for(Class cls : cs) {
+      try {
+        Object o = cls.newInstance();
+        System.out.println("Testing " + cls.getName());
+
+        // run all setup methods
+        for(Method m : cls.getDeclaredMethods())
+          if(m.getAnnotation(BeforeClass.class) != null)
             m.invoke(o);
-            printSuccess(m.getName());
-          } catch(InvocationTargetException e) {
-            printFailure(m.getName(), e.getCause().getMessage());
+        
+        // run all test methods
+        for(Method m : cls.getDeclaredMethods()) {
+          if(m.getAnnotation(UnitTest.class) != null) {
+            total_tests += 1;
+            // method declared as unittest
+            try {
+              m.invoke(o);
+              printSuccess(m.getName());
+            } catch(InvocationTargetException e) {
+              failed_tests += 1;
+              printFailure(m.getName(), e.getCause().getMessage());
+            }
           }
         }
+      } catch(Exception e) {
+        System.out.println("failed to run tests for class " + cls.getName());
+        e.printStackTrace();
       }
-    } catch(Exception e) {
-      System.out.println("failed to run tests for class " + cls.getName());
-      e.printStackTrace();
+    }
+
+    if(failed_tests == 0) {
+      System.out.println();
+      System.out.println(ANSI_GREEN + "all tests sucessful!" + ANSI_RESET);
+    } else {
+      System.out.println();
+      System.out.println(ANSI_RED + 
+        String.format("%d / %d failed!", failed_tests, total_tests) + 
+        ANSI_RESET);
     }
   }
 }
