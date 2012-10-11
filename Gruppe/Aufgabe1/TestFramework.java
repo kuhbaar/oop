@@ -24,6 +24,11 @@ public class TestFramework {
     System.out.println(ANSI_RED + "  - " + name + " failed: " + cause + ANSI_RESET);
   }
 
+  public static String getLocation(Throwable t) {
+    StackTraceElement l = t.getStackTrace()[0];
+    return "line "+l.getLineNumber();
+  }
+
   static void runTests(List<Class> cs) {
     int failed_tests = 0;
     int total_tests = 0;
@@ -40,16 +45,30 @@ public class TestFramework {
         
         // run all test methods
         for(Method m : cls.getDeclaredMethods()) {
-          if(m.getAnnotation(UnitTest.class) != null) {
+          if(m.isAnnotationPresent(UnitTest.class)) {
             total_tests += 1;
             // method declared as unittest
             try {
               m.invoke(o);
               printSuccess(m.getName());
             } catch(InvocationTargetException e) {
-              failed_tests += 1;
-              printFailure(m.getName(), e.getCause().getMessage());
-            }
+              if(e.getCause() instanceof AssertException) {
+                printFailure(m.getName(), e.getCause().getMessage());
+                failed_tests += 1;
+              } else {
+                // methods just threw an exception that wasn't from assert
+                // check if that was to be excpected
+                if(m.isAnnotationPresent(AssertThrows.class) &&
+                  m.getAnnotation(AssertThrows.class).exception().equals(e.getCause().getClass())) {
+                  printSuccess(m.getName());
+                } else {
+                  failed_tests += 1;
+                  printFailure(m.getName(), 
+                    "unexpected Exception - " + e.getCause() + 
+                    " @ " + getLocation(e.getCause()));
+                }
+              }
+            } 
           }
         }
       } catch(Exception e) {

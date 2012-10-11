@@ -54,6 +54,14 @@ public class SampleTest extends AbstractTest {
     assertIsNotInstance("hello", Integer.class);
   }
 
+  @UnitTest
+  @AssertThrows(exception = RuntimeException.class)
+  public void TestThatThrows() {
+    int i = 0;
+    throw new RuntimeException("da test");
+
+  }
+
 
   // if a method isn't annotated, it will never run
   public void otherMethod() {

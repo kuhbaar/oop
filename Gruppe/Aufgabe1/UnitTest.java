@@ -15,3 +15,10 @@ import java.lang.annotation.ElementType;
 @Target({ElementType.METHOD})   
 @interface BeforeClass {
 }
+
+// annotation to mark methods to be run when the class with the tests is created
+@Retention(RetentionPolicy.RUNTIME) 
+@Target({ElementType.METHOD})   
+@interface AssertThrows {
+  Class exception();
+}
