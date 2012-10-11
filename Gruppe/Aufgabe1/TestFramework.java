@@ -53,7 +53,8 @@ public class TestFramework {
               printSuccess(m.getName());
             } catch(InvocationTargetException e) {
               if(e.getCause() instanceof AssertException) {
-                printFailure(m.getName(), e.getCause().getMessage());
+                printFailure(m.getName(), e.getCause().getMessage()+ 
+                    " @ " + getLocation(e.getCause()));
                 failed_tests += 1;
               } else {
                 // methods just threw an exception that wasn't from assert
