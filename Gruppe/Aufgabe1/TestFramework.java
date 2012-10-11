@@ -24,8 +24,8 @@ public class TestFramework {
     System.out.println(ANSI_RED + "  - " + name + " failed: " + cause + ANSI_RESET);
   }
 
-  public static String getLocation(Throwable t) {
-    StackTraceElement l = t.getStackTrace()[0];
+  public static String getLocation(Throwable t, int depth) {
+    StackTraceElement l = t.getStackTrace()[depth];
     return "line "+l.getLineNumber();
   }
 
@@ -54,7 +54,7 @@ public class TestFramework {
             } catch(InvocationTargetException e) {
               if(e.getCause() instanceof AssertException) {
                 printFailure(m.getName(), e.getCause().getMessage()+ 
-                    " @ " + getLocation(e.getCause()));
+                    " @ " + getLocation(e.getCause(), 1));
                 failed_tests += 1;
               } else {
                 // methods just threw an exception that wasn't from assert
@@ -66,7 +66,7 @@ public class TestFramework {
                   failed_tests += 1;
                   printFailure(m.getName(), 
                     "unexpected Exception - " + e.getCause() + 
-                    " @ " + getLocation(e.getCause()));
+                    " @ " + getLocation(e.getCause(), 0));
                 }
               }
             } 
