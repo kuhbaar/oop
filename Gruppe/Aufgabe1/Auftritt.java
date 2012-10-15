@@ -3,7 +3,7 @@ import java.math.BigDecimal;
 
 public class Auftritt extends Event {
   public Auftritt(String ort, Date begin, Date end,  BigDecimal gage) { 
-    super(ort, begin, end, gage.negate());
+    super(ort, begin, end, gage);
   }
-  public BigDecimal getGage() { return kosten.negate(); }
+  public BigDecimal getGage() { return balance; }
 }
