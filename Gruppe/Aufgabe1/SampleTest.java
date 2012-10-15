@@ -8,7 +8,7 @@ public class SampleTest extends AbstractTest {
   @BeforeClass
   public void MySetupMethod() {
     l = new ArrayList<String>();
-    l.add("hello");
+    l.add("hallo");
     l.add("world");
   }
 
