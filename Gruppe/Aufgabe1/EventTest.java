@@ -60,4 +60,18 @@ public class EventTest extends AbstractTest {
     assertEqual(m.getEvents(a, b).size(), 2);
   }
 
+  @UnitTest
+  public void testCostSums() {
+    Musikgruppe m = new Musikgruppe();
+
+    m.newAuftritt("wien", a, b, new BigDecimal("100.10"));
+    m.newAuftritt("salzburg", b, c, new BigDecimal("500.0"));
+    m.newProbe("tirol", b, c, new BigDecimal("20.16"));
+
+    assertEqual(new BigDecimal("-20.16"), m.getCostsProben(a, c));
+    assertEqual(new BigDecimal("600.1"), m.getGageAuftritte(a, c));
+    assertEqual(new BigDecimal("479.84"), m.getCostsEvents(c, c));
+
+  }
+
 }
