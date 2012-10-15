@@ -31,6 +31,24 @@ public class Musikgruppe {
     return elementsBetween(events, begin, end, Event.class);
   }
 
+  public BigDecimal getCostsProben(Date begin, Date end){
+    return sum(getProben(begin, end));
+  }
+  public BigDecimal getGageAuftritte(Date begin, Date end){
+    return sum(getAuftritte(begin, end));
+  }
+  public BigDecimal getCostsEvents(Date begin, Date end){
+    return sum(getEvents(begin, end)); 
+  }
+
+  //Sum method for calculating the sum of list elements
+  protected <T extends Event> BigDecimal sum(List<T> l){
+    BigDecimal sum=new BigDecimal(0);
+    for(T e: l)
+      sum=e.getBalance().add(sum);
+    return sum;
+  }
+
   // can be used for mitglieder and repertoir too
   // some template trickery to make it return a List of the requested type, not
   // the common supertype
