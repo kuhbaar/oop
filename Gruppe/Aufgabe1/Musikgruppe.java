@@ -6,9 +6,25 @@ import java.math.BigDecimal;
 
 public class Musikgruppe {
   protected List<Event> events;
+  protected List<Member> members;
+  protected List<Member> oldmemb;
 
   Musikgruppe() {
     this.events = new ArrayList<Event>();
+    this.members = new ArrayList<Member>();
+  }
+  public void addMember(String name,String surname,BigDecimal number,String instr){
+    members.add(new Member(name,surname,number,instr));
+  }
+  public void delMember(Member m){
+    members.remove(m);
+    oldmemb.add(m.leave());
+  }
+  public List<Member> getMembers(){
+    return members;
+  }
+  public List<Member> getMembers(Date begin,Date end){
+    return elementsBetween(oldmemb,begin,end,Member.class);
   }
 
   public void newProbe(String ort, Date begin, Date end,  BigDecimal raummiete) {
