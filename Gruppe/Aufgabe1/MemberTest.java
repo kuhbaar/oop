@@ -35,7 +35,7 @@ public class MemberTest extends AbstractTest{
     }
     @UnitTest
     public void testMusikgruppeMethods(){
-        Musikgruppe g = new Musikgruppe("The Goers");
+        MusicGroup g = new MusicGroup("The Goers");
         Member m = new Member("klaus","Moor", "0815", "Chello");
         Member m1= new Member("karl", "koala", "0816", "Guitar");
         Date y= new Date();

@@ -1,3 +1,4 @@
+#!/bin/bash
 ./clean.sh
 
 cd Gruppe/Aufgabe1
