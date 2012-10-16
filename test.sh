@@ -2,8 +2,7 @@
 
 cd Gruppe/Aufgabe1
 
-javac -Xlint:all -Werror *java
-javac -Xlint:all -Werror */*java
+javac -Xlint:all -Werror *.java */*.java
 
 if [ $? -eq 0 ]; then
   java Test
