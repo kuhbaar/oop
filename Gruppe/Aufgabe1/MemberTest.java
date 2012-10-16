@@ -49,7 +49,7 @@ public class MemberTest extends AbstractTest{
         assertEqual(m.getName(),ml.get(0).getName()); //addMember correct data?
         assertTrue(y.compareTo(ml.get(0).getBegin())<=0 && x.compareTo(ml.get(0).getBegin())>=0); //addMember correct join?
 
-        List<Member> oml=g.getMembers(y,x);
+        List<Member> oml=g.getMembers(y,new Date());
         assertEqual(ml,oml); //getMembers, getCurrentMembers working?
 
         m=ml.get(0);
