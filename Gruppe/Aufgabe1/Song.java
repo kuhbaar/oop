@@ -14,11 +14,10 @@ public class Song implements Timespan{
     this(name,duration,new Date());
   }
   
-  
-  
   public String getName(){return name;}
   public Date getBegin(){return come;}
-  public Date getEnd(){return gone;}
+  public Date getEnd() { return gone; }
+  
   public Song remove(){
     Song s = new Song (name, duration);
     s.come=this.come;
@@ -27,7 +26,7 @@ public class Song implements Timespan{
     return s;
   }
   
-  public String toString(){
+  public String toString() {
     int temp= duration%60;
     int min = (int)(duration/60) ;
     return (name+ " - "+min+":"+temp);

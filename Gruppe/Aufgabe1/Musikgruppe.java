@@ -58,9 +58,7 @@ public class Musikgruppe {
   public void deleteSong(String name) {
     for(Song s: playlist) {
       if (s.getName().equals(name)) {
-        playlist.remove(s);
-        current_playlist.remove(s);
-        playlist.add(s.remove());
+        deleteSong(s);
       }
     }
   }
