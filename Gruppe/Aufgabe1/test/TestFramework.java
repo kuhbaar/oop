@@ -35,7 +35,7 @@ public class TestFramework {
     int failed_tests = 0;
     int total_tests = 0;
 
-    for(Class cls : cs) {
+    for(Class<? extends AbstractTest> cls : cs) {
       try {
         Object o = cls.newInstance();
         System.out.println("Testing " + cls.getName());
