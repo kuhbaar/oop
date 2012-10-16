@@ -16,8 +16,10 @@ public class Member implements Timespan{
 	public Date getBegin(){return Join;}
 	public Date getEnd(){return Leave;}
 	public Member leave(){
-		this.Leave=new Date();
-		return this;
+		Member m = new Member(Name, Surname, PhoneNo, Instrument);
+		m.Join = this.Join;
+		m.Leave=new Date();
+		return m;
 	}
 
 	protected String Name;
