@@ -1,3 +1,5 @@
+package test;
+
 import java.lang.reflect.Method;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -29,7 +31,7 @@ public class TestFramework {
     return "line "+l.getLineNumber();
   }
 
-  static void runTests(List<Class> cs) {
+  public static void runTests(List<Class> cs) {
     int failed_tests = 0;
     int total_tests = 0;
 
@@ -52,7 +54,7 @@ public class TestFramework {
               m.invoke(o);
               printSuccess(m.getName());
             } catch(InvocationTargetException e) {
-              if(e.getCause() instanceof AssertException) {
+              if(e.getCause() instanceof test.AssertException) {
                 printFailure(m.getName(), e.getCause().getMessage()+ 
                     " @ " + getLocation(e.getCause(), 1));
                 failed_tests += 1;
@@ -65,8 +67,8 @@ public class TestFramework {
                 } else {
                   failed_tests += 1;
                   printFailure(m.getName(), 
-                    "unexpected Exception - " + e.getCause() + 
-                    " @ " + getLocation(e.getCause(), 0));
+                    "unexpected Exception: ");
+                  e.getCause().printStackTrace();
                 }
               }
             } 

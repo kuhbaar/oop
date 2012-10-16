@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import test.*;
 
 public class MemberTest extends AbstractTest{
 	Date a,b,c,d;
@@ -29,6 +30,7 @@ public class MemberTest extends AbstractTest{
     	assertEqual(m.getPhoneNo(), "0815");
     	assertEqual(m.getInstrument(), "Chello");
         assertEqual(m.getBegin(), new Date(Long.MAX_VALUE));
+        assertEqual (m.getBegin(), new Date(Long.MAX_VALUE));
     	assertEqual(m.getEnd(), new Date(Long.MAX_VALUE));
     }
     @UnitTest

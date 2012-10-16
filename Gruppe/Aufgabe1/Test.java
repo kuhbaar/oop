@@ -1,4 +1,7 @@
 import java.util.Arrays;
+import test.TestFramework;
+import test.SampleTest;
+
 
 public class Test extends TestFramework{
   public static void main(String[] args) {

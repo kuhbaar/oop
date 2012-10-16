@@ -27,8 +27,8 @@ public class Song implements Timespan{
   }
   
   public String toString() {
-    int temp= duration%60;
-    int min = (int)(duration/60) ;
+    int temp= duration % 60;
+    int min = duration / 60;
     return (name+ " - "+min+":"+temp);
   }
 
