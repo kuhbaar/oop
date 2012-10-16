@@ -7,7 +7,7 @@ public class Member implements Timespan{
 		this.Surname=surname;
 		this.PhoneNo=phoneno;
 		this.Instrument=inst;
-		this.Join=new Date();
+		this.Join=new Date(Long.MAX_VALUE);
 		this.Leave=new Date(Long.MAX_VALUE);
 	}
 	public String getName(){return Name+" "+Surname;}
@@ -19,6 +19,12 @@ public class Member implements Timespan{
 		Member m = new Member(Name, Surname, PhoneNo, Instrument);
 		m.Join = this.Join;
 		m.Leave=new Date();
+		return m;
+	}
+	public Member join(){
+		Member m = new Member(Name,Surname,PhoneNo,Instrument);
+		m.Leave=this.Leave;
+		m.Join=new Date();
 		return m;
 	}
 
