@@ -28,8 +28,8 @@ public class MusicGroup {
 
   public void addMember(String name,String surname,BigDecimal number,String instr){
     Member m = new Member(name,surname,number,instr);
-    current_members.add(m);
-    members.add(m);
+    current_members.add(m.join());
+    members.add(m.join());
   }
 
   public void deleteMember(Member m) {
