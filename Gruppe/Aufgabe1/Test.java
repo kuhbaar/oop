@@ -13,7 +13,7 @@ public class Test extends TestFramework{
     tests.add(EventTest.class);
     tests.add(PlaylistTest.class);
     tests.add(MemberTest.class);
-    tests.add(SampleTest.class);
+    //tests.add(SampleTest.class);
 
     runTests(tests);
   }
