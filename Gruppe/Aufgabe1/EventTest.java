@@ -43,7 +43,7 @@ public class EventTest extends AbstractTest {
 
   @UnitTest
   public void testMusikgruppeEventGetters() {
-    Musikgruppe m = new Musikgruppe();
+    Musikgruppe m = new Musikgruppe("Bremer Stadtmusikanten");
 
     m.newAuftritt("wien", a, b, new BigDecimal("100.10"));
     m.newAuftritt("salzburg", a, b, new BigDecimal("500.0"));
@@ -62,7 +62,7 @@ public class EventTest extends AbstractTest {
 
   @UnitTest
   public void testCostSums() {
-    Musikgruppe m = new Musikgruppe();
+    Musikgruppe m = new Musikgruppe("U2");
 
     m.newAuftritt("wien", a, b, new BigDecimal("100.10"));
     m.newAuftritt("salzburg", b, c, new BigDecimal("500.0"));

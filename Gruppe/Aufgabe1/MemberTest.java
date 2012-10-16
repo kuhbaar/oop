@@ -28,7 +28,6 @@ public class MemberTest extends AbstractTest{
     	assertEqual(m.getName(), "klaus Moor");
     	assertEqual(m.getPhoneNo(), new BigDecimal("0815"));
     	assertEqual(m.getInstrument(), "Chello");
-    	assertEqual(m.getBegin(), new Date());
     	assertEqual(m.getEnd(), new Date(Long.MAX_VALUE));
   }
 }

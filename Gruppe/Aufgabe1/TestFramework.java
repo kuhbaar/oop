@@ -86,6 +86,7 @@ public class TestFramework {
       System.out.println(ANSI_RED + 
         String.format("%d / %d failed!", failed_tests, total_tests) + 
         ANSI_RESET);
+      System.exit(1);
     }
   }
 }

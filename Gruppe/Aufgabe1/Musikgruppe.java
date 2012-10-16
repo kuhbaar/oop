@@ -5,20 +5,28 @@ import javax.xml.datatype.Duration;
 import java.math.BigDecimal;
 
 public class Musikgruppe {
+  protected String name;
+  protected String genre;
   protected List<Event> events;
   protected List<Member> current_members;
   protected List<Member> members;
   protected List<Song> playlist;
   protected List<Song> current_playlist;
   
+  Musikgruppe(String name) {
+    this(name, "varied");
+  }
   
-  Musikgruppe() {
+  Musikgruppe(String name, String genre) {
+    this.name = name;
+    this.genre = genre;
     this.events = new ArrayList<Event>();
     this.members = new ArrayList<Member>();
     this.current_members = new ArrayList<Member>();
     this.playlist = new ArrayList<Song>();
     this.current_playlist = new ArrayList<Song>();
   }
+
   public void addMember(String name,String surname,BigDecimal number,String instr){
     Member m = new Member(name,surname,number,instr);
     current_members.add(m);

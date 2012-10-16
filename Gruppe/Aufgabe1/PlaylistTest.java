@@ -29,7 +29,7 @@ public class PlaylistTest extends AbstractTest {
  
   @UnitTest
   public void testAddSong() {
-    Musikgruppe m = new Musikgruppe();
+    Musikgruppe m = new Musikgruppe("Onkelz");
   
     m.addSong("Ueber den Wolken",150);
     m.addSong("Tanzen im Regen",170);
@@ -38,7 +38,7 @@ public class PlaylistTest extends AbstractTest {
   
    @UnitTest
   public void testRemoveSong() {
-    Musikgruppe m = new Musikgruppe();
+    Musikgruppe m = new Musikgruppe("Rammstein");
     
     m.addSong("Ueber den Wolken",150);
     m.addSong("Tanzen im Regen",170);
@@ -49,7 +49,7 @@ public class PlaylistTest extends AbstractTest {
   
   @UnitTest
   public void testGetPlaylist() {
-    Musikgruppe m = new Musikgruppe();
+    Musikgruppe m = new Musikgruppe("Musikantenstadl");
 
     m.addSong("Ueber den Wolken",150,a);
     m.addSong("Tanzen im Regen",170,c);
