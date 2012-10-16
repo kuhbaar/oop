@@ -27,10 +27,10 @@ public class Musikgruppe {
     this.current_playlist = new ArrayList<Song>();
   }
 
-  public void addMember(String name,String surname,BigDecimal number,String instr){
-    Member m = new Member(name,surname,number,instr);
-    current_members.add(m.join());
-    members.add(m.join());
+  public void addMember(Member m){
+    Member mk=new Member(m.join());
+    current_members.add(mk);
+    members.add(mk);
   }
 
   public void deleteMember(Member m) {

@@ -24,11 +24,40 @@ public class MemberTest extends AbstractTest{
 	}
 	@UnitTest
 	public void testMembersAccessors() {
-    	Member m = new Member("klaus","Moor", new BigDecimal("0815"), "Chello");
-    	assertEqual(m.getName(), "klaus Moor");
-    	assertEqual(m.getPhoneNo(), new BigDecimal("0815"));
+    	Member m = new Member("klaus","Moor", "0815", "Chello");
+    	assertEqual(m.getName(), "klaus");
+    	assertEqual(m.getPhoneNo(), "0815");
     	assertEqual(m.getInstrument(), "Chello");
-        asserEqual (m.getBegin(), new Date(Long.MAX_VALUE));
+        assertEqual(m.getBegin(), new Date(Long.MAX_VALUE));
     	assertEqual(m.getEnd(), new Date(Long.MAX_VALUE));
-  }
+    }
+    @UnitTest
+    public void testMusikgruppeMethods(){
+        Musikgruppe g = new Musikgruppe("The Goers");
+        Member m = new Member("klaus","Moor", "0815", "Chello");
+        Member m1= new Member("karl", "koala", "0816", "Guitar");
+        Date y= new Date();
+        g.addMember(m);
+        Date x= new Date();
+        g.addMember(m1);
+        List<Member> ml=g.getCurrentMembers();
+        assertTrue(ml.size()==2); //addMember correct size?
+        assertEqual(m.getName(),ml.get(0).getName()); //addMember correct data?
+        assertTrue(y.compareTo(ml.get(0).getBegin())<=0 && x.compareTo(ml.get(0).getBegin())>=0); //addMember correct join?
+
+        List<Member> oml=g.getMembers(y,x);
+        assertEqual(ml,oml); //getMembers, getCurrentMembers working?
+
+        m=ml.get(0);
+        y= new Date();
+        g.deleteMember(m);
+        x= new Date();
+        ml=g.getCurrentMembers();
+        assertTrue(ml.size()==1); //deleteMember correct size?
+        oml=g.getMembers(y,x);
+        assertTrue(oml.size()==2);
+        assertEqual(m1.getName(),ml.get(0).getName());//deleteMember correct Member deleted?
+        assertTrue(y.compareTo(oml.get(1).getEnd())<=0 && x.compareTo(oml.get(1).getEnd())>=0);//deleteMember correct leave?
+
+    }
 }
