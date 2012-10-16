@@ -1,8 +1,11 @@
 cd Gruppe/Aufgabe1
-javac -Xlint:unchecked  *java
+
+rm -f *class
+javac -Xlint:all -Werror *java
 
 if [ $? -eq 0 ]; then
   java Test
 else
+  rm -f *class
   false
 fi
