@@ -31,7 +31,7 @@ public class TestFramework {
     return "line "+l.getLineNumber();
   }
 
-  public static void runTests(List<Class> cs) {
+  public static void runTests(List<Class<? extends AbstractTest>> cs) {
     int failed_tests = 0;
     int total_tests = 0;
 
