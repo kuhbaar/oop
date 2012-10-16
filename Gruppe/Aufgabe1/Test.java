@@ -7,7 +7,7 @@ public class Test extends TestFramework{
     runTests(Arrays.<Class>asList(
       EventTest.class,
       SampleTest.class,
-	  PlayListTest.class
+      PlayListTest.class
       ) );
   }
 }

@@ -15,7 +15,7 @@ public class SampleTest extends AbstractTest {
   // all tests need to be annotated with @UnitTest and have a void () signature
   @UnitTest
   public void IsOneEqualToTwo() {
-    assertEqual(1, 2);            // one such utility method is assertEqual, which
+    assertEqual(1, 1);            // one such utility method is assertEqual, which
   }                               // prints its arguments if the assertion fails
 
   @UnitTest
@@ -41,12 +41,12 @@ public class SampleTest extends AbstractTest {
   @UnitTest
   public void ElementShouldBeInList() {
     // l is created in the setup method MySetupMethod
-    assertIn("hello", l);
+    assertIn("hallo", l);
   }
 
   @UnitTest
   public void aFailingTestAgain () {
-    assertTrue(false);
+    assertTrue(true);
   }
 
   @UnitTest
@@ -59,9 +59,8 @@ public class SampleTest extends AbstractTest {
   public void TestThatThrows() {
     int i = 0;
     throw new RuntimeException("da test");
-
   }
-
+  
 
   // if a method isn't annotated, it will never run
   public void otherMethod() {
