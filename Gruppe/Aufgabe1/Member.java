@@ -10,29 +10,28 @@ public class Member implements Timespan{
 		this.Join=new Date(Long.MAX_VALUE);
 		this.Leave=new Date(Long.MAX_VALUE);
 	}
+
 	public Member(Member m){
-		this.Name=m.getName();
-		this.Surname=m.getSurname();
-		this.PhoneNo=m.getPhoneNo();
-		this.Instrument=m.getInstrument();
+		this(m.Name, m.Surname, m.PhoneNo, m.Instrument);
 		this.Join=m.getBegin();
 		this.Leave=m.getEnd();
 	}
+
 	public String getName(){return Name;}
 	public String getSurname(){return Surname;}
 	public String getPhoneNo(){return PhoneNo;}
 	public String getInstrument(){return Instrument;}
 	public Date getBegin(){return Join;}
 	public Date getEnd(){return Leave;}
+
 	public Member leave(){
-		Member m = new Member(Name, Surname, PhoneNo, Instrument);
-		m.Join = this.Join;
+		Member m = new Member(this);
 		m.Leave= new Date();
 		return m;
 	}
+
 	public Member join(){
-		Member m = new Member(Name,Surname,PhoneNo,Instrument);
-		m.Leave=this.Leave;
+		Member m = new Member(this);
 		m.Join=new Date();
 		return m;
 	}
