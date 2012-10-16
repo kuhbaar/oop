@@ -23,6 +23,7 @@ public class MemberTest extends AbstractTest{
     	cal.set(2012, 10, 5);
     	d = cal.getTime();
 	}
+
 	@UnitTest
 	public void testMembersAccessors() {
     	Member m = new Member("klaus","Moor", "0815", "Chello");
@@ -33,6 +34,7 @@ public class MemberTest extends AbstractTest{
         assertEqual (m.getBegin(), new Date(Long.MAX_VALUE));
     	assertEqual(m.getEnd(), new Date(Long.MAX_VALUE));
     }
+    
     @UnitTest
     public void testMusikgruppeMethods(){
         MusicGroup g = new MusicGroup("The Goers");

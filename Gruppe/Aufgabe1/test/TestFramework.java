@@ -42,7 +42,7 @@ public class TestFramework {
 
         // run all setup methods
         for(Method m : cls.getDeclaredMethods())
-          if(m.getAnnotation(BeforeClass.class) != null)
+          if(m.isAnnotationPresent(BeforeClass.class))
             m.invoke(o);
         
         // run all test methods
@@ -52,7 +52,12 @@ public class TestFramework {
             // method declared as unittest
             try {
               m.invoke(o);
-              printSuccess(m.getName());
+              if(m.isAnnotationPresent(AssertThrows.class)) {
+                printFailure(m.getName(), "excpected Exception wasn't thrown: " +
+                  m.getAnnotation(AssertThrows.class).exception());
+              } else {
+                printSuccess(m.getName());
+              }
             } catch(InvocationTargetException e) {
               if(e.getCause() instanceof test.AssertException) {
                 printFailure(m.getName(), e.getCause().getMessage()+ 
