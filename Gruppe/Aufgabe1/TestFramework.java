@@ -65,8 +65,8 @@ public class TestFramework {
                 } else {
                   failed_tests += 1;
                   printFailure(m.getName(), 
-                    "unexpected Exception - " + e.getCause() + 
-                    " @ " + getLocation(e.getCause(), 0));
+                    "unexpected Exception: ");
+                  e.getCause().printStackTrace();
                 }
               }
             } 

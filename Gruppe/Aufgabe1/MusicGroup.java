@@ -1,10 +1,9 @@
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
-import javax.xml.datatype.Duration;
 import java.math.BigDecimal;
 
-public class Musikgruppe {
+public class MusicGroup {
   protected String name;
   protected String genre;
   protected List<Event> events;
@@ -13,11 +12,11 @@ public class Musikgruppe {
   protected List<Song> playlist;
   protected List<Song> current_playlist;
   
-  Musikgruppe(String name) {
+  MusicGroup(String name) {
     this(name, "varied");
   }
-  
-  Musikgruppe(String name, String genre) {
+
+  MusicGroup(String name, String genre) {
     this.name = name;
     this.genre = genre;
     this.events = new ArrayList<Event>();
@@ -51,10 +50,10 @@ public class Musikgruppe {
     addSong(name,duration, new Date());
   }
   
-   public void addSong(String name,int duration, Date come) {
+  public void addSong(String name,int duration, Date come) {
     Song s = new Song (name,duration,come);
     current_playlist.add(s);
-   playlist.add(s);
+    playlist.add(s);
   }
   
   public void deleteSong(Song s) {
@@ -64,11 +63,13 @@ public class Musikgruppe {
   }
   
   public void deleteSong(String name) {
-    for(Song s: playlist) {
-      if (s.getName().equals(name)) {
-        deleteSong(s);
-      }
-    }
+    List<Song> toDelete = new ArrayList<Song>();
+    for(Song s : current_playlist)
+      if (s.getName().equals(name))
+        toDelete.add(s);
+
+    for(Song s : toDelete)
+      deleteSong(s);
   }
   
   public List<Song> getCurrentPlaylist() {
@@ -78,33 +79,33 @@ public class Musikgruppe {
     return elementsBetween(playlist,begin,end,Song.class);
   }
 
-  public void newProbe(String ort, Date begin, Date end,  BigDecimal raummiete) {
-    events.add(new Probe(ort, begin, end, raummiete));
+  public void newRehearsal(String location, Date begin, Date end, BigDecimal rent) {
+    events.add(new Rehearsal(location, begin, end, rent));
   }
 
-  public void newAuftritt(String ort, Date begin, Date end, BigDecimal gage) {
-    events.add(new Auftritt(ort, begin, end, gage));
+  public void newGig(String location, Date begin, Date end, BigDecimal payment) {
+    events.add(new Gig(location, begin, end, payment));
   }
 
-  public List<Probe> getProben(Date begin, Date end) {
-    return elementsBetween(events, begin, end, Probe.class);
+  public List<Rehearsal> getRehearsals(Date begin, Date end) {
+    return elementsBetween(events, begin, end, Rehearsal.class);
   }
 
-  public List<Auftritt> getAuftritte(Date begin, Date end) {
-    return elementsBetween(events, begin, end, Auftritt.class);
+  public List<Gig> getGigs(Date begin, Date end) {
+    return elementsBetween(events, begin, end, Gig.class);
   }
 
   public List<Event> getEvents(Date begin, Date end) {
     return elementsBetween(events, begin, end, Event.class);
   }
 
-  public BigDecimal getCostsProben(Date begin, Date end){
-    return sum(getProben(begin, end));
+  public BigDecimal getCostsForRehearsals(Date begin, Date end){
+    return sum(getRehearsals(begin, end));
   }
-  public BigDecimal getGageAuftritte(Date begin, Date end){
-    return sum(getAuftritte(begin, end));
+  public BigDecimal getPaymentForGigs(Date begin, Date end){
+    return sum(getGigs(begin, end));
   }
-  public BigDecimal getCostsEvents(Date begin, Date end){
+  public BigDecimal getBalance(Date begin, Date end){
     return sum(getEvents(begin, end)); 
   }
 

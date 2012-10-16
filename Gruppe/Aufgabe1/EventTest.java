@@ -24,18 +24,18 @@ public class EventTest extends AbstractTest {
   }
 
   @UnitTest
-  public void testAuftrittAccessors() {
-    Auftritt e = new Auftritt("wien", a, b, new BigDecimal("100.10"));
+  public void testGigAccessors() {
+    Gig e = new Gig("wien", a, b, new BigDecimal("100.10"));
     assertEqual(e.getOrt(), "wien");
     assertEqual(e.getBegin(), a);
     assertEqual(e.getEnd(), b);
-    assertEqual(e.getGage(), new BigDecimal("100.10"));
+    assertEqual(e.getPayment(), new BigDecimal("100.10"));
   }
 
   @UnitTest
   public void testClassRelationship() {
-    Auftritt auf = new Auftritt("wien", a, b, new BigDecimal("100.10"));
-    Probe prb = new Probe("tirol", b, c, new BigDecimal("20.16"));
+    Gig auf = new Gig("wien", a, b, new BigDecimal("100.10"));
+    Rehearsal prb = new Rehearsal("tirol", b, c, new BigDecimal("20.16"));
 
     assertIsInstance(auf, Event.class);
     assertIsInstance(prb, Event.class);
@@ -43,17 +43,17 @@ public class EventTest extends AbstractTest {
 
   @UnitTest
   public void testMusikgruppeEventGetters() {
-    Musikgruppe m = new Musikgruppe("Bremer Stadtmusikanten");
+    MusicGroup m = new MusicGroup("Bremer Stadtmusikanten");
 
-    m.newAuftritt("wien", a, b, new BigDecimal("100.10"));
-    m.newAuftritt("salzburg", a, b, new BigDecimal("500.0"));
-    m.newProbe("tirol", b, c, new BigDecimal("20.16"));
+    m.newGig("wien", a, b, new BigDecimal("100.10"));
+    m.newGig("salzburg", a, b, new BigDecimal("500.0"));
+    m.newRehearsal("tirol", b, c, new BigDecimal("20.16"));
 
-    List<Probe> ps = m.getProben(a, c);
+    List<Rehearsal> ps = m.getRehearsals(a, c);
     assertEqual(ps.size(), 1);
     assertEqual(ps.get(0).getOrt(), "tirol");
 
-    assertEqual(m.getAuftritte(a, c).size(), 2);
+    assertEqual(m.getGigs(a, c).size(), 2);
     assertEqual(m.getEvents(a, c).size(), 3);
 
     assertEqual(m.getEvents(b, c).size(), 1);
@@ -62,14 +62,14 @@ public class EventTest extends AbstractTest {
 
   @UnitTest
   public void testCostSums() {
-    Musikgruppe m = new Musikgruppe("U2");
+    MusicGroup m = new MusicGroup("U2");
 
-    m.newAuftritt("wien", a, b, new BigDecimal("100.10"));
-    m.newAuftritt("salzburg", b, c, new BigDecimal("500.0"));
-    m.newProbe("tirol", b, c, new BigDecimal("20.16"));
+    m.newGig("wien", a, b, new BigDecimal("100.10"));
+    m.newGig("salzburg", b, c, new BigDecimal("500.0"));
+    m.newRehearsal("tirol", b, c, new BigDecimal("20.16"));
 
-    assertEqual(new BigDecimal("-20.16"), m.getCostsProben(a, c));
-    assertEqual(new BigDecimal("600.1"), m.getGageAuftritte(a, c));
-    assertEqual(new BigDecimal("479.84"), m.getCostsEvents(c, c));
+    assertEqual(new BigDecimal("-20.16"), m.getCostsForRehearsals(a, c));
+    assertEqual(new BigDecimal("600.1"), m.getPaymentForGigs(a, c));
+    assertEqual(new BigDecimal("479.84"), m.getBalance(c, c));
   }
 }
