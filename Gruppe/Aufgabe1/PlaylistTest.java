@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import test.*;
 
 // all test classes should extend AbstractTest to get useful utility methods
 public class PlaylistTest extends AbstractTest {

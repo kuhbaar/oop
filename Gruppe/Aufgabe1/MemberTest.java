@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.util.Calendar;
+import test.*;
 
 public class MemberTest extends AbstractTest{
 	Date a,b,c,d;
