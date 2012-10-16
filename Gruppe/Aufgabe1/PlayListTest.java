@@ -21,58 +21,55 @@ public class PlayListTest extends AbstractTest {
 
     cal.set(2012, 10, 10);
     c = cal.getTime();
-	
-	cal.set(2012, 10, 5);
+  
+    cal.set(2012, 10, 5);
     d = cal.getTime();
   }
 
  
   @UnitTest
   public void testAddSong() {
-	Musikgruppe m = new Musikgruppe();
-	
+    Musikgruppe m = new Musikgruppe();
+  
     Song test = new Song("Ueber den Wolken",150);
-	
-	Song rest = new Song("Tanzen im Regen",170);
+  
+    Song rest = new Song("Tanzen im Regen",170);
     Song west = new Song("Rote Lippen",147);
-	
-	m.addSong("Ueber den Wolken",150);
-	m.addSong("Tanzen im Regen",170);
-	assertEqual(m.getCurrentPlaylist().toString(), "[Ueber den Wolken - 2:30, Tanzen im Regen - 2:50]");
-	
+  
+    m.addSong("Ueber den Wolken",150);
+    m.addSong("Tanzen im Regen",170);
+    assertEqual(m.getCurrentPlaylist().toString(), "[Ueber den Wolken - 2:30, Tanzen im Regen - 2:50]");
   }
   
    @UnitTest
-	public void testRemoveSong() {
-	Musikgruppe m = new Musikgruppe();
-	
+  public void testRemoveSong() {
+    Musikgruppe m = new Musikgruppe();
+  
     Song test = new Song("Ueber den Wolken",150);
-	
-	Song rest = new Song("Tanzen im Regen",170);
+  
+    Song rest = new Song("Tanzen im Regen",170);
     Song west = new Song("Rote Lippen",147);
-	
-	m.addSong("Ueber den Wolken",150);
-	m.addSong("Tanzen im Regen",170);
-	m.addSong("Rote Lippen",147);
-	m.deleteSong("Rote Lippen");
-	assertEqual(m.getCurrentPlaylist().toString(), "[Ueber den Wolken - 2:30, Tanzen im Regen - 2:50]");
-	
+    
+    m.addSong("Ueber den Wolken",150);
+    m.addSong("Tanzen im Regen",170);
+    m.addSong("Rote Lippen",147);
+    m.deleteSong("Rote Lippen");
+    assertEqual(m.getCurrentPlaylist().toString(), "[Ueber den Wolken - 2:30, Tanzen im Regen - 2:50]");
   }
   
   @UnitTest
-	public void testGetPlaylist() {
-	Musikgruppe m = new Musikgruppe();
-	
+  public void testGetPlaylist() {
+    Musikgruppe m = new Musikgruppe();
+
     Song test = new Song("Ueber den Wolken",150);
-	
-	Song rest = new Song("Tanzen im Regen",170);
+
+    Song rest = new Song("Tanzen im Regen",170);
     Song west = new Song("Rote Lippen",147);
-	
-	m.addSong("Ueber den Wolken",150,a);
-	m.addSong("Tanzen im Regen",170,c);
-	m.addSong("Rote Lippen",147,b);
-	assertEqual(m.getPlaylist(a,d).toString(), "[Ueber den Wolken - 2:30, Rote Lippen - 2:27]");
-	
+
+    m.addSong("Ueber den Wolken",150,a);
+    m.addSong("Tanzen im Regen",170,c);
+    m.addSong("Rote Lippen",147,b);
+    assertEqual(m.getPlaylist(a,d).toString(), "[Ueber den Wolken - 2:30, Rote Lippen - 2:27]");
   }
   
 /*

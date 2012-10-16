@@ -71,7 +71,5 @@ public class EventTest extends AbstractTest {
     assertEqual(new BigDecimal("-20.16"), m.getCostsProben(a, c));
     assertEqual(new BigDecimal("600.1"), m.getGageAuftritte(a, c));
     assertEqual(new BigDecimal("479.84"), m.getCostsEvents(c, c));
-
   }
-
 }

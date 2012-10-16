@@ -15,58 +15,60 @@ public class Musikgruppe {
   Musikgruppe() {
     this.events = new ArrayList<Event>();
     this.members = new ArrayList<Member>();
-	this.current_members = new ArrayList<Member>();
-	this.playlist = new ArrayList<Song>();
-	this.current_playlist = new ArrayList<Song>();
+    this.current_members = new ArrayList<Member>();
+    this.playlist = new ArrayList<Song>();
+    this.current_playlist = new ArrayList<Song>();
   }
   public void addMember(String name,String surname,BigDecimal number,String instr){
-	Member m = new Member(name,surname,number,instr);
+    Member m = new Member(name,surname,number,instr);
     current_members.add(m);
-	members.add(m);
+    members.add(m);
   }
-  public void deleteMember(Member m){
+
+  public void deleteMember(Member m) {
     current_members.remove(m);
     members.remove(m);
     members.add(m.leave());
   }
-  public List<Member> getCurrentMembers(){
+
+  public List<Member> getCurrentMembers() {
     return new ArrayList<Member>(current_members);
   }
+
   public List<Member> getMembers(Date begin,Date end){
     return elementsBetween(members, begin,end, Member.class);
   }
   
-  public void addSong(String name,int duration){
-	addSong(name,duration, new Date());
+  public void addSong(String name,int duration) {
+    addSong(name,duration, new Date());
   }
   
-   public void addSong(String name,int duration, Date come){
-	Song s = new Song (name,duration,come);
+   public void addSong(String name,int duration, Date come) {
+    Song s = new Song (name,duration,come);
     current_playlist.add(s);
-	playlist.add(s);
+   playlist.add(s);
   }
   
-  public void deleteSong(Song s){
+  public void deleteSong(Song s) {
     current_playlist.remove(s);
     playlist.remove(s);
     playlist.add(s.remove());
   }
   
-  public void deleteSong(String name){
-	for(Song s: playlist){
-		if (s.getName().equals(name)){
-			playlist.remove(s);
-			current_playlist.remove(s);
-			playlist.add(s.remove());
-		}
-	}
-	
+  public void deleteSong(String name) {
+    for(Song s: playlist) {
+      if (s.getName().equals(name)) {
+        playlist.remove(s);
+        current_playlist.remove(s);
+        playlist.add(s.remove());
+      }
+    }
   }
   
-  public List<Song> getCurrentPlaylist(){
+  public List<Song> getCurrentPlaylist() {
     return new ArrayList<Song>(current_playlist);
   }
-  public List<Song> getPlaylist(Date begin,Date end){
+  public List<Song> getPlaylist(Date begin,Date end) {
     return elementsBetween(playlist,begin,end,Song.class);
   }
 
@@ -118,7 +120,7 @@ public class Musikgruppe {
                                e.getBegin().equals(begin) ||  // before and after are > and <, so we need == too
                                e.getEnd().after(begin) && e.getEnd().before(end) ||
                                e.getEnd().equals(end)) ||
-							   e.getBegin().before(begin) && e.getEnd().after(end))
+                               e.getBegin().before(begin) && e.getEnd().after(end))
         out.add(cls.cast(e));
     return out;
   }
