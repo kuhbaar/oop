@@ -9,7 +9,7 @@ public class Test extends TestFramework{
     // for info how to create one, check out EventTest.java and SampleTest.java
     runTests(Arrays.<Class>asList(
       EventTest.class,
-      SampleTest.class,
+      //SampleTest.class,
       PlaylistTest.class,
       MemberTest.class
       ) );
