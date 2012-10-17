@@ -1,4 +1,4 @@
-cd Gruppe/Aufgabe1
+cd Gruppe/Aufgabe2
 
 rm -f *class
 rm -f */*class

@@ -1,7 +1,7 @@
 #!/bin/bash
 ./clean.sh
 
-cd Gruppe/Aufgabe1
+cd Gruppe/Aufgabe2
 
 javac -Xlint:all -Werror *.java */*.java
 
