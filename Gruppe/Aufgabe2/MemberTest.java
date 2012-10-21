@@ -3,7 +3,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import test.*;
+import myunit.AbstractTest;
+import myunit.UnitTest;
+import myunit.BeforeClass;
+import oop.Member;
+import oop.MusicGroup;
 
 public class MemberTest extends AbstractTest{
 	Date a,b,c,d;

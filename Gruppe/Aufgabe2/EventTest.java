@@ -3,7 +3,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import test.*;
+import myunit.AbstractTest;
+import myunit.UnitTest;
+import myunit.BeforeClass;
+import oop.Gig;
+import oop.Event;
+import oop.Rehearsal;
+import oop.MusicGroup;
+
 
 // all test classes should extend AbstractTest to get useful utility methods
 public class EventTest extends AbstractTest {

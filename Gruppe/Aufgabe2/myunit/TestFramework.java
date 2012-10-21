@@ -1,4 +1,4 @@
-package test;
+package myunit;
 
 import java.lang.reflect.Method;
 import java.lang.annotation.Annotation;
@@ -59,7 +59,7 @@ public class TestFramework {
                 printSuccess(m.getName());
               }
             } catch(InvocationTargetException e) {
-              if(e.getCause() instanceof test.AssertException) {
+              if(e.getCause() instanceof AssertException) {
                 printFailure(m.getName(), e.getCause().getMessage()+ 
                     " @ " + getLocation(e.getCause(), 1));
                 failed_tests += 1;

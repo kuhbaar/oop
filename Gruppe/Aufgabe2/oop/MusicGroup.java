@@ -1,3 +1,5 @@
+package oop;
+
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
@@ -12,11 +14,11 @@ public class MusicGroup {
   protected List<Song> playlist;
   protected List<Song> current_playlist;
   
-  MusicGroup(String name) {
+  public MusicGroup(String name) {
     this(name, "varied");
   }
 
-  MusicGroup(String name, String genre) {
+  public MusicGroup(String name, String genre) {
     this.name = name;
     this.genre = genre;
     this.events = new ArrayList<Event>();

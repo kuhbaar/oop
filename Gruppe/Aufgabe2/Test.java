@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
-import test.TestFramework;
-import test.SampleTest;
-import test.AbstractTest;
+import myunit.TestFramework;
+import myunit.AbstractTest;
 
 
 public class Test extends TestFramework{
@@ -13,7 +12,6 @@ public class Test extends TestFramework{
     tests.add(EventTest.class);
     tests.add(PlaylistTest.class);
     tests.add(MemberTest.class);
-    //tests.add(SampleTest.class);
 
     runTests(tests);
   }

@@ -1,4 +1,4 @@
-package test;
+package myunit;
 
 // this is a runtime exception so users of the test framework don't have to
 // declare the exception for each and every test, which would be very tedious
