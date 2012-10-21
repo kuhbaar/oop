@@ -13,6 +13,8 @@ public class Test extends TestFramework{
     tests.add(tests.PlaylistTest.class);
     tests.add(tests.MemberTest.class);
     tests.add(tests.InfrastructureTest.class);
+    tests.add(tests.MusicGroupTest.class);
+
 
     runTests(tests);
   }

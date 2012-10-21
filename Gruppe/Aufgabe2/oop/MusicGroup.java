@@ -128,14 +128,29 @@ public class MusicGroup {
   }
 
   public BigDecimal getBalance(Date begin, Date end){
-    return getEventBalance(begin, end).add(getVariousPaymentsSum(begin, end));
+    return getBalanceFilteredBy(new DateFilter(begin, end));
+  }
+
+  public BigDecimal getBalanceFilteredBy(PaymentFilter f) {
+    List<Payment> payments = new ArrayList<Payment>(various_payments);
+    for(Event e : events)
+      payments.addAll(e.getPayments());
+
+    BigDecimal sum = new BigDecimal(0);
+    for(Payment p : payments)
+      if(f.checkPayment(p))
+        sum = sum.add(p.getAmount());
+    return sum;
   }
 
   public BigDecimal getVariousPaymentsSum(Date begin, Date end) {
+    return getVariousPaymentsFilteredBy(new DateFilter(begin, end));
+  }
+
+  public BigDecimal getVariousPaymentsFilteredBy(PaymentFilter f) {
     BigDecimal sum = new BigDecimal(0);
     for(Payment p : various_payments)
-      if(p.getDate().after(begin) && p.getDate().before(end) ||
-         p.getDate().equals(begin) || p.getDate().equals(end))
+      if(f.checkPayment(p))
         sum = sum.add(p.getAmount());
     return sum;
   }

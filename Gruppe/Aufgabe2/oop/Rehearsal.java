@@ -14,7 +14,7 @@ public class Rehearsal extends Event {
 
   public Rehearsal(Location location, Date begin, Date end, BigDecimal rent) { 
     this(location, begin, end);
-    payments.add(new Payment("rent", rent.negate()));
+    payments.add(new Payment("rent", rent.negate(), begin));
   }
 
   public Rehearsal(String location, Date begin, Date end, BigDecimal rent) { 

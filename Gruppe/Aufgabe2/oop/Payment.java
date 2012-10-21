@@ -14,7 +14,6 @@ public class Payment {
     this(description, amount, new Date());
   }
 
-
   public Payment(String description, String amount) {
     this(description, new BigDecimal(amount));
   }

@@ -14,7 +14,7 @@ public class Gig extends Event {
 
   public Gig(Location loc, Date begin, Date end, BigDecimal payment) { 
     this(loc, begin, end);
-    payments.add(new Payment("payment", payment));
+    payments.add(new Payment("payment", payment, begin));
   }
 
   public Gig(String loc, Date begin, Date end, BigDecimal payment) { 
