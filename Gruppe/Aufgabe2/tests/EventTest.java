@@ -80,6 +80,6 @@ public class EventTest extends AbstractTest {
 
     assertEqual(new BigDecimal("-20.16"), m.getCostsForRehearsals(a, c));
     assertEqual(new BigDecimal("600.1"), m.getPaymentForGigs(a, c));
-    assertEqual(new BigDecimal("479.84"), m.getBalance(c, c));
+    assertEqual(new BigDecimal("479.84"), m.getEventBalance(c, c));
   }
 }
