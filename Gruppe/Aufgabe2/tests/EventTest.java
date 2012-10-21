@@ -36,7 +36,7 @@ public class EventTest extends AbstractTest {
   @UnitTest
   public void testGigAccessors() {
     Gig e = new Gig("wien", a, b, new BigDecimal("100.10"));
-    assertEqual(e.getOrt(), "wien");
+    assertEqual(e.getLocation().toString(), "wien");
     assertEqual(e.getBegin(), a);
     assertEqual(e.getEnd(), b);
     assertEqual(e.getPayment(), new BigDecimal("100.10"));
@@ -61,7 +61,7 @@ public class EventTest extends AbstractTest {
 
     List<Rehearsal> ps = m.getRehearsals(a, c);
     assertEqual(ps.size(), 1);
-    assertEqual(ps.get(0).getOrt(), "tirol");
+    assertEqual(ps.get(0).getLocation().toString(), "tirol");
 
     assertEqual(m.getGigs(a, c).size(), 2);
     assertEqual(m.getEvents(a, c).size(), 3);
