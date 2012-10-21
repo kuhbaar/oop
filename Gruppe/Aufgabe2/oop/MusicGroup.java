@@ -89,6 +89,10 @@ public class MusicGroup {
     events.add(new Gig(location, begin, end, payment));
   }
 
+  public void newEvent(Event e){
+    events.add(e);
+  }
+
   public List<Rehearsal> getRehearsals(Date begin, Date end) {
     return elementsBetween(events, begin, end, Rehearsal.class);
   }
