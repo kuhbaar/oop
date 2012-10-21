@@ -14,9 +14,8 @@ public class Location {
     this.infrastructure = new ArrayList<Infrastructure>(l.infrastructure);
   }
 
-  public String toString() {
-    return this.name;
-  }
+  public String toString() { return this.name; }
+  public String getName() { return name; }
 
   public Boolean hasInfrastructure(Infrastructure inf) {
     for(Infrastructure i : infrastructure) {
@@ -25,7 +24,7 @@ public class Location {
     return false;
   }
 
-  public Location addInfrastructure(Infrastructure i) {
+  public Location add(Infrastructure i) {
     Location l = new Location(this);
     l.infrastructure.add(i);
     return l;

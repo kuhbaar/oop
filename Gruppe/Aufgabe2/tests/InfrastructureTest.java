@@ -8,7 +8,7 @@ import myunit.BeforeClass;
 import oop.Location;
 import oop.Toilets;
 import oop.DisabledToilets;
-import oop.MusicGroup;
+import oop.LocationDirectory;
 
 public class InfrastructureTest extends AbstractTest {
   @BeforeClass
@@ -20,10 +20,23 @@ public class InfrastructureTest extends AbstractTest {
   public void addInfrastructureToLocation() {
     Location l = 
       new Location("Staatsoper")
-        .addInfrastructure(new Toilets("Frauenklo"))
-        .addInfrastructure(new Toilets("Maennerklo"));
+        .add(new Toilets("Frauenklo"))
+        .add(new Toilets("Maennerklo"));
 
     assertTrue(l.hasInfrastructure(new Toilets()));
     assertFalse(l.hasInfrastructure(new DisabledToilets()));
+  }
+
+  @UnitTest
+  public void locationDirectoryTests() {
+    LocationDirectory d = new LocationDirectory();
+
+    d.add(new Location("Ballhaus").
+      add(new DisabledToilets()));
+    d.add(new Location("Bruchbude"));
+
+    List<Location> l = d.getLocationsWithInfrastructure(new DisabledToilets());
+    assertEqual(l.size(), 1);
+    assertEqual(l.get(0).getName(), "Ballhaus");
   }
 }
