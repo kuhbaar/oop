@@ -23,6 +23,10 @@ public class Payment {
     this(description, new BigDecimal(amount), date);
   }
 
+  public Payment(Payment p) {
+    this(p.description, p.amount, p.date);
+  }
+
   public BigDecimal getAmount() { return amount; }
   public Date getDate() { return new Date(date.getTime()); }
 

@@ -140,12 +140,9 @@ public class MusicGroup {
     return sum;
   }
 
-  public void addPayment(String description, String amount) {
-    this.addPayment(description, new BigDecimal(amount));
-  }
-
-  public void addPayment(String description, BigDecimal amount) {
-    this.various_payments.add(new Payment(description, amount));
+  public MusicGroup add(Payment p) {
+    this.various_payments.add(new Payment(p));
+    return this;
   }
 
   //Sum method for calculating the sum of list elements
