@@ -9,6 +9,7 @@ public class MusicGroup {
   protected String name;
   protected String genre;
   protected List<Event> events;
+  protected List<Event> del_events;
   protected List<Member> current_members;
   protected List<Member> members;
   protected List<Song> playlist;
@@ -93,6 +94,15 @@ public class MusicGroup {
     events.add(e);
   }
 
+  public void deleteEvent(Event e){
+    del_events.add(e);
+    events.remove(e);
+  }
+
+  public void changeEvent(Event e, Event change){
+    del_events.add(events.set(events.indexOf(e), change)); // Replaces e with the changed event
+  }
+
   public List<Rehearsal> getRehearsals(Date begin, Date end) {
     return elementsBetween(events, begin, end, Rehearsal.class);
   }
@@ -123,7 +133,7 @@ public class MusicGroup {
     return sum;
   }
 
-  // can be used for mitglieder and repertoir too
+  // can be used for members and repertoir too
   // some template trickery to make it return a List of the requested type, not
   // the common supertype
   protected <T extends Timespan, U extends Timespan> List<U> elementsBetween(List<T> in, Date begin, Date end, Class<U> cls) {
