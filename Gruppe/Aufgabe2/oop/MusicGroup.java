@@ -106,7 +106,7 @@ public class MusicGroup {
   public void changeEvent(Event e, Event change){
     change.save(e);
     events.set(events.indexOf(e), change); // Replaces e with the changed event
-    sendMessageToMembers(e);
+    sendMessageToMembers(change);
   }
   
   public void recallEvent(Event change){
