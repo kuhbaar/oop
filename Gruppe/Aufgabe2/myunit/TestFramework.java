@@ -15,12 +15,14 @@ public class TestFramework {
 
   public static void runTests(List<Class<? extends AbstractTest>> cs) {
     API colorizer = new Ansi();
+    System.out.println(System.getProperty("os.name"));
     try {
       // Windows uses non-portable system calls, so we have to load it dynamically
       if(System.getProperty("os.name").startsWith("Windows"))
         colorizer = (API) Class.forName("myunit.color.Windows").newInstance();
     } catch(Exception e) {
       System.out.println("failed to load colorizer");
+      e.printStackTrace();
     }
 
     int failed_tests = 0;
