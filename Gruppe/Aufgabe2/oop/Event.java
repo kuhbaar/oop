@@ -13,6 +13,8 @@ public class Event implements Timespan {
     this.end = new Date(end.getTime());
     this.payments = new ArrayList<Payment>();
     this.change = new Stack<Event>();
+    this.accepted=0;
+    this.declined=0;
   }
 
   public Event(String loc, Date begin, Date end) {
@@ -22,6 +24,8 @@ public class Event implements Timespan {
   public Event(Event e) {
     this(e.location, e.begin, e.end);
     this.payments = new ArrayList<Payment>(e.payments);
+    this.accepted = e.getAcceptance();
+    this.declined = e.getDeclination();
   }
 
   public Event add(Payment p) {
@@ -42,6 +46,8 @@ public class Event implements Timespan {
     }
     return balance;
   }
+  public int getAcceptance(){ return accepted;}
+  public int getDeclination(){ return declined;}
 
   public void save(Event e){
     this.change.push(e);
@@ -56,11 +62,20 @@ public class Event implements Timespan {
     return String.format("Event in %s von %s bis %s, %s $", 
       location, begin, end, getBalance());
   }
+
+  public void accept(String comment) {
+   accepted++; 
+  }
+  public void decline(String comment) {
+   declined++;
+  }
   
   protected Location location;
   protected Date begin;
   protected Date end;
   protected Stack<Event> change;
   protected List<Payment> payments;
+  protected int accepted;
+  protected int declined;
 }
 

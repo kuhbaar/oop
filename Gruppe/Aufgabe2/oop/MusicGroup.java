@@ -94,19 +94,30 @@ public class MusicGroup {
 
   public void newEvent(Event e){
     events.add(e);
+    sendMessageToMembers(e);
   }
 
   public void deleteEvent(Event e){
     del_events.add(e);
     events.remove(e);
+    sendMessageToMembers(e);
   }
 
   public void changeEvent(Event e, Event change){
     change.save(e);
     events.set(events.indexOf(e), change); // Replaces e with the changed event
+    sendMessageToMembers(e);
   }
+  
   public void recallEvent(Event change){
     change=change.undo();
+    sendMessageToMembers(e);
+  }
+
+  public void sendMessageToMembers(Event e){
+    for(Member m: current_members){
+      m.sendMessage(e);
+    }
   }
 
   public List<Rehearsal> getRehearsals(Date begin, Date end) {
