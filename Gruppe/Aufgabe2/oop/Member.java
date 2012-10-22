@@ -28,6 +28,7 @@ public class Member implements Timespan{
 		this(m.name, m.surname, m.phoneno, m.instrument);
 		this.Join=m.getBegin();
 		this.Leave=m.getEnd();
+		this.message=m.getMessage();
 	}
 
 	public String getName(){return name;}
@@ -36,6 +37,7 @@ public class Member implements Timespan{
 	public String getInstrument(){return instrument;}
 	public Date getBegin(){return Join;}
 	public Date getEnd(){return Leave;}
+	public List<Event> getMessage(){return this.message;}
 
 	public Member leave(){
 		Member m = new Member(this);

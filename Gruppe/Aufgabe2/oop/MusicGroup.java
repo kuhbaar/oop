@@ -24,6 +24,7 @@ public class MusicGroup {
     this.name = name;
     this.genre = genre;
     this.events = new ArrayList<Event>();
+    this.del_events = new ArrayList<Event>();
     this.members = new ArrayList<Member>();
     this.current_members = new ArrayList<Member>();
     this.playlist = new ArrayList<Song>();
@@ -86,10 +87,12 @@ public class MusicGroup {
 
   public void newRehearsal(String location, Date begin, Date end, BigDecimal rent) {
     events.add(new Rehearsal(location, begin, end, rent));
+    sendMessageToMembers(new Rehearsal(location, begin, end, rent));
   }
 
   public void newGig(String location, Date begin, Date end, BigDecimal payment) {
     events.add(new Gig(location, begin, end, payment));
+    sendMessageToMembers(new Gig(location, begin, end, payment));
   }
 
   public void newEvent(Event e){
