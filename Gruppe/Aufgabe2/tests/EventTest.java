@@ -12,6 +12,7 @@ import oop.Gig;
 import oop.Event;
 import oop.Rehearsal;
 import oop.MusicGroup;
+import oop.Payment;
 
 
 // all test classes should extend AbstractTest to get useful utility methods
@@ -36,7 +37,7 @@ public class EventTest extends AbstractTest {
   @UnitTest
   public void testGigAccessors() {
     Gig e = new Gig("wien", a, b, new BigDecimal("100.10"));
-    assertEqual(e.getOrt(), "wien");
+    assertEqual(e.getLocation().toString(), "wien");
     assertEqual(e.getBegin(), a);
     assertEqual(e.getEnd(), b);
     assertEqual(e.getPayment(), new BigDecimal("100.10"));
@@ -61,7 +62,7 @@ public class EventTest extends AbstractTest {
 
     List<Rehearsal> ps = m.getRehearsals(a, c);
     assertEqual(ps.size(), 1);
-    assertEqual(ps.get(0).getOrt(), "tirol");
+    assertEqual(ps.get(0).getLocation().toString(), "tirol");
 
     assertEqual(m.getGigs(a, c).size(), 2);
     assertEqual(m.getEvents(a, c).size(), 3);
@@ -80,6 +81,30 @@ public class EventTest extends AbstractTest {
 
     assertEqual(new BigDecimal("-20.16"), m.getCostsForRehearsals(a, c));
     assertEqual(new BigDecimal("600.1"), m.getPaymentForGigs(a, c));
-    assertEqual(new BigDecimal("479.84"), m.getBalance(c, c));
+    assertEqual(new BigDecimal("479.84"), m.getEventBalance(c, c));
+  }
+
+  @UnitTest
+  public void testMultiplePayments() {
+    Event g = new Gig("melk", a, b)
+      .add(new Payment("gage", "500"))
+      .add(new Payment("verpflegung", "-100"));
+
+    assertEqual(new BigDecimal("400"), g.getBalance());
+  }
+
+
+  @UnitTest
+  public void testVariousPaymentSum() {
+    MusicGroup m = new MusicGroup("U2");
+
+    m.newGig("wien", a, b, new BigDecimal("100.10"));
+    m.newGig("salzburg", b, c, new BigDecimal("500.0"));
+    m.newRehearsal("tirol", b, c, new BigDecimal("20.16"));
+    m.add(new Payment("bonus", "100", a));
+
+    assertEqual(new BigDecimal("100"), m.getVariousPaymentsSum(a, c));
+    assertEqual(new BigDecimal("0"), m.getVariousPaymentsSum(b, c));
+    assertEqual(new BigDecimal("679.94"), m.getBalance(a, c));
   }
 }

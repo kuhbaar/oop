@@ -14,6 +14,7 @@ public class MusicGroup {
   protected List<Member> members;
   protected List<Song> playlist;
   protected List<Song> current_playlist;
+  protected List<Payment> various_payments;
   
   public MusicGroup(String name) {
     this(name, "varied");
@@ -27,6 +28,7 @@ public class MusicGroup {
     this.current_members = new ArrayList<Member>();
     this.playlist = new ArrayList<Song>();
     this.current_playlist = new ArrayList<Song>();
+    this.various_payments = new ArrayList<Payment>();
   }
 
   public void addMember(Member m){
@@ -125,8 +127,41 @@ public class MusicGroup {
   public BigDecimal getPaymentForGigs(Date begin, Date end){
     return sum(getGigs(begin, end));
   }
-  public BigDecimal getBalance(Date begin, Date end){
+  public BigDecimal getEventBalance(Date begin, Date end){
     return sum(getEvents(begin, end)); 
+  }
+
+  public BigDecimal getBalance(Date begin, Date end){
+    return getBalanceFilteredBy(new DateFilter(begin, end));
+  }
+
+  public BigDecimal getBalanceFilteredBy(PaymentFilter f) {
+    List<Payment> payments = new ArrayList<Payment>(various_payments);
+    for(Event e : events)
+      payments.addAll(e.getPayments());
+
+    BigDecimal sum = new BigDecimal(0);
+    for(Payment p : payments)
+      if(f.checkPayment(p))
+        sum = sum.add(p.getAmount());
+    return sum;
+  }
+
+  public BigDecimal getVariousPaymentsSum(Date begin, Date end) {
+    return getVariousPaymentsFilteredBy(new DateFilter(begin, end));
+  }
+
+  public BigDecimal getVariousPaymentsFilteredBy(PaymentFilter f) {
+    BigDecimal sum = new BigDecimal(0);
+    for(Payment p : various_payments)
+      if(f.checkPayment(p))
+        sum = sum.add(p.getAmount());
+    return sum;
+  }
+
+  public MusicGroup add(Payment p) {
+    this.various_payments.add(new Payment(p));
+    return this;
   }
 
   //Sum method for calculating the sum of list elements

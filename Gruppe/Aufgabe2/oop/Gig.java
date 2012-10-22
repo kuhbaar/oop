@@ -5,11 +5,26 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Gig extends Event {
-  public Gig(String ort, Date begin, Date end,  BigDecimal payment) { 
-    super(ort, begin, end, payment);
+  public Gig(Location loc, Date begin, Date end) {
+    super(loc, begin, end);
   }
+
+  public Gig(String loc, Date begin, Date end) {
+    this(new Location(loc), begin, end);
+  }
+
+  public Gig(Location loc, Date begin, Date end, BigDecimal payment) { 
+    this(loc, begin, end);
+    payments.add(new Payment("payment", payment, begin));
+  }
+
+  public Gig(String loc, Date begin, Date end, BigDecimal payment) { 
+    this(new Location(loc), begin, end, payment);
+  }
+
   public Gig(Gig g){
   	super(g);
   }
-  public BigDecimal getPayment() { return balance; }
+  
+  public BigDecimal getPayment() { return getBalance(); }
 }
