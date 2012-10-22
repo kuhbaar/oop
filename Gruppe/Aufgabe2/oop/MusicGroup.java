@@ -100,7 +100,11 @@ public class MusicGroup {
   }
 
   public void changeEvent(Event e, Event change){
-    del_events.add(events.set(events.indexOf(e), change)); // Replaces e with the changed event
+    change.save(e);
+    events.set(events.indexOf(e), change); // Replaces e with the changed event
+  }
+  public void recallEvent(Event change){
+    change=change.undo();
   }
 
   public List<Rehearsal> getRehearsals(Date begin, Date end) {

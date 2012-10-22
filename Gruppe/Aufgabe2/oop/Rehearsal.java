@@ -2,6 +2,7 @@ package oop;
 
 import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Stack;
 
 public class Rehearsal extends Event {
   public Rehearsal(String location, Date begin, Date end,  BigDecimal rent) { 

@@ -2,8 +2,18 @@ package oop;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Member implements Timespan{
+	protected String Name;
+	protected String Surname;
+	protected String PhoneNo;
+	protected String Instrument;
+	protected Date Join;
+	protected Date Leave;
+	protected List<Event> Message;
+
 	public Member(String name, String surname, String phoneno, String inst){
 		this.Name=name;
 		this.Surname=surname;
@@ -40,11 +50,4 @@ public class Member implements Timespan{
 	public String toString(){
 		return (Name + " " + Surname + " " + PhoneNo + " " + Instrument);
 	}
-
-	protected String Name;
-	protected String Surname;
-	protected String PhoneNo;
-	protected String Instrument;
-	protected Date Join;
-	protected Date Leave;
 }

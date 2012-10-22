@@ -2,6 +2,7 @@ package oop;
 
 import java.util.Date;
 import java.math.BigDecimal;
+import java.util.Stack;
 
 public class Gig extends Event {
   public Gig(String ort, Date begin, Date end,  BigDecimal payment) { 
