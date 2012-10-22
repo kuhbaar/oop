@@ -7,19 +7,12 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Event implements Timespan {
-  public Event(Location location, Date begin, Date end, BigDecimal balance) { 
-    this.location = location;
-    this.begin = begin;
-    this.end = end;
-    this.balance = balance;
-    this.change = new Stack<Event>();
-  }
-
   public Event(Location loc, Date begin, Date end) { 
     this.location = loc;
     this.begin = new Date(begin.getTime());     // yes, date doesn't even have a copy constructor !
     this.end = new Date(end.getTime());
     this.payments = new ArrayList<Payment>();
+    this.change = new Stack<Event>();
   }
 
   public Event(String loc, Date begin, Date end) {
@@ -67,7 +60,6 @@ public class Event implements Timespan {
   protected Location location;
   protected Date begin;
   protected Date end;
-  protected BigDecimal balance;
   protected Stack<Event> change;
   protected List<Payment> payments;
 }
