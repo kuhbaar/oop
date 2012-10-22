@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 import myunit.AbstractTest;
 import myunit.UnitTest;
-import myunit.BeforeClass;
+import myunit.BeforeTest;
 
 //import oop.MusicGroup;
 //import oop.Member;
@@ -20,7 +20,8 @@ public class MusicGroupTest extends AbstractTest {
   Event e1,e2,e3,e4;
 
 
-  @BeforeClass
+  // reset values for each test
+  @BeforeTest
   public void initializeCommonValues() {
     // provide some common values
     Calendar cal = Calendar.getInstance();
@@ -53,9 +54,7 @@ public class MusicGroupTest extends AbstractTest {
     assertEqual(karl.getMessage().size(),3);
     m.deleteEvent(e1); //not working - why
     assertEqual(m.getEvents(a,c).size(),3);
-    m.changeEvent(e3,e4);
-    
-
+    m.changeEvent( m.getEvents(a, c).get(2),e4);
   }
 
   @UnitTest
