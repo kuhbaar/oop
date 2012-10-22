@@ -39,10 +39,11 @@ public class MemberTest extends AbstractTest{
         assertEqual(m.getBegin(), new Date(Long.MAX_VALUE));
         assertEqual (m.getBegin(), new Date(Long.MAX_VALUE));
     	assertEqual(m.getEnd(), new Date(Long.MAX_VALUE));
+        assertEqual(m.getMessage().size(),new ArrayList<String>().size());
     }
     
     @UnitTest
-    public void testMusikgruppeMethods(){
+    public void testMusicGroupMethodsI(){
         MusicGroup g = new MusicGroup("The Goers");
         Member m = new Member("klaus","Moor", "0815", "Chello");
         Member m1= new Member("karl", "koala", "0816", "Guitar");
@@ -68,6 +69,5 @@ public class MemberTest extends AbstractTest{
         assertTrue(oml.size()==2);
         assertEqual(m1.getName(),ml.get(0).getName());//deleteMember correct Member deleted?
         assertTrue(y.compareTo(oml.get(1).getEnd())<=0 && x.compareTo(oml.get(1).getEnd())>=0);//deleteMember correct leave?
-
     }
 }
