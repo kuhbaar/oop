@@ -2,11 +2,37 @@ package oop;
 
 import java.util.Date;
 import java.math.BigDecimal;
-import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Rehearsal extends Event {
+  public Rehearsal(Location location, Date begin, Date end,List<Member> members) { 
+    super(location, begin, end, members);
+    for(Member m:members){
+
+      if (m instanceof Substitute) m.addProbe(begin);
+    }
+  }
+
+  public Rehearsal(String location, Date begin, Date end,List<Member> members) { 
+    this(new Location(location), begin, end, members);
+  }
+
+  public Rehearsal(Location location, Date begin, Date end, BigDecimal rent,List<Member> members) { 
+    this(location, begin, end, members);
+    payments.add(new Payment("rent", rent.negate(), begin));
+  }
+
+  public Rehearsal(String location, Date begin, Date end, BigDecimal rent,List<Member> members) { 
+    this(new Location(location), begin, end, rent, members);
+  }
+
   public Rehearsal(Location location, Date begin, Date end) { 
     super(location, begin, end);
+    for(Member m:members){
+
+      if (m instanceof Substitute) m.addProbe(begin);
+    }
   }
 
   public Rehearsal(String location, Date begin, Date end) { 
@@ -23,7 +49,7 @@ public class Rehearsal extends Event {
   }
 
   public Rehearsal(Rehearsal r) {
-  	super(r);
+    super(r);
   }
 
   public BigDecimal getRent() { return getBalance(); }

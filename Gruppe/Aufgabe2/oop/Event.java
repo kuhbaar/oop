@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Event implements Timespan {
-  public Event(Location loc, Date begin, Date end) { 
+  public Event(Location loc, Date begin, Date end, List<Member> members) { 
     this.location = loc;
     this.begin = new Date(begin.getTime());     // yes, date doesn't even have a copy constructor !
     this.end = new Date(end.getTime());
@@ -15,14 +15,31 @@ public class Event implements Timespan {
     this.change = new Stack<Event>();
     this.accepted=0;
     this.declined=0;
+    this.members= new ArrayList<Member>(members);
+  }
+
+  public Event(String loc, Date begin, Date end, List<Member> members) {
+    this(new Location(loc), begin, end, members);
+  }
+
+  public Event(Location loc, Date begin, Date end) { 
+    this.location = loc;
+    this.begin = new Date(begin.getTime());   
+    this.end = new Date(end.getTime());
+    this.payments = new ArrayList<Payment>();
+    this.change = new Stack<Event>();
+    this.accepted=0;
+    this.declined=0;
+    this.members= new ArrayList<Member>();
   }
 
   public Event(String loc, Date begin, Date end) {
     this(new Location(loc), begin, end);
   }
 
+
   public Event(Event e) {
-    this(e.location, e.begin, e.end);
+    this(e.location, e.begin, e.end, e.members);
     this.payments = new ArrayList<Payment>(e.payments);
     this.accepted = e.getAcceptance();
     this.declined = e.getDeclination();
@@ -39,6 +56,7 @@ public class Event implements Timespan {
   public Date getBegin() { return begin; }
   public Date getEnd() { return end; }
   public Stack<Event> getChange() { return change;}
+  public List<Member> getMembers(){return members;}
   public BigDecimal getBalance() { 
     BigDecimal balance = new BigDecimal(0);
     for(Payment p : payments) {
@@ -77,5 +95,6 @@ public class Event implements Timespan {
   protected List<Payment> payments;
   protected int accepted;
   protected int declined;
+  protected List<Member> members;
 }
 

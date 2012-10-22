@@ -2,10 +2,28 @@ package oop;
 
 import java.util.Date;
 import java.math.BigDecimal;
-import java.util.Stack;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Gig extends Event {
-  public Gig(Location loc, Date begin, Date end) {
+  public Gig(Location loc, Date begin, Date end,List<Member> members) {
+    super(loc, begin, end, members);
+  }
+
+  public Gig(String loc, Date begin, Date end,List<Member> members) {
+    this(new Location(loc), begin, end, members);
+  }
+
+  public Gig(Location loc, Date begin, Date end, BigDecimal payment,List<Member> members) { 
+    this(loc, begin, end, members);
+    payments.add(new Payment("payment", payment, begin));
+  }
+
+  public Gig(String loc, Date begin, Date end, BigDecimal payment,List<Member> members) { 
+    this(new Location(loc), begin, end, payment, members);
+  }
+
+   public Gig(Location loc, Date begin, Date end) {
     super(loc, begin, end);
   }
 
@@ -23,7 +41,7 @@ public class Gig extends Event {
   }
 
   public Gig(Gig g){
-  	super(g);
+    super(g);
   }
   
   public BigDecimal getPayment() { return getBalance(); }

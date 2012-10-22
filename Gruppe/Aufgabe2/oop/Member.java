@@ -13,6 +13,7 @@ public class Member implements Timespan{
 	protected Date Join;
 	protected Date Leave;
 	protected List<Event> message;
+	protected Date[] proben;
 
 	public Member(String name, String surname, String phoneno, String inst){
 		this.name=name;
@@ -22,6 +23,7 @@ public class Member implements Timespan{
 		this.Join=new Date(Long.MAX_VALUE);
 		this.Leave=new Date(Long.MAX_VALUE);
 		this.message=new ArrayList<Event>();
+		this.proben=new Date[3];
 	}
 
 	public Member(Member m){
@@ -29,6 +31,7 @@ public class Member implements Timespan{
 		this.Join=m.getBegin();
 		this.Leave=m.getEnd();
 		this.message=m.getMessage();
+		this.proben=m.getProben();
 	}
 
 	public String getName(){return name;}
@@ -38,6 +41,7 @@ public class Member implements Timespan{
 	public Date getBegin(){return Join;}
 	public Date getEnd(){return Leave;}
 	public List<Event> getMessage(){return this.message;}
+	public Date[] getProben(){return proben;}
 
 	public Member leave(){
 		Member m = new Member(this);
@@ -62,5 +66,41 @@ public class Member implements Timespan{
 	}
 	public String toString(){
 		return (name + " " + surname + " " + phoneno + " " + instrument);
+	}
+
+	public void addProbe(Date m){
+
+		Date k= new Date();
+		int t=0;
+		for (int i = 0; i<3;i++){
+
+			if (proben[i]!=null&&k.after(proben[i])){
+				k=proben[i];
+				t=i;
+			}
+
+		}
+		
+		proben[t]=m;
+		return;
+
+	}
+	public boolean isAvailable(){
+
+		
+
+		if(this instanceof Substitute){
+
+			long DAY_IN_MS = 1000 * 60 * 60 * 24;
+			Date a = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
+
+		
+			for(Date e:proben){
+				if (e.before(a)) return false;
+
+			}
+			
+		}
+		return true;
 	}
 }

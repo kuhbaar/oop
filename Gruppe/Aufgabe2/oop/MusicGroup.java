@@ -38,6 +38,15 @@ public class MusicGroup {
     members.add(mk);
   }
 
+  public void subToMember(Member m){
+
+    m=new Member(m);
+  }
+
+  public void memberToSub(Member m){
+    m=new Substitute(m);
+  }
+  
   public void deleteMember(Member m) {
     current_members.remove(m);
     members.remove(m);
@@ -86,13 +95,34 @@ public class MusicGroup {
   }
 
   public void newRehearsal(String location, Date begin, Date end, BigDecimal rent) {
-    events.add(new Rehearsal(location, begin, end, rent));
-    sendMessageToMembers(new Rehearsal(location, begin, end, rent));
+    newRehearsal(location, begin, end, rent,current_members);
   }
 
   public void newGig(String location, Date begin, Date end, BigDecimal payment) {
-    events.add(new Gig(location, begin, end, payment));
-    sendMessageToMembers(new Gig(location, begin, end, payment));
+    newGig(location, begin, end, payment,current_members);
+  }
+
+  public void newRehearsal(String location, Date begin, Date end, BigDecimal rent, List<Member> members) {
+    events.add(new Rehearsal(location, begin, end, rent, members));
+    sendMessageToMembers(new Rehearsal(location, begin, end, rent, members));
+  }
+
+  public void newGig(String location, Date begin, Date end, BigDecimal payment, List<Member> members) {
+    
+    List<Member> temp=availableMembers(members);
+
+    events.add(new Gig(location, begin, end, payment, temp));
+    sendMessageToMembers(new Gig(location, begin, end, payment, temp));
+  }
+
+  public ArrayList<Member> availableMembers(List<Member> members){
+
+    ArrayList<Member> temp= new ArrayList<Member>();
+    for(Member m: members){
+
+      if (m.isAvailable()) temp.add(m);
+    }
+    return temp;
   }
 
   public void newEvent(Event e){
