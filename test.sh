@@ -3,7 +3,8 @@
 
 cd Gruppe/Aufgabe2
 
-javac -Xlint:all -Werror *.java */*.java
+# all required files are built recursively
+javac -Xlint:all -Werror *.java */*.java */*/*.java
 
 if [ $? -eq 0 ]; then
   java Test
