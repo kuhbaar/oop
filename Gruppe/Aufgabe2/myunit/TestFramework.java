@@ -43,6 +43,12 @@ public class TestFramework {
           if(m.isAnnotationPresent(UnitTest.class)) {
             total_tests += 1;
             // method declared as unittest
+
+            // run all test call setup methods
+            for(Method setup : cls.getDeclaredMethods())
+              if(setup.isAnnotationPresent(BeforeTest.class))
+                setup.invoke(o);
+
             try {
               m.invoke(o);
               if(m.isAnnotationPresent(AssertThrows.class)) {
