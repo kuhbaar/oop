@@ -111,7 +111,7 @@ public class MusicGroup {
   
   public void recallEvent(Event change){
     change=change.undo();
-    sendMessageToMembers(e);
+    sendMessageToMembers(change);
   }
 
   public void sendMessageToMembers(Event e){
