@@ -58,6 +58,7 @@ public class MemberTest extends AbstractTest{
 
         List<Member> oml=g.getMembers(y,new Date());
         assertEqual(ml,oml); //getMembers, getCurrentMembers working?
+        // WTF_ DATES!!!
 
         m=ml.get(0);
         y= new Date();

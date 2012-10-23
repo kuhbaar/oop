@@ -14,7 +14,7 @@ public class Test extends TestFramework{
     tests.add(tests.MemberTest.class);
     tests.add(tests.InfrastructureTest.class);
     tests.add(tests.MusicGroupTest.class);
-
+    tests.add(tests.SubstituteTest.class);
 
     runTests(tests);
   }

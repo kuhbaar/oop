@@ -4,9 +4,9 @@ package oop;
 import java.util.Date;
 import java.math.BigDecimal;
 
-public class Substitute extends Member{
+public class Substitute extends Member {
 	
-	public Substitute(String name, String surname, String phoneno, String inst){
+	public Substitute(String name, String surname, String phoneno, String inst) {
 		super(name,surname,phoneno,inst);
 	}
 
@@ -26,6 +26,23 @@ public class Substitute extends Member{
 		}
 		return true;
 	}
+
+
+	@Override public Member join(){
+		Substitute m = new Substitute(this);
+		m.Join=new Date();
+		return m;
+	}
+
+	public Member leave(){
+		Substitute m = new Substitute(this);
+		m.Leave= new Date();
+		return m;
+	}
 	
+
+	public String toString(){
+		return ("Substitute: " + name + " " + surname + " " + phoneno + " " + instrument);
+	}
 
 }

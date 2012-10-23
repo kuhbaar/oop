@@ -33,21 +33,23 @@ public class MusicGroup {
   }
 
   public void addMember(Member m){
-    Member mk=new Member(m.join());
+    Member mk= m.join();
     current_members.add(mk);
     members.add(mk);
   }
 
-  public void subToMember(Member m){
+  public Member subToMember(Member m) {
     deleteMember(m);
     m=new Member(m);
     addMember(m);
+    return m;
   }
 
-  public void memberToSub(Member m){
+  public Substitute memberToSub(Member m) {
     deleteMember(m);
-    m=new Substitute(m);
-    addMember(m);
+    Substitute s=new Substitute(m);
+    addMember(s);
+    return s;
   }
   
   public void deleteMember(Member m) {

@@ -65,7 +65,7 @@ public class Member implements Timespan{
 		message.remove(e);
 	}
 	public String toString(){
-		return (name + " " + surname + " " + phoneno + " " + instrument);
+		return ("Member: " + name + " " + surname + " " + phoneno + " " + instrument);
 	}
 
 	public void addProbe(Date m){
