@@ -30,6 +30,23 @@ public class Location {
     return l;
   }
 
+  @Override public boolean equals(Object other) {
+    if(this == other) return true;
+    if(!(other instanceof Location)) return false;
+    Location that = (Location) other;
+    return this.name.equals(that.name) &&
+      this.infrastructure.equals(that.infrastructure);
+  }
+
+  @Override public int hashCode() {
+    if ( hashCode == 0 ) {
+      hashCode = name.hashCode() +
+        (infrastructure.hashCode() << 4);
+    }
+    return hashCode;
+  }
+
   protected String name;
   protected List<Infrastructure> infrastructure;
+  private int hashCode;
 }

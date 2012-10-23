@@ -52,9 +52,10 @@ public class MusicGroupTest extends AbstractTest {
   @UnitTest
   public void testEventChangers() {
     assertEqual(karl.getMessage().size(),3);
-    m.deleteEvent(e1); //not working - why
-    assertEqual(m.getEvents(a,c).size(),3);
-    m.changeEvent( m.getEvents(a, c).get(2),e4);
+    m.deleteEvent(e1); 
+    assertEqual(m.getEvents(a,c).size(), 2);
+    m.changeEvent( m.getEvents(a, c).get(1),e4);
+    assertEqual(e4, m.getEvents(a, c).get(1));
   }
 
   @UnitTest

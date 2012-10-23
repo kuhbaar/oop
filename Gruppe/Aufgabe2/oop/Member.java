@@ -105,9 +105,9 @@ public class Member implements Timespan{
 	@Override public int hashCode() {
     if ( hashCode == 0 ) {
       hashCode = name.hashCode() +
-      	surname.hashCode() << 4 +
-      	phoneno.hashCode() << 7 +
-      	instrument.hashCode() << 11;
+      	(surname.hashCode() << 4) +
+      	(phoneno.hashCode() << 7) +
+      	(instrument.hashCode() << 11);
     }
     return hashCode;
   }
