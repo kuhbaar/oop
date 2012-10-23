@@ -96,10 +96,10 @@ public class Member implements Timespan{
 		if(this == other) return true;
 		if(!(other instanceof Member)) return false;
 		Member that = (Member) other;
-		return this.name == that.name &&
-			this.surname == that.surname &&
-			this.phoneno == that.phoneno && 
-			this.instrument == that.instrument;
+		return this.name.equals(that.name) &&
+			this.surname.equals(that.surname) &&
+			this.phoneno.equals(that.phoneno) && 
+			this.instrument.equals(that.instrument);
 	}
 
 	@Override public int hashCode() {

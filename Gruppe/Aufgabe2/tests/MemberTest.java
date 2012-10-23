@@ -76,7 +76,8 @@ public class MemberTest extends AbstractTest{
 
     @UnitTest
     public void equalityTests() {
-        Member m1 = new Member("Sepp", "Huber", "032923932", "Bass");
+        String s = new String("Huber");
+        Member m1 = new Member("Sepp", s, "032923932", "Bass");
         Member m2 = new Member("Sepp", "Huber", "032923932", "Bass");
         Member m3 = new Substitute("Sepp", "Huber", "032923932", "Bass");
         Member m4 = new Member("Sepp", "Maier", "032923932", "Bass");
