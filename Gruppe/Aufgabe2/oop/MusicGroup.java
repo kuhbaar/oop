@@ -60,15 +60,15 @@ public class MusicGroup {
     return new ArrayList<Member>(current_members);
   }
 
-  public List<Member> getMembers(Date begin,Date end){
-    return elementsBetween(members, begin,end, Member.class);
+  public List<Member> getMembers(Date begin, Date end){
+    return elementsBetween(members, begin, end, Member.class);
   }
   
-  public void addSong(String name,int duration) {
+  public void addSong(String name, int duration) {
     addSong(name,duration, new Date());
   }
   
-  public void addSong(String name,int duration, Date come) {
+  public void addSong(String name, int duration, Date come) {
     Song s = new Song (name,duration,come);
     current_playlist.add(s);
     playlist.add(s);
@@ -227,8 +227,10 @@ public class MusicGroup {
     for(T e : in)
       if(cls.isInstance(e) && (e.getBegin().after(begin) && e.getBegin().before(end) ||
                                e.getBegin().equals(begin) ||  // before and after are > and <, so we need == too
+                               e.getBegin().equals(end) ||
                                e.getEnd().after(begin) && e.getEnd().before(end) ||
                                e.getEnd().equals(end)) ||
+                               e.getEnd().equals(begin) ||
                                e.getBegin().before(begin) && e.getEnd().after(end))
         out.add(cls.cast(e));
     return out;
