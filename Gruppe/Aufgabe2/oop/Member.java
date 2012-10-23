@@ -70,25 +70,18 @@ public class Member implements Timespan{
 	}
 
 	public void addProbe(Date m){
-
 		Date k= new Date();
 		int t=0;
 		for (int i = 0; i<3;i++){
-
 			if (proben[i]!=null&&k.after(proben[i])){
 				k=proben[i];
 				t=i;
 			}
-
 		}
-		
 		if(proben[t]!=null&&proben[t].after(m))proben[t]=m;
-
-		return;
-
 	}
-	public boolean isAvailable(){
 
+	public boolean isAvailable(){
 		return true;
 	}
 

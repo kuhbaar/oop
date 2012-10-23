@@ -16,6 +16,7 @@ import oop.MusicGroup;
 
 public class MemberTest extends AbstractTest{
 	Date a,b,c,d;
+    Member m1,m2,m3,m4;
 
 	@BeforeClass
 	public void InitializeCommonValues(){
@@ -31,6 +32,11 @@ public class MemberTest extends AbstractTest{
   
     	cal.set(2012, 10, 5);
     	d = cal.getTime();
+
+        m1 = new Member("Sepp", "Huber", "032923932", "Bass");
+        m2 = new Member("Sepp", "Huber", "032923932", "Bass");
+        m3 = new Substitute("Sepp", "Huber", "032923932", "Bass");
+        m4 = new Member("Sepp", "Maier", "032923932", "Bass");
 	}
 
 	@UnitTest
@@ -77,12 +83,6 @@ public class MemberTest extends AbstractTest{
 
     @UnitTest
     public void equalityTests() {
-        String s = new String("Huber");
-        Member m1 = new Member("Sepp", s, "032923932", "Bass");
-        Member m2 = new Member("Sepp", "Huber", "032923932", "Bass");
-        Member m3 = new Substitute("Sepp", "Huber", "032923932", "Bass");
-        Member m4 = new Member("Sepp", "Maier", "032923932", "Bass");
-
         assertEqual(m1, m2);
         assertEqual(m2, m3);
         assertEqual(m1, m3);    // check transitivity too
