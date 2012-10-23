@@ -25,6 +25,10 @@ public class Member implements Timespan{
 		this.Leave=new Date(Long.MAX_VALUE);
 		this.message=new ArrayList<Event>();
 		this.proben=new Date[3];
+		proben[0]=new Date(0);
+		proben[1]=new Date(0);
+		proben[2]=new Date(0);
+
 	}
 
 	public Member(Member m){
@@ -74,23 +78,20 @@ public class Member implements Timespan{
 		Date k= new Date();
 		int t=0;
 		for (int i = 0; i<3;i++){
+			
+			
+			if (k.after(proben[i])){
 
-			if (proben[i]!=null&&k.after(proben[i])){
 				k=proben[i];
 				t=i;
 			}
 
 		}
-		
-		if(proben[t]!=null&&proben[t].after(m))proben[t]=m;
-
+		if(proben[t].before(m))proben[t]=m;
 		return;
 
 	}
-	public boolean isAvailable(){
-
-		return true;
-	}
+	public boolean isAvailable(Date d){return true;}
 
 	@Override public boolean equals(Object other) {
 		if(this == other) return true;

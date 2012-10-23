@@ -14,14 +14,13 @@ public class Substitute extends Member {
 		super(m);
 	}
 
-	public boolean isAvailable(){
+	public boolean isAvailable(Date d){
 
 		long DAY_IN_MS = 1000 * 60 * 60 * 24;
-		Date a = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
+		Date a = new Date(d.getTime() - (7 * DAY_IN_MS));
 
-	
 		for(Date e:proben){
-			if (e.before(a)) return false;
+			if (e==null || e.before(a)) return false;
 
 		}
 		return true;

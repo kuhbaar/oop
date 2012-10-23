@@ -123,9 +123,10 @@ public class MusicGroup {
   public ArrayList<Member> availableMembers(List<Member> members){
 
     ArrayList<Member> temp= new ArrayList<Member>();
+    Date a = new Date();
     for(Member m: members){
 
-      if (m.isAvailable()) temp.add(m);
+      if (m.isAvailable(a)) temp.add(m);
     }
     return temp;
   }
