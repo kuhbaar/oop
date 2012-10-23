@@ -5,10 +5,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.math.BigDecimal;
 import java.util.Calendar;
+
 import myunit.AbstractTest;
 import myunit.UnitTest;
 import myunit.BeforeClass;
+
 import oop.Member;
+import oop.Substitute;
 import oop.MusicGroup;
 
 public class MemberTest extends AbstractTest{
@@ -69,5 +72,19 @@ public class MemberTest extends AbstractTest{
         assertTrue(oml.size()==2);
         assertEqual(m1.getName(),ml.get(0).getName());//deleteMember correct Member deleted?
         assertTrue(y.compareTo(oml.get(1).getEnd())<=0 && x.compareTo(oml.get(1).getEnd())>=0);//deleteMember correct leave?
+    }
+
+    @UnitTest
+    public void equalityTests() {
+        Member m1 = new Member("Sepp", "Huber", "032923932", "Bass");
+        Member m2 = new Member("Sepp", "Huber", "032923932", "Bass");
+        Member m3 = new Substitute("Sepp", "Huber", "032923932", "Bass");
+        Member m4 = new Member("Sepp", "Maier", "032923932", "Bass");
+
+        assertEqual(m1, m2);
+        assertEqual(m2, m3);
+        assertEqual(m1, m3);    // check transitivity too
+
+        assertNotEqual(m1, m4);
     }
 }
