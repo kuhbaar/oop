@@ -81,26 +81,15 @@ public class Member implements Timespan{
 
 		}
 		
-		proben[t]=m;
+		if(proben[t]!=null&&proben[t].after(m))proben[t]=m;
+
+
+
 		return;
 
 	}
 	public boolean isAvailable(){
 
-		
-
-		if(this instanceof Substitute){
-
-			long DAY_IN_MS = 1000 * 60 * 60 * 24;
-			Date a = new Date(System.currentTimeMillis() - (7 * DAY_IN_MS));
-
-		
-			for(Date e:proben){
-				if (e.before(a)) return false;
-
-			}
-			
-		}
 		return true;
 	}
 }

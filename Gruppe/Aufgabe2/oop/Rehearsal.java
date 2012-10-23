@@ -10,7 +10,7 @@ public class Rehearsal extends Event {
     super(location, begin, end, members);
     for(Member m:members){
 
-      if (m instanceof Substitute) m.addProbe(begin);
+       m.addProbe(begin);
     }
   }
 

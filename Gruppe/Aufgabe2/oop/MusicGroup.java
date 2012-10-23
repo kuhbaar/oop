@@ -39,12 +39,15 @@ public class MusicGroup {
   }
 
   public void subToMember(Member m){
-
+    deleteMember(m);
     m=new Member(m);
+    addMember(m);
   }
 
   public void memberToSub(Member m){
+    deleteMember(m);
     m=new Substitute(m);
+    addMember(m);
   }
   
   public void deleteMember(Member m) {
