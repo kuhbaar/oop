@@ -15,7 +15,6 @@ public class TestFramework {
 
   public static void runTests(List<Class<? extends AbstractTest>> cs) {
     API colorizer = new Ansi();
-    System.out.println(System.getProperty("os.name"));
     try {
       // Windows uses non-portable system calls, so we have to load it dynamically
       if(System.getProperty("os.name").startsWith("Windows"))

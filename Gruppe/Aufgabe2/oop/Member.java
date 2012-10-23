@@ -14,6 +14,7 @@ public class Member implements Timespan{
 	protected Date Leave;
 	protected List<Event> message;
 	protected Date[] proben;
+	private int hashCode;
 
 	public Member(String name, String surname, String phoneno, String inst){
 		this.name=name;
@@ -83,8 +84,6 @@ public class Member implements Timespan{
 		
 		if(proben[t]!=null&&proben[t].after(m))proben[t]=m;
 
-
-
 		return;
 
 	}
@@ -92,4 +91,24 @@ public class Member implements Timespan{
 
 		return true;
 	}
+
+	@Override public boolean equals(Object other) {
+		if(this == other) return true;
+		if(!(other instanceof Member)) return false;
+		Member that = (Member) other;
+		return this.name.equals(that.name) &&
+			this.surname.equals(that.surname) &&
+			this.phoneno.equals(that.phoneno) && 
+			this.instrument.equals(that.instrument);
+	}
+
+	@Override public int hashCode() {
+    if ( hashCode == 0 ) {
+      hashCode = name.hashCode() +
+      	(surname.hashCode() << 4) +
+      	(phoneno.hashCode() << 7) +
+      	(instrument.hashCode() << 11);
+    }
+    return hashCode;
+  }
 }

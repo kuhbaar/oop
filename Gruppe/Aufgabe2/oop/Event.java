@@ -87,6 +87,26 @@ public class Event implements Timespan {
   public void decline(String comment) {
    declined++;
   }
+
+
+  // TODO: migrate to a proper ID system for events
+  @Override public boolean equals(Object other) {
+    if(this == other) return true;
+    if(!(other instanceof Event)) return false;
+    Event that = (Event) other;
+    return this.location.equals(that.location) &&
+      this.begin.equals(that.begin) &&
+      this.end.equals(that.end);
+  }
+
+  @Override public int hashCode() {
+    if ( hashCode == 0 ) {
+      hashCode = location.hashCode() +
+        (begin.hashCode() << 4) +
+        (end.hashCode() << 7);
+    }
+    return hashCode;
+  }
   
   protected Location location;
   protected Date begin;
@@ -96,5 +116,6 @@ public class Event implements Timespan {
   protected int accepted;
   protected int declined;
   protected List<Member> members;
+  private int hashCode;
 }
 
