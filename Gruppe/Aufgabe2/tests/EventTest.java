@@ -107,4 +107,18 @@ public class EventTest extends AbstractTest {
     assertEqual(new BigDecimal("0"), m.getVariousPaymentsSum(b, c));
     assertEqual(new BigDecimal("679.94"), m.getBalance(a, c));
   }
+
+
+    @UnitTest
+    public void equalityTests() {
+      String s = new String("wien");
+      Event e1 = new Event("wien", a, b);
+      Event e2 = new Event(s, a, b);
+      Event e3 = new Gig("wien", a, b);
+
+      assertEqual(e1, e2);
+      assertEqual(e2, e3);
+      assertEqual(e1, e3);
+      
+    }
 }
