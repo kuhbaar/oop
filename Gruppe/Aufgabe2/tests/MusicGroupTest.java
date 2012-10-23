@@ -50,12 +50,21 @@ public class MusicGroupTest extends AbstractTest {
   }
 
   @UnitTest
+    public void testMessageFunctionality() {
+        assertEqual(karl.getMessage().size(),3); //Cecking if messages are being sent,
+        karl.replyMessage(e1,true,"Good idea!");
+        assertEqual(e1.getAcceptance(),1);
+    }
+
+  @UnitTest
   public void testEventChangers() {
-    assertEqual(karl.getMessage().size(),3);
-    m.deleteEvent(e1); 
-    assertEqual(m.getEvents(a,c).size(), 2);
-    m.changeEvent( m.getEvents(a, c).get(1),e4);
-    assertEqual(e4, m.getEvents(a, c).get(1));
+    m.deleteEvent(e1);    
+    assertEqual(m.getEvents(a,c).size(), 2); //if deleteEvent works properly
+    Event temp= new Event(m.getEvents(a, c).get(1));
+    m.changeEvent( temp, e4);
+    assertEqual(e4, m.getEvents(a, c).get(1));// same for changeEvent
+    m.undoChangeEvent(e4);
+    assertEqual(m.getEvents(a,c).get(1),temp);//and finally recall deleted Event
   }
 
   @UnitTest
