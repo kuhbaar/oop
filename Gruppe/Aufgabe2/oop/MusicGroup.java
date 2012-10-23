@@ -147,8 +147,9 @@ public class MusicGroup {
     sendMessageToMembers(change);
   }
   
-  public void recallEvent(Event change){
-    change=change.undo();
+  public void undoChangeEvent(Event change){
+    Event undochange= new Event(change.undo());
+    events.set(events.indexOf(change),undochange);
     sendMessageToMembers(change);
   }
 
