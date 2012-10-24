@@ -82,14 +82,11 @@ public class SubstituteTest extends AbstractTest {
       assertTrue(!(mem.isAvailable(new Date())));
     }
 
-   
-
     g.newRehearsal("tirol", mon, tue, new BigDecimal("20.16"));
     g.newRehearsal("tirol", tue, wed, new BigDecimal("20.16"));
     g.newRehearsal("tirol", wed, thu, new BigDecimal("20.16"));
 
     for(Member mem : g.getCurrentMembers()) {
-      System.out.println(mem);
       assertTrue(mem.isAvailable(new Date()));
       assertTrue(!(mem.isAvailable(new Date(Long.MAX_VALUE))));
     }
