@@ -5,17 +5,13 @@ import re
 import operator
 
 root = "./Gruppe/Aufgabe3/"
-authors = {
-  'j.schrittwieser@gmail.com': 0, 
-  'k.zacky@gmail.com': 0,
-  'brummbaerig@gmail.com': 0
-  }
+authors = {}
+files_touched_by = {}
 total_lines = 0
-files_touched_by = {
-  'j.schrittwieser@gmail.com': [], 
-  'k.zacky@gmail.com': [],
-  'brummbaerig@gmail.com': []
-  }
+
+for mail in ['j.schrittwieser@gmail.com', 'k.zacky@gmail.com', 'brummbaerig@gmail.com']:
+  authors[mail] = 0
+  files_touched_by[mail] = []
 
 def count_authors(filename):
   involved_authors = {}
