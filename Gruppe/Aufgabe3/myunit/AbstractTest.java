@@ -3,7 +3,6 @@ package myunit;
 import java.util.List;
 import java.math.BigDecimal;
 
-// this is the base class for all tests which provides useful utility functions
 public class AbstractTest {
   public void assertEqual(Object a, Object b) {
     if(a == null && b == null) return;

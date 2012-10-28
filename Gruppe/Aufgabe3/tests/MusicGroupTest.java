@@ -9,8 +9,6 @@ import myunit.AbstractTest;
 import myunit.UnitTest;
 import myunit.BeforeTest;
 
-//import oop.MusicGroup;
-//import oop.Member;
 import oop.*;
 
 public class MusicGroupTest extends AbstractTest {
@@ -19,11 +17,8 @@ public class MusicGroupTest extends AbstractTest {
   Member karl,klaus,josef;
   Event e1,e2,e3,e4;
 
-
-  // reset values for each test
   @BeforeTest
   public void initializeCommonValues() {
-    // provide some common values
     Calendar cal = Calendar.getInstance();
     cal.set(2012, 9, 15);
     a = cal.getTime();
@@ -51,20 +46,20 @@ public class MusicGroupTest extends AbstractTest {
 
   @UnitTest
     public void testMessageFunctionality() {
-        assertEqual(karl.getMessage().size(),3); //Cecking if messages are being sent,
+        assertEqual(karl.getMessage().size(),3); 
         karl.replyMessage(e1,true,"Good idea!");
-        assertEqual(e1.getAcceptance(),1);//if member can reply to them and if counted correctly
+        assertEqual(e1.getAcceptance(),1);
     }
 
   @UnitTest
   public void testEventChangers() {
     m.deleteEvent(e1);    
-    assertEqual(m.getEvents(a,c).size(), 2); //if deleteEvent works properly
+    assertEqual(m.getEvents(a,c).size(), 2); 
     Event temp= new Event(m.getEvents(a, c).get(1));
     m.changeEvent( temp, e4);
-    assertEqual(e4, m.getEvents(a, c).get(1));// same for changeEvent
+    assertEqual(e4, m.getEvents(a, c).get(1));
     m.undoChangeEvent(e4);
-    assertEqual(m.getEvents(a,c).get(1),temp);//and finally recall deleted Event
+    assertEqual(m.getEvents(a,c).get(1),temp);
   }
 
   @UnitTest

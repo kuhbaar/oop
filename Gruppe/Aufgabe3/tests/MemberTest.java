@@ -61,23 +61,22 @@ public class MemberTest extends AbstractTest{
         Date x= new Date();
         g.addMember(m1);
         List<Member> ml=g.getCurrentMembers();
-        assertTrue(ml.size()==2); //addMember correct size?
-        assertEqual(m.getName(),ml.get(0).getName()); //addMember correct data?
+        assertTrue(ml.size()==2); 
+        assertEqual(m.getName(),ml.get(0).getName()); 
         assertTrue(y.compareTo(ml.get(0).getBegin())<=0 && x.compareTo(ml.get(0).getBegin())>=0); //addMember correct join?
 
         List<Member> oml=g.getMembers(y, new Date());
-        assertEqual(ml,oml); //getMembers, getCurrentMembers working?
-        // WTF_ DATES!!!
+        assertEqual(ml,oml); 
 
         m=ml.get(0);
         y= new Date();
         g.deleteMember(m);
         x= new Date();
         ml=g.getCurrentMembers();
-        assertTrue(ml.size()==1); //deleteMember correct size?
+        assertTrue(ml.size()==1); 
         oml=g.getMembers(y,x);
         assertTrue(oml.size()==2);
-        assertEqual(m1.getName(),ml.get(0).getName());//deleteMember correct Member deleted?
+        assertEqual(m1.getName(),ml.get(0).getName());
         assertTrue(y.compareTo(oml.get(1).getEnd())<=0 && x.compareTo(oml.get(1).getEnd())>=0);//deleteMember correct leave?
     }
 
@@ -85,7 +84,7 @@ public class MemberTest extends AbstractTest{
     public void equalityTests() {
         assertEqual(m1, m2);
         assertEqual(m2, m3);
-        assertEqual(m1, m3);    // check transitivity too
+        assertEqual(m1, m3); 
 
         assertNotEqual(m1, m4);
     }

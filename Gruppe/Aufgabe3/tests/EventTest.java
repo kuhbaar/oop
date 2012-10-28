@@ -15,14 +15,12 @@ import oop.MusicGroup;
 import oop.Payment;
 
 
-// all test classes should extend AbstractTest to get useful utility methods
 public class EventTest extends AbstractTest {
   List<String> l;
   Date mon, tue, wed, thu, fri, sat, sun;
 
   @BeforeClass
   public void initializeCommonValues() {
-    // provide some common values
     Calendar cal = Calendar.getInstance();
     cal.set(2012, 9, 15);
     mon = cal.getTime();

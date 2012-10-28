@@ -9,7 +9,7 @@ import java.util.Stack;
 public class Event implements Timespan {
   public Event(Location loc, Date begin, Date end, List<Member> members) { 
     this.location = loc;
-    this.begin = new Date(begin.getTime());     // yes, date doesn't even have a copy constructor !
+    this.begin = new Date(begin.getTime()); 
     this.end = new Date(end.getTime());
     this.payments = new ArrayList<Payment>();
     this.change = new Stack<Event>();
@@ -89,7 +89,6 @@ public class Event implements Timespan {
   }
 
 
-  // TODO: migrate to a proper ID system for events
   @Override public boolean equals(Object other) {
     if(this == other) return true;
     if(!(other instanceof Event)) return false;

@@ -3,7 +3,6 @@ package myunit;
 import java.util.List;
 import java.util.ArrayList;
 
-// all test classes should extend AbstractTest to get useful utility methods
 public class SampleTest extends AbstractTest {
   List<String> l;
 
@@ -14,11 +13,10 @@ public class SampleTest extends AbstractTest {
     l.add("world");
   }
 
-  // all tests need to be annotated with @UnitTest and have a void () signature
   @UnitTest
   public void IsOneEqualToTwo() {
-    assertEqual(1, 1);            // one such utility method is assertEqual, which
-  }                               // prints its arguments if the assertion fails
+    assertEqual(1, 1);            
+  }                             
 
   @UnitTest
   public void myOtherTest() {
@@ -37,12 +35,11 @@ public class SampleTest extends AbstractTest {
   public void StringAdditionIsNotSameObject() {
     String str = new String("ha");
     String str2 = new String("llo");
-    assertIsNot(str + str2, "hallo");       // there's also assertIs(a, b)
+    assertIsNot(str + str2, "hallo");       
   }
 
   @UnitTest
   public void ElementShouldBeInList() {
-    // l is created in the setup method MySetupMethod
     assertIn("hallo", l);
   }
 
@@ -64,7 +61,6 @@ public class SampleTest extends AbstractTest {
   }
   
 
-  // if a method isn't annotated, it will never run
   public void otherMethod() {
     System.out.println("I won't run");
   }

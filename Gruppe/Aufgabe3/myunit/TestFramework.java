@@ -16,7 +16,6 @@ public class TestFramework {
   public static void runTests(List<Class<? extends AbstractTest>> cs) {
     API colorizer = new Ansi();
     try {
-      // Windows uses non-portable system calls, so we have to load it dynamically
       if(System.getProperty("os.name").startsWith("Windows"))
         colorizer = (API) Class.forName("myunit.color.Windows").newInstance();
     } catch(Exception e) {
@@ -32,18 +31,14 @@ public class TestFramework {
         Object o = cls.newInstance();
         System.out.println("Testing " + cls.getName());
 
-        // run all setup methods
         for(Method m : cls.getDeclaredMethods())
           if(m.isAnnotationPresent(BeforeClass.class))
             m.invoke(o);
         
-        // run all test methods
         for(Method m : cls.getDeclaredMethods()) {
           if(m.isAnnotationPresent(UnitTest.class)) {
             total_tests += 1;
-            // method declared as unittest
 
-            // run all test call setup methods
             for(Method setup : cls.getDeclaredMethods())
               if(setup.isAnnotationPresent(BeforeTest.class))
                 setup.invoke(o);
@@ -62,8 +57,6 @@ public class TestFramework {
                     " @ " + getLocation(e.getCause(), 1));
                 failed_tests += 1;
               } else {
-                // methods just threw an exception that wasn't from assert
-                // check if that was to be excpected
                 if(m.isAnnotationPresent(AssertThrows.class) &&
                   m.getAnnotation(AssertThrows.class).exception().equals(e.getCause().getClass())) {
                   colorizer.printTestSuccess(m.getName());

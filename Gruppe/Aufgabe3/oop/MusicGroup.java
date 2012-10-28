@@ -144,7 +144,7 @@ public class MusicGroup {
 
   public void changeEvent(Event e, Event change){
     change.save(e);
-    events.add(events.indexOf(e), change); // Replaces e with the changed event
+    events.add(events.indexOf(e), change);
     sendMessageToMembers(change);
   }
   
@@ -215,7 +215,6 @@ public class MusicGroup {
     return this;
   }
 
-  //Sum method for calculating the sum of list elements
   protected <T extends Event> BigDecimal sum(List<T> l){
     BigDecimal sum=new BigDecimal(0);
     for(T e: l)
@@ -223,14 +222,12 @@ public class MusicGroup {
     return sum;
   }
 
-  // can be used for members and repertoir too
-  // some template trickery to make it return a List of the requested type, not
-  // the common supertype
+
   protected <T extends Timespan, U extends Timespan> List<U> elementsBetween(List<T> in, Date begin, Date end, Class<U> cls) {
     final List<U> out = new ArrayList<U>();
     for(T e : in)
       if(cls.isInstance(e) && (e.getBegin().after(begin) && e.getBegin().before(end) ||
-                               e.getBegin().equals(begin) ||  // before and after are > and <, so we need == too
+                               e.getBegin().equals(begin) || 
                                e.getBegin().equals(end) ||
                                e.getEnd().after(begin) && e.getEnd().before(end) ||
                                e.getEnd().equals(end)) ||

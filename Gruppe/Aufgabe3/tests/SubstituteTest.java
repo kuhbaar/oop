@@ -12,14 +12,12 @@ import oop.MusicGroup;
 import oop.Member;
 import oop.Substitute;
 
-// all test classes should extend AbstractTest to get useful utility methods
 public class SubstituteTest extends AbstractTest {
   List<String> l;
   Date mon, tue, wed, thu, fri, sat, sun;
 
   @BeforeClass
   public void initializeCommonValues() {
-    // provide some common values
     Calendar cal = Calendar.getInstance();
     
 
