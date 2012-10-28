@@ -45,12 +45,14 @@ public class Event implements Timespan {
     this.declined = e.getDeclination();
   }
 
+  /* returns a new Event with the payment added, without modifying this event */
   public Event add(Payment p) {
     Event e = new Event(this);
     e.payments.add(p);
     return e;
   }
 
+  /* for all the accessors: return / calculate the requested value */
   public Location getLocation() { return location; } 
   public List<Payment> getPayments() { return new ArrayList<Payment>(this.payments); }
   public Date getBegin() { return begin; }
@@ -89,6 +91,9 @@ public class Event implements Timespan {
   }
 
 
+  /* true iff the other object has the same identifying content and its class
+     can be substituted for this one (Event)
+   */
   @Override public boolean equals(Object other) {
     if(this == other) return true;
     if(!(other instanceof Event)) return false;
@@ -98,6 +103,7 @@ public class Event implements Timespan {
       this.end.equals(that.end);
   }
 
+  /* a.equals(b) implies a.hashCode() == b.hashCode() */
   @Override public int hashCode() {
     if ( hashCode == 0 ) {
       hashCode = location.hashCode() +

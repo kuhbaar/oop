@@ -160,32 +160,47 @@ public class MusicGroup {
     }
   }
 
+
+  /* return all rehearsals between begin and end (inclusive) */
   public List<Rehearsal> getRehearsals(Date begin, Date end) {
     return elementsBetween(events, begin, end, Rehearsal.class);
   }
 
+  /* return all gigs between begin and end (inclusive) */
   public List<Gig> getGigs(Date begin, Date end) {
     return elementsBetween(events, begin, end, Gig.class);
   }
 
+  /* return all events between begin and end (inclusive) */
   public List<Event> getEvents(Date begin, Date end) {
     return elementsBetween(events, begin, end, Event.class);
   }
 
+
+  /* return the cost of all rehearsals between begin and end (inclusive) */
   public BigDecimal getCostsForRehearsals(Date begin, Date end){
     return sum(getRehearsals(begin, end));
   }
+
+  /* return the payment for all gigs between begin and end (inclusive) */
   public BigDecimal getPaymentForGigs(Date begin, Date end){
     return sum(getGigs(begin, end));
   }
+
+  /* return the totaal balance for all events between begin and end (inclusive) */
   public BigDecimal getEventBalance(Date begin, Date end){
     return sum(getEvents(begin, end)); 
   }
 
+  /* return the total balance for the period from begin to end */
   public BigDecimal getBalance(Date begin, Date end){
     return getBalanceFilteredBy(new DateFilter(begin, end));
   }
 
+  /* return the sum of all payments that pass a filter f
+     this deprecates the sum() function and the various getPaymentForXXX 
+     functions, which will be removed in subsequent releases 
+   */
   public BigDecimal getBalanceFilteredBy(PaymentFilter f) {
     List<Payment> payments = new ArrayList<Payment>(various_payments);
     for(Event e : events)
@@ -202,6 +217,9 @@ public class MusicGroup {
     return getVariousPaymentsFilteredBy(new DateFilter(begin, end));
   }
 
+  /* return the sum of all payments that don't belong to a specific event and
+     pass a filter f
+   */
   public BigDecimal getVariousPaymentsFilteredBy(PaymentFilter f) {
     BigDecimal sum = new BigDecimal(0);
     for(Payment p : various_payments)
@@ -215,6 +233,7 @@ public class MusicGroup {
     return this;
   }
 
+  /* return the total balance of a list of events */
   protected <T extends Event> BigDecimal sum(List<T> l){
     BigDecimal sum=new BigDecimal(0);
     for(T e: l)
@@ -222,7 +241,11 @@ public class MusicGroup {
     return sum;
   }
 
-
+  /* takes a list of objects that implement Timespan and returns a more specialized 
+     new list of type List<cls> that contains all objects whose duration is in 
+     the inclusive range [begin, end] (matching endpoints count too) and which 
+     are an instance of cls. (thus the more restricted return type)
+   */
   protected <T extends Timespan, U extends Timespan> List<U> elementsBetween(List<T> in, Date begin, Date end, Class<U> cls) {
     final List<U> out = new ArrayList<U>();
     for(T e : in)
