@@ -69,10 +69,11 @@ public class Event implements Timespan {
   public int getAcceptance(){ return accepted;}
   public int getDeclination(){ return declined;}
 
+  /* saves the Event e to the change-Stack */
   public void save(Event e){
     this.change.push(e);
   }
-
+  /* returns the first Event from the change-Stack and removes it from the Stack */
   public Event undo(){
     Event e=new Event(this.change.pop());
     return e;
@@ -82,10 +83,11 @@ public class Event implements Timespan {
     return String.format("Event in %s von %s bis %s, %s $", 
       location, begin, end, getBalance());
   }
-
+  /* adds +1 to the accepted-integer of this Event every time this method is called */
   public void accept(String comment) {
    accepted++; 
   }
+  /* adds +1 to the declined-integer of this Event every time this method is called */
   public void decline(String comment) {
    declined++;
   }
