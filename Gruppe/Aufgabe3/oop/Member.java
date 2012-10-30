@@ -4,7 +4,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
-
+/* GOOD:
+  Own class for Member, instead of listing all the attributes in Musicgroup.
+  Usage of Timespan asserts the methods getBegin() and getEnd(), which make it easy to control the Dates
+  */
 public class Member implements Timespan{
   protected String name;
   protected String surname;
