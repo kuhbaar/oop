@@ -5,19 +5,25 @@ import java.util.Arrays;
 import java.util.ArrayList;
 
 public class LocationDirectory {
+  /* create a new empty directory */
   public LocationDirectory() {
     this.locations = new ArrayList<Location>();
   }
   
+  /* add a new location to this directory - this will modify the internal state
+     of this object ! */
   public void add(Location l) {
     locations.add(l);
   }
 
+  /* returns a list of locations that provide the infrastructure i */
   public List<Location> getLocationsWithInfrastructure(Infrastructure i) {
     return getLocationsWithInfrastructure(Arrays.asList(i));
   }
 
-
+  /* returns a list of locations that provide all the infrastructure specified
+     by is. Locations are immutable, so the elements of this list will never
+     change. */
   public List<Location> getLocationsWithInfrastructure(List<Infrastructure> is) {
     List<Location> ls = new ArrayList<Location>();
 
@@ -36,8 +42,6 @@ public class LocationDirectory {
 
     return ls;
   }
-
-
 
   protected List<Location> locations;
 }
