@@ -39,6 +39,8 @@ public class Member implements Timespan{
     this.proben=m.getProben();
   }
 
+
+  /* for all the accessors: return / calculate the requested value */
   public String getName(){return name;}
   public String getSurname(){return surname;}
   public String getPhoneNo(){return phoneno;}
@@ -101,7 +103,7 @@ public class Member implements Timespan{
       this.instrument.equals(that.instrument);
   }
 
-  
+
   /* a.equals(b) implies a.hashCode() == b.hashCode() */
   @Override public int hashCode() {
     if ( hashCode == 0 ) {
