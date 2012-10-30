@@ -38,12 +38,18 @@ public class MusicGroup {
     members.add(mk);
   }
 
+  //deletes the Member from current_members and adds a new Member copying the old
+  //returns the Member
+
   public Member subToMember(Member m) {
     deleteMember(m);
     m=new Member(m);
     addMember(m);
     return m;
   }
+
+  //deletes a Member from current_members and adds a new substitute copying the old Member
+  //returns the Substitute
 
   public Substitute memberToSub(Member m) {
     deleteMember(m);
@@ -66,15 +72,20 @@ public class MusicGroup {
     return elementsBetween(members, begin, end, Member.class);
   }
   
+  // adds a new Song, given the name and the duration to playlist and current_playlist at the current date
+
   public void addSong(String name, int duration) {
     addSong(name,duration, new Date());
   }
-  
+  // adds a new Song, given the name and the duration and the date, when it joined
   public void addSong(String name, int duration, Date come) {
     Song s = new Song (name,duration,come);
     current_playlist.add(s);
     playlist.add(s);
   }
+
+  //removes a Song from the current_playlist and the playlist and adds a copy of it, while setting the copies gone to the current date
+
   
   public void deleteSong(Song s) {
     current_playlist.remove(s);
@@ -82,6 +93,8 @@ public class MusicGroup {
     playlist.add(s.remove());
   }
   
+  // removes all the Songs with the name given from the current_playlist 
+
   public void deleteSong(String name) {
     List<Song> toDelete = new ArrayList<Song>();
     for(Song s : current_playlist)
@@ -92,25 +105,43 @@ public class MusicGroup {
       deleteSong(s);
   }
   
+  //returns a copy of the current_playlist
+
   public List<Song> getCurrentPlaylist() {
     return new ArrayList<Song>(current_playlist);
   }
+
+  //returns a copy of the playlist, using only Songs active during at least a part of the Timespan between begin and end
+
+
   public List<Song> getPlaylist(Date begin,Date end) {
     return elementsBetween(playlist,begin,end,Song.class);
   }
+
+  //adds a new Rehearsal to the Musicgroup, which the current_members are attending
 
   public void newRehearsal(String location, Date begin, Date end, BigDecimal rent) {
     newRehearsal(location, begin, end, rent,current_members);
   }
 
+   //adds a new Gig to the Musicgroup, which the current_members are attending
+
   public void newGig(String location, Date begin, Date end, BigDecimal payment) {
     newGig(location, begin, end, payment,current_members);
   }
+
+  //adds a new Rehearsal to the Musicgroup
+  //members states which members are attending
 
   public void newRehearsal(String location, Date begin, Date end, BigDecimal rent, List<Member> members) {
     events.add(new Rehearsal(location, begin, end, rent, members));
     sendMessageToMembers(new Rehearsal(location, begin, end, rent, members));
   }
+
+  //adds a new Gig to the Musicgroup
+  //members states which members are attending
+  //members of the class Substitute not having been to at least 3 Rehearsals in the last 7 days wont be added
+
 
   public void newGig(String location, Date begin, Date end, BigDecimal payment, List<Member> members) {
     
@@ -119,6 +150,9 @@ public class MusicGroup {
     events.add(new Gig(location, begin, end, payment, temp));
     sendMessageToMembers(new Gig(location, begin, end, payment, temp));
   }
+
+  //returns the available Members for gigs (all members except members of the class substitute, which have not been attending 3 rehearsal within the last 7 days)
+  
 
   public ArrayList<Member> availableMembers(List<Member> members){
 
