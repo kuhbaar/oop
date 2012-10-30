@@ -14,6 +14,8 @@ public class Substitute extends Member {
 		super(m);
 	}
 
+	//returns true if there are no Dates older than d in the Date[] proben of the Substitute
+
 	public boolean isAvailable(Date d){
 
 		long DAY_IN_MS = 1000 * 60 * 60 * 24;
@@ -26,12 +28,17 @@ public class Substitute extends Member {
 		return true;
 	}
 
+	//creates a new Substitute m copying this one and sets m.Join to the current Date
+	//returns the created Substitute
 
 	@Override public Member join(){
 		Substitute m = new Substitute(this);
 		m.Join=new Date();
 		return m;
 	}
+
+	//creates a new Substitute m copying this one and sets m.Leave to the current Date
+	//returns the created Substitute
 
 	public Member leave(){
 		Substitute m = new Substitute(this);
