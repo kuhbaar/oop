@@ -16,6 +16,10 @@ public class Member implements Timespan{
   protected Date[] proben;
   private int hashCode;
 
+  /* Initializes a new Member with name, surname, phonenumber and instrument.
+    Join Date and Leave Date are being set to Max-Value,
+    All lists are empty.
+    */
   public Member(String name, String surname, String phoneno, String inst){
     this.name=name;
     this.surname=surname;
@@ -30,7 +34,7 @@ public class Member implements Timespan{
     proben[2]=new Date(0);
 
   }
-
+  /* Copies Member m as this Member */
   public Member(Member m){
     this(m.name, m.surname, m.phoneno, m.instrument);
     this.Join=m.getBegin();
@@ -38,7 +42,7 @@ public class Member implements Timespan{
     this.message=m.getMessage();
     this.proben=m.getProben();
   }
-
+  /* for all the accessors: return / calculate the requested value */
   public String getName(){return name;}
   public String getSurname(){return surname;}
   public String getPhoneNo(){return phoneno;}
@@ -48,27 +52,32 @@ public class Member implements Timespan{
   public List<Event> getMessage(){return this.message;}
   public Date[] getProben(){return proben;}
 
+  /* returns a copy of this Member with current Date as Leave (doesn't change current Member) */
   public Member leave(){
     Member m = new Member(this);
     m.Leave= new Date();
     return m;
   }
-
+  /* returns a copy of this Member with current Date as Join (doesn't change current Member) */
   public Member join(){
     Member m = new Member(this);
     m.Join=new Date();
     return m;
   }
-
+  /* adds the Event e to the message List */
   public void sendMessage(Event e){
     message.add(e);
   }
-
+  /* Replies to an Event e:
+    True: event accepted,
+    False: event declined,
+    Comment to the decision */
   public void replyMessage(Event e, boolean b,String comment){
     if(b) e.accept(comment);
     else e.decline(comment);
     message.remove(e);
   }
+  /* Returns the Member in String as follows: "Member: name surname phonenumber instrument" */
   public String toString(){
     return ("Member: " + name + " " + surname + " " + phoneno + " " + instrument);
   }
