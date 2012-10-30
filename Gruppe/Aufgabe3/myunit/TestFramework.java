@@ -8,11 +8,17 @@ import myunit.color.API;
 import myunit.color.Ansi;
 
 public class TestFramework {
+  /* return the line number of the stack element depth steps from the top
+   * (this is used to print in which line a unit test failed)
+   */
   public static String getLocation(Throwable t, int depth) {
     StackTraceElement l = t.getStackTrace()[depth];
     return "line "+l.getLineNumber();
   }
 
+  /* run all the test methods marked @UnitTest in the classes provided by the 
+   * list cs and check their result.
+   */
   public static void runTests(List<Class<? extends AbstractTest>> cs) {
     API colorizer = new Ansi();
     try {
