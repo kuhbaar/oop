@@ -4,6 +4,12 @@ import java.util.List;
 import java.math.BigDecimal;
 
 public class AbstractTest {
+  /* all methods here throw an exception if there condition is not fulfilled,
+     which includes a helpful error message and is used to print the line in 
+     which the error occurred.
+     The condition itself is obvious from the method name and won't be explained
+     individually.
+   */
   public void assertEqual(Object a, Object b) {
     if(a == null && b == null) return;
     if(a == null || !a.equals(b)) throw new AssertException(String.format("%s wasn't equal to %s", a, b));
