@@ -6,8 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 /* GOOD:
   Own class for Member, instead of listing all the attributes in Musicgroup.
-  Usage of Timespan asserts the methods getBegin() and getEnd(), which make it easy to control the Dates
-  */
+  Usage of Timespan allows clients to assume the presence of getBegin() and 
+  getEnd(), which makes it easy to filter by Dates
+ */
 public class Member implements Timespan{
   protected String name;
   protected String surname;
