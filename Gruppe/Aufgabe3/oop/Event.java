@@ -21,16 +21,12 @@ public class Event implements Timespan {
     this.members= new ArrayList<Member>(members);
   }
 
-
-
-
   public Event(String loc, Date begin, Date end, List<Member> members) {
     this(new Location(loc), begin, end, members);
   }
 
 
   //constructs a new Event without given MemberList, therefor using a new and empty MemberList
-
   public Event(Location loc, Date begin, Date end) { 
     this.location = loc;
     this.begin = new Date(begin.getTime());   
@@ -79,6 +75,8 @@ public class Event implements Timespan {
   public int getAcceptance(){ return accepted;}
   public int getDeclination(){ return declined;}
 
+  /* BAD: undo-functionality could be separated from this class and provided by
+   * a generic class. */
   /* saves the Event e to the change-Stack */
   public void save(Event e){
     this.change.push(e);
@@ -93,6 +91,10 @@ public class Event implements Timespan {
     return String.format("Event in %s von %s bis %s, %s $", 
       location, begin, end, getBalance());
   }
+
+  /* BAD: acceptance and comments could be handled by a separate class, so they
+   * wouldn't have to modify the internal state of events 
+   */ 
   /* adds +1 to the accepted-integer of this Event every time this method is called */
   public void accept(String comment) {
    accepted++; 
