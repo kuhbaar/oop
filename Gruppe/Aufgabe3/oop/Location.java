@@ -24,6 +24,9 @@ public class Location {
      requested infrastructure i (this doesn't necessarily correlate with it 
      being the same class)
    */
+  /* GOOD: Infrastructure could have been a direct part of location (eg a simple
+    list of strings), but that would make it significantly more difficult to later 
+     introduce more complex infrastructure */
   public Boolean hasInfrastructure(Infrastructure inf) {
     for(Infrastructure i : infrastructure) {
       if(i.provides(inf)) return true;
