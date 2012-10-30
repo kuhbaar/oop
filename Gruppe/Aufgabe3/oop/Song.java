@@ -20,6 +20,8 @@ public class Song implements Timespan{
   public Date getBegin(){return come;}
   public Date getEnd() { return gone; }
   
+//returns a new Song, which is a copy of this and sets the gone variable to the current date
+
   public Song remove(){
     Song s = new Song (name, duration);
     s.come=this.come;

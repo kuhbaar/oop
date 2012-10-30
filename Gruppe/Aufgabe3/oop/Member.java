@@ -83,6 +83,9 @@ public class Member implements Timespan{
     return ("Member: " + name + " " + surname + " " + phoneno + " " + instrument);
   }
 
+
+  // updates the Date[] proben to use the 3 latest Dates out of the 3 already being in proben and the new Date m
+  
   public void addProbe(Date m){
     Date k= new Date();
     int t=0;
