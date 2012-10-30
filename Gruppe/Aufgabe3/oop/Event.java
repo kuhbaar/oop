@@ -7,6 +7,9 @@ import java.math.BigDecimal;
 import java.util.Stack;
 
 public class Event implements Timespan {
+
+  //contstructs a new Event including a given MemberList
+
   public Event(Location loc, Date begin, Date end, List<Member> members) { 
     this.location = loc;
     this.begin = new Date(begin.getTime()); 
@@ -18,9 +21,15 @@ public class Event implements Timespan {
     this.members= new ArrayList<Member>(members);
   }
 
+
+
+
   public Event(String loc, Date begin, Date end, List<Member> members) {
     this(new Location(loc), begin, end, members);
   }
+
+
+  //constructs a new Event without given MemberList, therefor using a new and empty MemberList
 
   public Event(Location loc, Date begin, Date end) { 
     this.location = loc;
@@ -37,6 +46,7 @@ public class Event implements Timespan {
     this(new Location(loc), begin, end);
   }
 
+  //constructs a new Event by copying the values used by the given Event
 
   public Event(Event e) {
     this(e.location, e.begin, e.end, e.members);
