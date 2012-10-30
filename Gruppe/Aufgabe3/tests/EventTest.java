@@ -120,16 +120,16 @@ public class EventTest extends AbstractTest {
   }
 
 
-    @UnitTest
-    public void equalityTests() {
-      String s = new String("wien");
-      Event e1 = new Event("wien", mon, tue);
-      Event e2 = new Event(s, mon, tue);
-      Event e3 = new Gig("wien", mon, tue);
+  @UnitTest
+  public void equalityTests() {
+    String s = new String("wien");
+    Event e1 = new Event("wien", mon, tue);
+    Event e2 = new Event(s, mon, tue);
+    Event e3 = new Gig("wien", mon, tue);
 
-      assertEqual(e1, e2);
-      assertEqual(e2, e3);
-      assertEqual(e1, e3);
+    assertEqual(e1, e2);
+    assertEqual(e2, e3);
+    assertEqual(e1, e3);
 
-    }
+  }
 }
