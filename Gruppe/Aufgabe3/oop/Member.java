@@ -38,13 +38,14 @@ public class Member implements Timespan{
     proben[2]=new Date(0);
 
   }
-  /* Copies Member m as this Member */
+
+  /* creates a new Member with the same data as m */
   public Member(Member m){
     this(m.name, m.surname, m.phoneno, m.instrument);
     this.Join=m.getBegin();
     this.Leave=m.getEnd();
     this.message=m.getMessage();
-    this.proben=m.getProben();
+    this.proben=m.getProben();    /* BUG: proben is not copied! */
   }
 
   /* for all the accessors: return / calculate the requested value */
