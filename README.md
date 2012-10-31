@@ -1,3 +1,6 @@
+# Don't know git?
+Fear not, read this free tutorial: http://git-scm.com/book/en
+
 # rules
 - unittests fuer eine klasse immer mindestens von zwei verschiedenen leuten
 - jeder commit muss approved werden (code reviews!)
