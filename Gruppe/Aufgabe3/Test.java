@@ -1,7 +1,7 @@
 /*Less than 5 BADs:
-We think the reason we didn't find enoug BADs is that we were aware to avoid strong object coupling and
+We think the reason we didn't find enough BADs is that we were aware to avoid strong object coupling and
 create strong class cohesion. Moreover the BADs that we have were made "on purpose" due to the time we already
-invested in coding (Excercise 2 recommended to spent around 5-6 h on it) - to save time we implemented some functions
+invested in coding (Exercise 2 recommended to spent around 5-6 h on it) - to save time we implemented some functions
 in "worse" but quicker way.*/
 
 import java.util.ArrayList;
