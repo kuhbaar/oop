@@ -77,7 +77,7 @@ public class Event implements Timespan {
 
   /* BAD: undo-functionality could be separated from this class and provided by
    * a generic class. */
-  /* saves the Event e to the change-Stack */
+  /* saves the Event e to the change-Stack*/
   public void save(Event e){
     this.change.push(e);
   }
