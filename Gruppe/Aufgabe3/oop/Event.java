@@ -9,7 +9,6 @@ import java.util.Stack;
 public class Event implements Timespan {
 
   //contstructs a new Event including a given MemberList
-
   public Event(Location loc, Date begin, Date end, List<Member> members) { 
     this.location = loc;
     this.begin = new Date(begin.getTime()); 
