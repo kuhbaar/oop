@@ -77,7 +77,8 @@ public class Member implements Timespan{
   /* Replies to an Event e:
     True: event accepted,
     False: event declined,
-    Comment to the decision */
+    Comment to the decision 
+    The Member can only reply once to every message/Event*/
   public void replyMessage(Event e, boolean b,String comment){
     if(b) e.accept(comment);
     else e.decline(comment);

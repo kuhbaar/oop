@@ -31,7 +31,7 @@ public class MusicGroup {
     this.current_playlist = new ArrayList<Song>();
     this.various_payments = new ArrayList<Payment>();
   }
-  /* adds the Member m to the current_members with current date as Join, also adds it to the members*/
+  /* adds the Member m to the current_members with current date as Join, also adds the Member to the members*/
   public void addMember(Member m){
     Member mk= m.join();
     current_members.add(mk);
@@ -56,13 +56,15 @@ public class MusicGroup {
     return s;
   }
   
-  /* deletes the Member m from current_members, also adds the member with current date as Leave to the members */
+  /* deletes the Member m from current_members,
+   also replaces the member in members with same member,
+   but with current date as Leave*/
   public void deleteMember(Member m) {
     current_members.remove(m);
     members.remove(m);
     members.add(m.leave());
   }
-  /* returns the copy of current_members */
+  /* returns the list of current members */
   public List<Member> getCurrentMembers() {
     return new ArrayList<Member>(current_members);
   }
@@ -159,12 +161,12 @@ public class MusicGroup {
     }
     return temp;
   }
-  /* adds the Event e to the Events, Also informs the current_members by sending a message to them*/
+  /* adds the Event e to the events, Also informs current members by sending a message to them*/
   public void newEvent(Event e){
     events.add(e);
     sendMessageToMembers(e);
   }
-  /* deletes the Event e from events and adds it to the del_events, Also informs the current_members by sending a message to them*/
+  /* deletes the Event e from events, Also informs the current members by sending a message to them*/
   public void deleteEvent(Event e){
     del_events.add(e);
     events.remove(e);
@@ -180,14 +182,14 @@ public class MusicGroup {
     events.add(events.indexOf(e), change);
     sendMessageToMembers(change);
   }
-  /* Recalls the previous version of Event change and replaces change with it.
+  /* Replaces the Event change with its previous version.
     Also informs the current_members by sending a message to them*/
   public void undoChangeEvent(Event change){
     Event undochange= new Event(change.undo());
     events.set(events.indexOf(change),undochange);
     sendMessageToMembers(change);
   }
-  /* adds the Event e to message list of Member to for all Member in current_members*/
+  /* adds the Event e to message list of Member for all current Members */
   public void sendMessageToMembers(Event e){
     for(Member m: current_members){
       m.sendMessage(e);
