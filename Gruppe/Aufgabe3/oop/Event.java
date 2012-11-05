@@ -24,17 +24,9 @@ public class Event implements Timespan {
     this(new Location(loc), begin, end, members);
   }
 
-
   //constructs a new Event without given MemberList, therefor using a new and empty MemberList
   public Event(Location loc, Date begin, Date end) { 
-    this.location = loc;
-    this.begin = new Date(begin.getTime());   
-    this.end = new Date(end.getTime());
-    this.payments = new ArrayList<Payment>();
-    this.change = new Stack<Event>();
-    this.accepted=0;
-    this.declined=0;
-    this.members= new ArrayList<Member>();
+    this(loc, begin, end, new ArrayList<Member>());
   }
 
   public Event(String loc, Date begin, Date end) {
@@ -42,10 +34,9 @@ public class Event implements Timespan {
   }
 
   //constructs a new Event by copying the values used by the given Event
-
   public Event(Event e) {
     this(e.location, e.begin, e.end, e.members);
-    this.payments = new ArrayList<Payment>(e.payments);
+    this.payments = e.getPayments();
     this.accepted = e.getAcceptance();
     this.declined = e.getDeclination();
   }
@@ -63,7 +54,7 @@ public class Event implements Timespan {
   public Date getBegin() { return begin; }
   public Date getEnd() { return end; }
   public Stack<Event> getChange() { return change;}
-  public List<Member> getMembers(){return members;}
+  public List<Member> getMembers(){ return new ArrayList<Member>(members); }
   public BigDecimal getBalance() { 
     BigDecimal balance = new BigDecimal(0);
     for(Payment p : payments) {
@@ -126,14 +117,17 @@ public class Event implements Timespan {
     return hashCode;
   }
   
-  protected Location location;
-  protected Date begin;
-  protected Date end;
-  protected Stack<Event> change;
-  protected List<Payment> payments;
-  protected int accepted;
-  protected int declined;
-  protected List<Member> members;
+  private final Location location;
+  private final Date begin;
+  private final Date end;
+  private final Stack<Event> change;
+  private final List<Member> members;
+  private int accepted;
+  private int declined;
   private int hashCode;
+
+
+  // protected, so subclasses can modify it on creation
+  protected List<Payment> payments;
 }
 

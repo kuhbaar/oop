@@ -29,7 +29,7 @@ public class Rehearsal extends Event {
 
   public Rehearsal(Location location, Date begin, Date end) { 
     super(location, begin, end);
-    for(Member m:members){
+    for(Member m : this.getMembers()){
 
       if (m instanceof Substitute) m.addProbe(begin);
     }
