@@ -43,8 +43,8 @@ public class Event implements Timespan {
   /* for all the accessors: return / calculate the requested value */
   public Location getLocation() { return location; } 
   public List<Payment> getPayments() { return new ArrayList<Payment>(this.payments); }
-  public Date getBegin() { return begin; }
-  public Date getEnd() { return end; }
+  public Date getBegin() { return new Date(begin.getTime()); }
+  public Date getEnd() { return new Date(end.getTime()); }
   public Stack<Event> getChange() { return change;}
   public List<Member> getMembers(){ return new ArrayList<Member>(members); }
   public BigDecimal getBalance() { 
