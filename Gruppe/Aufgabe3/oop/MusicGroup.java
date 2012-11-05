@@ -132,8 +132,8 @@ public class MusicGroup {
   //members states which members are attending
 
   public void newRehearsal(String location, Date begin, Date end, BigDecimal rent, List<Member> members) {
-    events.add(new Rehearsal(location, begin, end, rent, members));
-    sendMessageToMembers(new Rehearsal(location, begin, end, rent, members));
+    events.add(new Rehearsal(new Location(location), begin, end, rent, members));
+    sendMessageToMembers(new Rehearsal(new Location(location), begin, end, rent, members));
   }
 
   //adds a new Gig to the Musicgroup
@@ -145,8 +145,8 @@ public class MusicGroup {
     
     List<Member> temp=availableMembers(members);
 
-    events.add(new Gig(location, begin, end, payment, temp));
-    sendMessageToMembers(new Gig(location, begin, end, payment, temp));
+    events.add(new Gig(new Location(location), begin, end, payment, temp));
+    sendMessageToMembers(new Gig(new Location(location), begin, end, payment, temp));
   }
 
   //returns the available Members for gigs (all members except members of the class substitute, which have not been attending 3 rehearsal within the last 7 days)

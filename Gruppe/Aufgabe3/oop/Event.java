@@ -20,17 +20,9 @@ public class Event implements Timespan {
     this.members= new ArrayList<Member>(members);
   }
 
-  public Event(String loc, Date begin, Date end, List<Member> members) {
-    this(new Location(loc), begin, end, members);
-  }
-
   //constructs a new Event without given MemberList, therefor using a new and empty MemberList
-  public Event(Location loc, Date begin, Date end) { 
-    this(loc, begin, end, new ArrayList<Member>());
-  }
-
   public Event(String loc, Date begin, Date end) {
-    this(new Location(loc), begin, end);
+    this(new Location(loc), begin, end, new ArrayList<Member>());
   }
 
   //constructs a new Event by copying the values used by the given Event
