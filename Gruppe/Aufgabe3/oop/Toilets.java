@@ -9,6 +9,7 @@ public class Toilets extends Infrastructure {
     super(description);
   }
 
+  /* true iff i is a Toilet. */
   public Boolean provides(Infrastructure i) {
     if(i.getClass() == Toilets.class) return true;
     return super.provides(i);

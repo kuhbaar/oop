@@ -10,16 +10,8 @@ public class Payment {
     this.date = new Date(date.getTime());
   }
 
-  public Payment(String description, BigDecimal amount) {
-    this(description, amount, new Date());
-  }
-
   public Payment(String description, String amount) {
-    this(description, new BigDecimal(amount));
-  }
-
-  public Payment(String description, String amount, Date date) {
-    this(description, new BigDecimal(amount), date);
+    this(description, new BigDecimal(amount), new Date());
   }
 
   public Payment(Payment p) {
@@ -29,7 +21,7 @@ public class Payment {
   public BigDecimal getAmount() { return amount; }
   public Date getDate() { return new Date(date.getTime()); }
 
-  protected String description;
-  protected BigDecimal amount;
-  protected Date date;
+  protected final String description;
+  protected final BigDecimal amount;
+  protected final Date date;
 }

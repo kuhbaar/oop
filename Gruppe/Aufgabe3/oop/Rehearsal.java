@@ -25,5 +25,5 @@ public class Rehearsal extends Event {
     super(r);
   }
 
-  public BigDecimal getRent() { return getBalance(); }
+  public BigDecimal getRent() { return getBalance().negate(); }
 }

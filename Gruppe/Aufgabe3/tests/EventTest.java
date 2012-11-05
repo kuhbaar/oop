@@ -112,7 +112,7 @@ public class EventTest extends AbstractTest {
     m.newGig("wien", mon, tue, new BigDecimal("100.10"));
     m.newGig("salzburg", tue, wed, new BigDecimal("500.0"));
     m.newRehearsal("tirol", tue, wed, new BigDecimal("20.16"));
-    m.add(new Payment("bonus", "100", mon));
+    m.add(new Payment("bonus", new BigDecimal("100"), mon));
 
     assertEqual(new BigDecimal("100"), m.getVariousPaymentsSum(mon, tue));
     assertEqual(new BigDecimal("0"), m.getVariousPaymentsSum(fri, sun));
