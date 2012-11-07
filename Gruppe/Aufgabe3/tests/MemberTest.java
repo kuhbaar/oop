@@ -51,6 +51,8 @@ public class MemberTest extends AbstractTest{
         assertEqual(m.getMessage().size(),new ArrayList<String>().size());
     }
     
+    /* after adding members to the group they should be present, and after deleting
+       them they should be gone again */
     @UnitTest
     public void testMusicGroupMethodsI(){
         MusicGroup g = new MusicGroup("The Goers");
