@@ -4,6 +4,9 @@ package oop;
 import java.util.Date;
 import java.math.BigDecimal;
 
+//subclass of Member
+//the only difference is a slightly different toString Method as well as another isAvailableMethod
+
 public class Substitute extends Member {
 	
 	public Substitute(String name, String surname, String phoneno, String inst) {

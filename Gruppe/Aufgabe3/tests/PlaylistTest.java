@@ -10,6 +10,8 @@ import myunit.UnitTest;
 import myunit.BeforeClass;
 import oop.MusicGroup;
 
+// tests the class Song and the methods in Musicgroup regarding playlist and current_playlist
+
 public class PlaylistTest extends AbstractTest {
   List<String> l;
   Date a, b, c,d;
@@ -30,7 +32,7 @@ public class PlaylistTest extends AbstractTest {
     d = cal.getTime();
   }
 
- 
+ // returns true if the addSong() Method of MusicGroup is working correctly
   @UnitTest
   public void testAddSong() {
     MusicGroup m = new MusicGroup("Onkelz");
@@ -40,6 +42,7 @@ public class PlaylistTest extends AbstractTest {
     assertEqual(m.getCurrentPlaylist().toString(), "[Ueber den Wolken - 2:30, Tanzen im Regen - 2:50]");
   }
   
+  // returns true if the deleteSong() Method of MusicGroup is working correctly
    @UnitTest
   public void testRemoveSong() {
     MusicGroup m = new MusicGroup("Rammstein");
@@ -51,6 +54,7 @@ public class PlaylistTest extends AbstractTest {
     assertEqual(m.getCurrentPlaylist().toString(), "[Ueber den Wolken - 2:30, Tanzen im Regen - 2:50]");
   }
   
+  //returns true if the getPlayList(Date begin, Date end) Method of MusicGroup works correctly
   @UnitTest
   public void testGetPlaylist() {
     MusicGroup m = new MusicGroup("Musikantenstadl");

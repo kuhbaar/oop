@@ -3,6 +3,9 @@ package oop;
 import java.util.Date;
 import java.lang.Math;
 
+
+//seperate Songclass to save Songs in a given format
+
 public class Song implements Timespan{
 
   public Song(String name, int duration, Date come){

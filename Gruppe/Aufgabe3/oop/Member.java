@@ -90,7 +90,9 @@ public class Member implements Timespan{
   }
 
 
-  // updates the Date[] proben to use the 3 latest Dates out of the 3 already being in proben and the new Date m
+  // updates the Date[] proben to use the 3 latest Dates out of the 3 already being in proben 
+  //and the new Date m
+  //m can be any Date, but mustnt be null
   
   public void addProbe(Date m){
     Date k= new Date();
