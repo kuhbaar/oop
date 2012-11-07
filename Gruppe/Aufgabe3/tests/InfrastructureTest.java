@@ -16,6 +16,7 @@ public class InfrastructureTest extends AbstractTest {
 
   }
 
+  /* infrastructure should be added correctly */
   @UnitTest
   public void addInfrastructureToLocation() {
     Location l = 
@@ -27,6 +28,7 @@ public class InfrastructureTest extends AbstractTest {
     assertFalse(l.hasInfrastructure(new DisabledToilets()));
   }
 
+  /* lookup of locations by infrastructure should work too */
   @UnitTest
   public void locationDirectoryTests() {
     LocationDirectory d = new LocationDirectory();
