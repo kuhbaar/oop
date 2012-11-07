@@ -17,7 +17,8 @@ public class Substitute extends Member {
 		super(m);
 	}
 
-	//returns true if there are no Dates older than d in the Date[] proben of the Substitute
+	//meaning the Substitute attended 3 Reahearsals in the last 7  days before d
+	//returns true if there are no Dates older than 7 days before d in the Date[] proben of the Substitute
 
 	public boolean isAvailable(Date d){
 
