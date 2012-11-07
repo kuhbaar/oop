@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.ArrayList;
 
+/* Subclass of Event, used for planning Gigs of a MusicGroup */
 public class Gig extends Event {
   public Gig(Location loc, Date begin, Date end, BigDecimal payment, List<Member> members) { 
     super(loc, begin, end, members);

@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.ArrayList;
 
+/* Subclass of Event, used for planning Rehearsals of a MusicGroup */
 public class Rehearsal extends Event {
   public Rehearsal(Location location, Date begin, Date end, BigDecimal rent, List<Member> members) { 
     super(location, begin, end, members);
