@@ -3,6 +3,7 @@ package oop;
 import java.util.List;
 import java.util.ArrayList;
 
+/* a location name with some infrastructure */
 public class Location {
   /* create a new location that doesn't provide any infrastructure at all */
   public Location(String name) {

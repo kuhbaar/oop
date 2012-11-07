@@ -1,5 +1,7 @@
 package oop;
 
+/* concept of infrastructure, that actually doesn't provide any usable infrastructure
+  (that's done by subclasses) */
 public class Infrastructure {
   public Infrastructure(String description) {
     this.description = description;

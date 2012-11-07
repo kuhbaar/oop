@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.math.BigDecimal;
 import java.util.Stack;
 
+/* an event that happens at give time at some location, with members and payments */
 public class Event implements Timespan {
 
   //contstructs a new Event including a given MemberList

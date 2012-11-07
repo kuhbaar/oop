@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.ArrayList;
 
+/* simple directory to look up locations by infrastructure */
 public class LocationDirectory {
   /* create a new empty directory */
   public LocationDirectory() {

@@ -3,6 +3,7 @@ package oop;
 import java.util.Date;
 import java.math.BigDecimal;
 
+/* simple data container for a payment at a give point in time */
 public class Payment {
   /* construct a new payment with description, amount, date;  date must not be null */
   public Payment(String description, BigDecimal amount, Date date) {

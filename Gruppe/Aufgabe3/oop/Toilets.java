@@ -1,5 +1,6 @@
 package oop;
 
+/* toilet infrastructure */
 public class Toilets extends Infrastructure {
   public Toilets() {
     super("toilets");
