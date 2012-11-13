@@ -24,7 +24,13 @@ public class Test {
        damit auch ClearBox) verletzt sind */
 
     /* Repeated<Char> und FreeBox sind äquivalent, wie auch an der Implementierung
-       von Repeated<P> mit Hilfe von FreeBox zu erkennen ist. */
+       von Repeated<P> mit Hilfe von FreeBox zu erkennen ist. (mal angenommen 
+       FreeBox wird passend initaliesert) */
+
+    /* Ähnliches gilt damit auch für Repeated<P> und Repeated<P extends Pict>, 
+       bei Repeated wird die toString() Ausgabe der einzelnen Objekte einfach mit
+       Leerzeichen ausgefüllt bis alle gleich groß sind, anschließend verhält es 
+       sich genau wie eine FreeBox (ist es ja intern auch) */
 
     q.scale(3.4);
     System.out.println(q);
