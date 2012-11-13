@@ -19,6 +19,9 @@ public class Test {
        und nur zusätzlich die verwendeten Zeichen festlegt und eine Funktion für
        das Seitenverhältnis einführt */
 
+    /* DarkBox ist kein Untertyp von Box oder ClearBox, da sich das verwendete 
+       Zeichen jederzeit ändern kann, und somit die Zusicherungen von Box (und 
+       damit auch ClearBox) verletzt sind */
 
     q.scale(3.4);
     System.out.println(q);
