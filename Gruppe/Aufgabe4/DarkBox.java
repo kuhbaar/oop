@@ -28,5 +28,4 @@ public class DarkBox implements Pict {
     this.b = new Box(this.width, this.height, c, c);
     this.b.scale(this.scale);
   }
-  
 }
