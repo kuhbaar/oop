@@ -25,6 +25,7 @@ def count_authors(filename):
       involved_authors[author] = True
       authors[author] += 1
     except:
+      print filename
       print line
 
   authors_per_file[filename] = []
@@ -50,6 +51,7 @@ def forall_files(dirname, fun):
 def clean_filename(name):
   return (name.split("/")[-1]).split(".")[0]
 
+commands.getoutput("./clean.sh")
 forall_files(root, count_authors)
 forall_files(root, count_lines)
 
