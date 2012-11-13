@@ -85,14 +85,16 @@ public class MusicGroup {
     playlist.add(s);
   }
 
-  //removes a Song from the current_playlist and the playlist and adds a copy of it, while setting the copies gone to the current date
+  //removes a Song from the current_playlist and replaces the Song in playlist with a 
+  //copy of it with current Date as gone
   public void deleteSong(Song s) {
     current_playlist.remove(s);
     playlist.remove(s);
     playlist.add(s.remove());
   }
   
-  // removes all the Songs with the name given from the current_playlist 
+  // removes all the Songs with the name given from the current_playlist and also replaces these Songs
+  //in playlist with a copy with the gone variable set to the current date
 
   public void deleteSong(String name) {
     List<Song> toDelete = new ArrayList<Song>();
@@ -149,7 +151,9 @@ public class MusicGroup {
     sendMessageToMembers(new Gig(new Location(location), begin, end, payment, temp));
   }
 
-  //returns the available Members for gigs (all members except members of the class substitute, which have not been attending 3 rehearsal within the last 7 days)
+  //returns the available Members for gigs 
+  //(all members except members of the class substitute,
+  // which have not been attending 3 rehearsal within the last 7 days)
   
   public ArrayList<Member> availableMembers(List<Member> members){
 
