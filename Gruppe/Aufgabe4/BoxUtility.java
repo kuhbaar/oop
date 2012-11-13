@@ -19,6 +19,7 @@ public class BoxUtility<P> {
       }
     }
 
+    /* if only Java had proper tuples. but alas ... */
     return Arrays.asList(max_width, max_height);
   }
 
