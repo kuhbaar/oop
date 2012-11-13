@@ -3,7 +3,7 @@ public class DarkBox extends Box{
 		super(width, height, border, border);
 	}
 
-	public void changeChar(char c){
-		this = new DarkBox(this.width,this.height,c);
+	public DarkBox changeChar(char c){
+		return new DarkBox(this.width,this.height,c);
 	}
 }
