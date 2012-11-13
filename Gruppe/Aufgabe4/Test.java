@@ -30,7 +30,9 @@ public class Test {
     /* Ähnliches gilt damit auch für Repeated<P> und Repeated<P extends Pict>, 
        bei Repeated wird die toString() Ausgabe der einzelnen Objekte einfach mit
        Leerzeichen ausgefüllt bis alle gleich groß sind, anschließend verhält es 
-       sich genau wie eine FreeBox (ist es ja intern auch) */
+       sich genau wie eine FreeBox (ist es ja intern auch) 
+       Im Prinzip könnte man daher Repeated ganz weglassen und einfach als zusätzlicher
+       Konstruktor in FreeBox implementieren. */
 
     /* Scaled<P> und Scaled<P extends Pict> verhalten sich ganz anders als die 
        übrigen Klassen hier, da alle Objekte jeweils einzeln skaliert werden, bevor
