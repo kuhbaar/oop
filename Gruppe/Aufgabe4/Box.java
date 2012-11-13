@@ -12,6 +12,8 @@ public class Box implements Pict {
      Zeichen für Rand und Inhalt */
   /* das Zeichen für den Rand darf kein Leerzeichen sein */
   public Box(int width, int height, char border, char body) {
+    assert(border != ' ');
+    
     this.width = width;
     this.height = height;
     this.border = border;
