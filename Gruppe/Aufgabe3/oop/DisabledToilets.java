@@ -1,5 +1,6 @@
 package oop;
 
+/* a disabled toilet infrastructure */
 public class DisabledToilets extends Toilets {
   public DisabledToilets() {
     super("disabled toilets");

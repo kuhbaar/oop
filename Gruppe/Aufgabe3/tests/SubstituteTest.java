@@ -98,8 +98,6 @@ public class SubstituteTest extends AbstractTest {
     //the Substitutes should now be available since 3 new Rehearsals have been added
 
     for(Member mem : g.getCurrentMembers()) {
-      System.out.println("test");
-
       //all Dates of proben in mem have to be within 7 days of thu
       assertTrue(mem.isAvailable(thu));
       //checks whether isAvailable works correctly within 7 days and not just any timespan

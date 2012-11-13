@@ -3,6 +3,7 @@ package oop;
 import java.util.List;
 import java.util.ArrayList;
 
+/* filter payments so that they fullfill all filters in the list */
 public class UnionFilter implements PaymentFilter {
   private PaymentFilter[] filters;
   

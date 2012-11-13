@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 
+/* music groups that has members that play in some events, contains related
+  bookkeeping info too */
 public class MusicGroup {
   protected String name;
   protected String genre;

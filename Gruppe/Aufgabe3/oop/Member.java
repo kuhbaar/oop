@@ -9,6 +9,7 @@ import java.util.List;
   Usage of Timespan allows clients to assume the presence of getBegin() and 
   getEnd(), which makes it easy to filter by Dates
  */
+/* Member with name, phone, etc. that can participate in events */
 public class Member implements Timespan{
   protected String name;
   protected String surname;

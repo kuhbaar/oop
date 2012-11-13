@@ -2,6 +2,7 @@ package oop;
 
 import java.util.Date;
 
+/* filter payments according to date */
 public class DateFilter implements PaymentFilter {
   private Date begin;
   private Date end;
