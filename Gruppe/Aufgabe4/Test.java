@@ -15,6 +15,10 @@ public class Test {
     Pict q = new ClearBox(5, 3);
     System.out.println(q);
 
+    /* ClearBox ist ein Untertyp von Box, da es alle Zusicherungen von Box einhält,
+       und nur zusätzlich die verwendeten Zeichen festlegt und eine Funktion für
+       das Seitenverhältnis einführt */
+
 
     q.scale(3.4);
     System.out.println(q);
@@ -39,7 +43,7 @@ public class Test {
 
     List<List<Box>> temp2 = new ArrayList<List<Box>>();
     temp2.add(Arrays.asList(new Box(4, 3, '-', '.'), new Box(4, 2, '=', ',')));
-    temp2.add(Arrays.asList(new Box(4, 2, '@', ' '), new Box(4, 2, '%', 'o')));
+    temp2.add(Arrays.asList(new ClearBox(3, 3), new Box(4, 2, '%', 'o')));
 
     Pict w = new Scaled<Box>(temp2);
     System.out.println(w);
