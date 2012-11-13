@@ -1,7 +1,7 @@
 public class Box implements Pict {
   protected final int width; //unveraenderlich
   protected final int height; //unveraenderlich
-  private final char border; //unveraenderlich
+  private final char border; //unveraenderlich, kein leerzeichen
   private final char body; //unveraenderlich
 
   private final BoxPrinter printer;
@@ -10,6 +10,7 @@ public class Box implements Pict {
 
   /* erstellt eine Box mit konstanter Höhe und Breite, sowie unveränderlichen 
      Zeichen für Rand und Inhalt */
+  /* das Zeichen für den Rand darf kein Leerzeichen sein */
   public Box(int width, int height, char border, char body) {
     this.width = width;
     this.height = height;
