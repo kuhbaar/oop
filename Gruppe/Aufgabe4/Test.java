@@ -32,6 +32,11 @@ public class Test {
        Leerzeichen ausgefüllt bis alle gleich groß sind, anschließend verhält es 
        sich genau wie eine FreeBox (ist es ja intern auch) */
 
+    /* Scaled<P> und Scaled<P extends Pict> verhalten sich ganz anders als die 
+       übrigen Klassen hier, da alle Objekte jeweils einzeln skaliert werden, bevor
+       sie in toString() verarbeitet werden. Somit kann es auch keinerlei Untertyp
+       Beziehungen geben. */
+
     q.scale(3.4);
     System.out.println(q);
 
