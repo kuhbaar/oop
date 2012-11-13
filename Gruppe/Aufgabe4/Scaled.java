@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Scaled<P extends Pict> implements Pict {
   private final List<List<P>> xss;
+  private final BoxUtility<P> utility = new BoxUtility<P>();
   private FreeBox box;
 
   public Scaled(List<List<P>> xss) {
@@ -19,7 +20,6 @@ public class Scaled<P extends Pict> implements Pict {
       for(P x : xs)
         x.scale(factor);
 
-    final BoxUtility<P> utility = new BoxUtility<P>();
 
     final List<Integer> dims = utility.getMaxDimensions(xss);
     int max_width = dims.get(0);

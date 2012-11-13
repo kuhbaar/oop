@@ -28,18 +28,20 @@ public class Test {
     v.scale(1.5);
     System.out.println(v);
 
-    Pict u = new Repeated<String>(Arrays.asList(
-        Arrays.asList("12", "34", "56\n2"),
-        Arrays.asList("78", "90", "abc")
-    ));
+    List<List<String>> temp1 = new ArrayList<List<String>>();
+    temp1.add(Arrays.asList("12", "34", "56\n2"));
+    temp1.add(Arrays.asList("78", "90", "abc"));
+
+    Pict u = new Repeated<String>(temp1);
     System.out.println(u);
     u.scale(3.4);
     System.out.println(u);
 
-    Pict w = new Scaled<Box>(Arrays.asList(
-        Arrays.asList(new Box(4, 3, '-', '.'), new Box(4, 2, '=', ',')),
-        Arrays.asList(new Box(4, 2, '@', ' '), new Box(4, 2, '%', 'o'))        
-        ));
+    List<List<Box>> temp2 = new ArrayList<List<Box>>();
+    temp2.add(Arrays.asList(new Box(4, 3, '-', '.'), new Box(4, 2, '=', ',')));
+    temp2.add(Arrays.asList(new Box(4, 2, '@', ' '), new Box(4, 2, '%', 'o')));
+
+    Pict w = new Scaled<Box>(temp2);
     System.out.println(w);
     w.scale(2.4);
     System.out.println(w);
