@@ -23,6 +23,9 @@ public class Test {
        Zeichen jederzeit ändern kann, und somit die Zusicherungen von Box (und 
        damit auch ClearBox) verletzt sind */
 
+    /* Repeated<Char> und FreeBox sind äquivalent, wie auch an der Implementierung
+       von Repeated<P> mit Hilfe von FreeBox zu erkennen ist. */
+
     q.scale(3.4);
     System.out.println(q);
 
