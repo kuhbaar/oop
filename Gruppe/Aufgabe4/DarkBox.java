@@ -1,8 +1,8 @@
 public class DarkBox implements Pict {
-  private final int width;
-  private final int height;
+  private final int width; //unveraenderlich
+  private final int height; //unveraenderlich
   
-  private double scale;
+  private double scale; //stets zw. 0.1 und 10.0
   private Box b;
 
   /* erstellt eine Box mit konstanter Höhe und Breite, das Zeichen für den Inhalt

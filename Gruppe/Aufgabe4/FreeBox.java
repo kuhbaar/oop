@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class FreeBox implements Pict {
   private final List<String> text;
 
-  private double scale;
+  private double scale; //stets zw. 0.1 und 10.0
 
   /* erstellt eine Box mit konstantem Text als Inhalt */
   public FreeBox(List<String> text) {

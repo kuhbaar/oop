@@ -1,12 +1,12 @@
 public class Box implements Pict {
-  protected final int width;
-  protected final int height;
-  private final char border;
-  private final char body;
+  protected final int width; //unveraenderlich
+  protected final int height; //unveraenderlich
+  private final char border; //unveraenderlich
+  private final char body; //unveraenderlich
 
   private final BoxPrinter printer;
 
-  private double scale;
+  private double scale; //stets zw. 0.1 und 10.0
 
   /* erstellt eine Box mit konstanter Höhe und Breite, sowie unveränderlichen 
      Zeichen für Rand und Inhalt */
