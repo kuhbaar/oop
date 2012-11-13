@@ -39,6 +39,11 @@ public class Test {
        sie in toString() verarbeitet werden. Somit kann es auch keinerlei Untertyp
        Beziehungen geben. */
 
+    /* Freebox ist kein Untertyp von Box/Clearbox, da in dieser Klasse keine Zeichen
+       für den Rand/Körper angegeben werden, sondern ein Bild übergeben wird. Dadurch
+       besitzt Freebox womöglich keinen einheitlichen Rand. Somit sind die Zusicherungen
+       von Box/Clearbox verletzt. */
+
     q.scale(3.4);
     System.out.println(q);
 
