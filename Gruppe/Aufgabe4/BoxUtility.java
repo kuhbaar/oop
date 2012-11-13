@@ -3,6 +3,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 public class BoxUtility<P> {
+
+  /* gibt eine Liste zurück, die 2 Elemente beinhaltet:
+  die maximale höhe und breite der Objekte in der Liste */
   public List<Integer> getMaxDimensions(List<List<P>> xss) {
     int max_width = 0, max_height = 0;
 
@@ -19,10 +22,10 @@ public class BoxUtility<P> {
       }
     }
 
-    /* if only Java had proper tuples. but alas ... */
     return Arrays.asList(max_width, max_height);
   }
 
+  /* gibt eine Liste der Zeichenketten zurück, die aus der 2-dimensionalen Liste mit Bildern generiert wird */
   public List<String> stringify(List<List<P>> xss, int max_width, int max_height) {
     List<String> temp = new ArrayList<String>();
 
