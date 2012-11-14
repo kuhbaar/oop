@@ -110,6 +110,14 @@ public class MyList<T> {
     return new MyIterator(first);
   }
 
+  public boolean contains(T value) {
+    MyIterator iter = iterator();
+    while(iter.hasNext())
+      if(iter.next() == value)
+        return true;
+    return false;
+  }
+
   public void add(T value) {
     Elem<T> e = new Elem<T>(value);
 

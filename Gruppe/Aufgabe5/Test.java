@@ -24,5 +24,8 @@ public class Test {
     for(int i = 0; i < l.size(); i++) {
       System.out.println(l.get(i));
     }
+
+    System.out.println(l.contains("Hello"));
+    System.out.println(l.contains(new String("Hello")));
   }
 }
