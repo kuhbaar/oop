@@ -1,3 +1,3 @@
-cd Gruppe/Aufgabe4
+cd Gruppe/Aufgabe5
 
 rm -f *class
