@@ -1,5 +1,4 @@
 import java.lang.Iterable;
-import java.util.Iterator;
 
 public class Set<T> implements Iterable<T>{
 	private MyList<T> list;
@@ -8,7 +7,7 @@ public class Set<T> implements Iterable<T>{
 		list = new MyList<T>();
 	}
 
-	public Iterator<T> iterator(){
+	public MyListIterator<T> iterator(){
 		return list.iterator();
 	}
 
