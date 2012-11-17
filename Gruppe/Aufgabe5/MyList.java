@@ -26,12 +26,25 @@ public class MyList<T> {
       return cur.next != null;
     }
 
+    public boolean hasPrevious() {
+      return cur.prev != null;
+    }
+
     public T next() {
       if(!hasNext())
         throw new NoSuchElementException();
 
       cur = cur.next;
       curIdx += 1;
+      return cur.value;
+    }
+
+    public T previous() {
+      if(!hasPrevious())
+        throw new NoSuchElementException();
+
+      cur = cur.prev;
+      curIdx -= 1;
       return cur.value;
     }
 
@@ -65,7 +78,7 @@ public class MyList<T> {
 
           cur.next = n;
           cur = n;
-        }       
+        }
       }
 
       size += 1;
@@ -166,7 +179,7 @@ public class MyList<T> {
       iter.next();
 
     iter.remove();
-  } 
+  }
 
 }
 
