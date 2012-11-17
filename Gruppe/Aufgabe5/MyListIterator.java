@@ -1,4 +1,6 @@
-public interface MyListIterator<T> {
+import java.util.Iterator;
+
+public interface MyListIterator<T> extends Iterator<T> {
   public boolean hasNext();
 
   public T next();
