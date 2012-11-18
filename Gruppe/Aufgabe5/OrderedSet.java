@@ -1,4 +1,5 @@
 import java.lang.Iterable;
+import java.util.ListIterator;
 
 public class OrderedSet<T extends Shorter> extends Set<T>{
 	public OrderedSet(){
@@ -6,7 +7,7 @@ public class OrderedSet<T extends Shorter> extends Set<T>{
 	}
 
 	public void insert(T e){
-		MyListIterator<T> iter = this.iterator();
+		ListIterator<T> iter = this.list.iterator();
 		while(iter.hasNext()){
 			if(!iter.next().shorter(e)){
 				iter.add(e);

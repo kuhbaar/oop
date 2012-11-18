@@ -1,13 +1,14 @@
 import java.lang.Iterable;
+import java.util.Iterator;
 
 public class Set<T> implements Iterable<T>{
-	private MyList<T> list;
+	protected MyList<T> list;
 
 	public Set(){
 		list = new MyList<T>();
 	}
 
-	public MyListIterator<T> iterator(){
+	public Iterator<T> iterator(){
 		return list.iterator();
 	}
 

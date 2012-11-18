@@ -1,4 +1,5 @@
 import java.util.NoSuchElementException;
+import java.util.ListIterator;
 
 public class MyList<T> {
   class Elem<T> {
@@ -12,7 +13,7 @@ public class MyList<T> {
     }
   }
 
-  class MyIterator implements MyListIterator<T> {
+  class MyIterator implements ListIterator<T> {
     Elem<T> cur;
     int curIdx = -1;
 
@@ -48,7 +49,15 @@ public class MyList<T> {
       return cur.value;
     }
 
-    public <E extends T> void add(E o) {
+    public int nextIndex() {
+      return curIdx + 1;
+    }
+
+    public int previousIndex() {
+      return curIdx - 1;
+    }
+
+    public void add(T o) {
       Elem<T> n = new Elem<T>(o);
 
       if(curIdx < 0 && !hasNext()) {
@@ -109,6 +118,18 @@ public class MyList<T> {
 
       size -= 1;
     }
+
+    public void set(T o) {
+      Elem<T> n = new Elem<T>(o);
+      n.next = cur.next;
+      n.prev = cur.prev;
+
+      if(hasNext())
+        cur.next.prev = n;
+
+      if(hasPrevious())
+        cur.prev.next = n;
+    }
   }
 
   Elem<T> first = null;
@@ -119,12 +140,12 @@ public class MyList<T> {
     return size;
   }
 
-  public MyIterator iterator() {
+  public ListIterator<T> iterator() {
     return new MyIterator(first);
   }
 
   public boolean contains(T value) {
-    MyIterator iter = iterator();
+    ListIterator<T> iter = iterator();
     while(iter.hasNext())
       if(iter.next() == value)
         return true;
@@ -150,7 +171,7 @@ public class MyList<T> {
     if(index == size) {
       add(value);
     } else if(index < size) {
-      MyIterator iter = iterator();
+      ListIterator<T> iter = iterator();
       for(int i = 0; i < index; i++)
         iter.next();
       iter.add(value);
@@ -173,7 +194,7 @@ public class MyList<T> {
     if(index >= size)
       throw new IndexOutOfBoundsException();
 
-    MyIterator iter = iterator();
+    ListIterator<T> iter = iterator();
     iter.next();
     for(int i = 0; i < index; i++)
       iter.next();
