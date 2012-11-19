@@ -2,13 +2,13 @@ import java.util.NoSuchElementException;
 import java.util.ListIterator;
 
 public class MyList<T> implements Iterable<T> {
-  class Elem<T> {
-    final T value;
+  private class Elem<T> {
+    public final T value;
 
-    Elem<T> prev = null;
-    Elem<T> next = null;
+    public Elem<T> prev = null;
+    public Elem<T> next = null;
 
-    Elem(T value) {
+    public Elem(T value) {
       this.value = value;
     }
 
@@ -17,11 +17,11 @@ public class MyList<T> implements Iterable<T> {
     }
   }
 
-  class MyIterator implements ListIterator<T> {
-    Elem<T> cur;
-    int curIdx = -1;
+  private class MyIterator implements ListIterator<T> {
+    private Elem<T> cur;
+    private int curIdx = -1;
 
-    MyIterator(Elem<T> start) {
+    public MyIterator(Elem<T> start) {
       Elem<T> temp = new Elem<T>(null);
       temp.next = start;
       this.cur = temp;
@@ -153,9 +153,9 @@ public class MyList<T> implements Iterable<T> {
     }
   }
 
-  Elem<T> first = null;
-  Elem<T> last = null;
-  int size = 0;
+  private Elem<T> first = null;
+  private Elem<T> last = null;
+  private int size = 0;
 
   public int size() {
     return size;

@@ -3,7 +3,7 @@ import java.util.Iterator;
 
 class Wrapper<T extends Shorter<T>, U> implements Shorter<T> {
   private final T elem;
-  private MyList<U> list;
+  private final MyList<U> list;
 
   public Wrapper (T e){
     this.elem = e;
