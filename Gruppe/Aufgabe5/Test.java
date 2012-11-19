@@ -55,12 +55,14 @@ public class Test {
 
     s.insert("Hello");
     s.insert("world");
+    s.insert("how are you?");
     s.insert("!");
+    s.insert("abc");
+    s.insert("def");
+    s.insert("abc");
     Iterator<String> siter = s.iterator();
 
-    for(int i=0; i<3 ; i++){
-      System.out.println(siter.next());
-    }
+    System.out.println(s);
 
     System.out.println("===== OrderedSet Test");
 
@@ -71,16 +73,16 @@ public class Test {
     t.add(new OString("abc"));
     t.add(new OString("def"));
     t.add(new OString("abc"));
+    t.add(new OString("a234"));
     t.add(new OString("123456"));
-    t.add(new OString("1234"));
     t.add(new OString("12345"));
 
     OrderedSet<OString> oset = new OrderedSet<OString>();
 
     for(OString str : t) {
-      // System.out.println("Inserting '" + str + "'");
+      //System.out.println("Inserting '" + str + "'");
       oset.insert(str);
-      // System.out.println(oset);
+      //System.out.println(oset);
     }
     
     System.out.println(oset);
@@ -127,6 +129,13 @@ public class Test {
     System.out.println(num_lines);
 
     oDesc.insert(new Description("a medium description"));
+    Iterator<Description> oDescIter = oDesc.iterator();
+    oDescIter.next();
+    oDescIter.next();
+    oDescIter.next();
+    oDescIter.remove();
+
+    System.out.println(oDesc);
 
   }
 }
