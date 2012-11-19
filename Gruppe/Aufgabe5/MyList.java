@@ -11,6 +11,10 @@ public class MyList<T> implements Iterable<T> {
     Elem(T value) {
       this.value = value;
     }
+
+    public String toString() {
+      return value == null ? "null" : value.toString();
+    }
   }
 
   class MyIterator implements ListIterator<T> {
@@ -48,6 +52,7 @@ public class MyList<T> implements Iterable<T> {
         Elem<T> temp = new Elem<T>(null);
         temp.next = cur;
         this.cur = temp;
+        first = temp;
       } else {
         this.cur = this.cur.prev;
       }
@@ -75,8 +80,11 @@ public class MyList<T> implements Iterable<T> {
       } else {
         if(curIdx < 0) {
           /* trying to insert before we have iterated */
+          /* cur is still a temporary node */
           first = n;
           n.next = cur.next;
+          if(n.next != null)
+            n.next.prev = n;
           cur = n;
           curIdx = 0;
         } else {
@@ -95,6 +103,13 @@ public class MyList<T> implements Iterable<T> {
           cur = n;
         }
       }
+
+      /*if(n.prev != null)
+        System.out.println("before '" + n.prev + "' prev: '" + n.prev.prev + "', next: '" + n.prev.next + "'");
+      System.out.println("added '" + o + "' prev: '" + n.prev + "', next: '" + n.next + "'");
+      if(n.next != null)
+        System.out.println("after '" + n.next + "' prev: '" + n.next.prev + "', next: '" + n.next.next + "'");
+      */
 
       size += 1;
     }
