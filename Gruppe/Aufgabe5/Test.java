@@ -111,5 +111,22 @@ public class Test {
 
     System.out.println(omap);
 
+    System.out.println("===== OrderedSet<Description>");
+    OrderedSet<Description> oDesc = new OrderedSet<Description>();
+    oDesc.insert(new Description("this is a description"));
+    oDesc.insert(new Description("another description"));
+    oDesc.insert(new Description("very short"));
+    oDesc.insert(new Description("and this is a very verbose description"));
+    oDesc.insert(new Description("a normal one"));
+
+    int num_lines = 0;
+    for(Description desc : oDesc) {   /* use iterator implicitly */
+      num_lines += desc.numberOfLines();
+      System.out.println(desc);
+    }
+    System.out.println(num_lines);
+
+    oDesc.insert(new Description("a medium description"));
+
   }
 }
