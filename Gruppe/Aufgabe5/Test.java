@@ -137,5 +137,22 @@ public class Test {
 
     System.out.println(oDesc);
 
+    /*Erzeugen Sie eine Instanz von OrderedMap, deren Elemente vom Typ MeanElapsedTime sind und die auf Objekte vom Typ CompositeTime verweisen – nicht sehr sinnvoll, aber gut zum Testen geeignet. Fügen Sie einige Elemente und damit verbundene Objekte ein, lesen Sie alles über die Iteratoren aus, und schreiben Sie jeweils den größten Messwert (für Elemente) bzw. die kürzeste Einzelzeit (für Objekte, auf die Elemente verweisen) in die Standard-Ausgabe. Testen Sie Änderungen ähnlich wie bei Punkt 1.*/
+
+    System.out.println("===== OrderedMap<MeanElapsedTime, CompositeTime>");
+    OrderedMap<MeanElapsedTime,CompositeTime> om = new OrderedMap<MeanElapsedTime,CompositeTime>();
+    MeanElapsedTime a = new MeanElapsedTime();
+    MeanElapsedTime b = new MeanElapsedTime();
+    MeanElapsedTime c = new MeanElapsedTime();
+    a.add(new Double(10));
+    a.add(new Double(20));
+    a.add(new Double(30));
+    b.add(new Double(1));
+    b.add(new Double(2));
+    b.add(new Double(3));
+    c.add(new Double(9));
+    Double[] x = new Double[]{5,15,30};
+    CompositeTime d = new CompositeTime(x);
+
   }
 }
