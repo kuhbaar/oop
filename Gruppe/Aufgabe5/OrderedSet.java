@@ -8,13 +8,15 @@ public class OrderedSet<T extends Shorter> extends Set<T>{
 
 	public void insert(T e){
 		ListIterator<T> iter = this.list.iterator();
-		while(iter.hasNext()){
-			if(!iter.next().shorter(e)){
-				iter.previous();
-				iter.add(e);
-				return;
+		if(!list.contains(e)){
+			while(iter.hasNext()){
+				if(!iter.next().shorter(e)){
+					iter.previous();
+					iter.add(e);
+					return;
+				}
 			}
+			iter.add(e);
 		}
-		iter.add(e);
 	}
 }
