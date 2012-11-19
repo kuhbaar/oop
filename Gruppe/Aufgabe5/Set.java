@@ -16,4 +16,12 @@ public class Set<T> implements Iterable<T>{
 		if(!list.contains(e))
 			list.add(e);
 	}
+
+	public String toString() {
+		String out = "";
+		for(T e : list) {
+      out += e + "\n";
+    }
+    return out;
+	}
 }
