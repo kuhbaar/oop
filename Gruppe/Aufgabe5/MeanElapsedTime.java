@@ -1,10 +1,10 @@
 import java.util.Iterator;
 
 public class MeanElapsedTime extends ElapsedTime{
-	private Set<Double> times;
+	private final Set<Double> times;
 
 	public MeanElapsedTime(){
-		this.times= new Set<Double>();
+		this.times = new Set<Double>();
 	}
 
 	public Double getCompareTime(){

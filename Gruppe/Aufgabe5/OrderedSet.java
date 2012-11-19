@@ -22,6 +22,5 @@ public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 		}
 
 		iter.add(e);
-		
 	}
 }
