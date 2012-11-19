@@ -14,9 +14,6 @@ public class MeanElapsedTime extends ElapsedTime{
 			sum+=d;
 		return sum/this.count();
 	}
-	public boolean shorter(ElapsedTime t){
-		return this.getCompareTime() < t.getCompareTime();
-	}
 
 	public void add(Double time){
 		times.insert(time);
@@ -28,5 +25,13 @@ public class MeanElapsedTime extends ElapsedTime{
 		for(Double d : times)
 			c++;
 		return c;
+	}
+
+	public Double getLongest(){
+		Double max = new Double(0);
+		Iterator<Double> iter = times.iterator();
+		for(Double d : times)
+			if(d > max) max = d;
+		return max;
 	}
 }
