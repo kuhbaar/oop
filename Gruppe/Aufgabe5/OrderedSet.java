@@ -10,6 +10,7 @@ public class OrderedSet<T extends Shorter> extends Set<T>{
 		ListIterator<T> iter = this.list.iterator();
 		while(iter.hasNext()){
 			if(!iter.next().shorter(e)){
+				iter.previous();
 				iter.add(e);
 				return;
 			}
