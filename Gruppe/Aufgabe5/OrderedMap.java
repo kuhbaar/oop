@@ -63,7 +63,7 @@ public class OrderedMap<T extends Shorter, U> extends OrderedSet<Wrapper<T, U>>{
       		iter.remove();
     	}
 
-    	public ListIterator iterator(){
+    	public ListIterator<U> iterator(){
     		return cur.iterator();
     	}
     }
@@ -93,8 +93,8 @@ public class OrderedMap<T extends Shorter, U> extends OrderedSet<Wrapper<T, U>>{
 		}
 	}
 
-	/*public ListIterator<T> iterator(){
-		ListIterator<Wrapper<T,U>> iter = this.list.iterator();
+	public MyIterator iterator(){
+		return new MyIterator(this.list.iterator());
 
-	}*/
+	}
 }
