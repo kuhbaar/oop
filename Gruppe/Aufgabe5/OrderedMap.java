@@ -1,7 +1,5 @@
 import java.util.ListIterator;
-import java.lang.ClassCastException;
 import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 class Wrapper<T extends Shorter<T>, U> implements Shorter<T> {
   private final T elem;
@@ -21,15 +19,14 @@ class Wrapper<T extends Shorter<T>, U> implements Shorter<T> {
   public void add(U listelem){
     list.add(listelem);
   }
+
   public ListIterator<U> iterator(){
-      return this.list.iterator();
-    }
+    return this.list.iterator();
+  }
 
   public boolean equals(Wrapper<T,U> that) {
-    if(this.elem != that.getElem())
-      return false;
-    return true;
-    }
+    return this.elem.equals(that.getElem());
+  }
 }
 
 public class OrderedMap<T extends Shorter<T>, U> extends OrderedSet<T> {
@@ -37,9 +34,10 @@ public class OrderedMap<T extends Shorter<T>, U> extends OrderedSet<T> {
 
   public OrderedMap (){
     super();
+    this.wrap_list = new MyList<Wrapper<T, U>>();
   }
 
-  class MyIterator implements Iterator<T> {
+  class MyIterator implements MapIterator<T, U> {
       Iterator<T> iter;
       Wrapper<T,U> cur;
 
@@ -59,7 +57,7 @@ public class OrderedMap<T extends Shorter<T>, U> extends OrderedSet<T> {
             break;
           }
         }
-        
+
         return cur.getElem();
       }
 
@@ -82,8 +80,25 @@ public class OrderedMap<T extends Shorter<T>, U> extends OrderedSet<T> {
     wrap_list.add(wrap);
   }
 
-  public MyIterator iterator(){
+  public MapIterator<T, U> iterator(){
     return new MyIterator(this.list.iterator());
+  }
 
+  @Override public String toString() {
+    String out = "";
+
+    MapIterator<T, U> miter = this.iterator();
+    while(miter.hasNext()) {
+      out += miter.next();
+      ListIterator<U> liter = miter.iterator();
+      if(liter.hasNext())
+        out += ": " + liter.next();
+      while(liter.hasNext()) {
+        out += ", " + liter.next();
+      }
+      out += "\n";
+    }
+
+    return out;
   }
 }

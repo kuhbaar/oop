@@ -87,6 +87,29 @@ public class Test {
 
 
     System.out.println("===== OrderedMap Test");
+    OrderedMap<OString, Integer> omap = new OrderedMap<OString, Integer>();
+
+
+    for(OString str : t) {
+      // System.out.println("Inserting '" + str + "'");
+      omap.insert(str);
+      // System.out.println(oset);
+    }
+    
+    System.out.println(omap);
+
+    MapIterator<OString, Integer> miter = omap.iterator();
+    miter.next();
+    miter.next();
+    ListIterator<Integer> liter = miter.iterator();
+    liter.add(5);
+
+    miter.next();
+    liter = miter.iterator();
+    liter.add(10);
+    liter.add(42);
+
+    System.out.println(omap);
 
   }
 }
