@@ -153,6 +153,23 @@ public class Test {
     c.add(new Double(9));
     Double[] x = new Double[]{5.0,15.0,30.0};
     CompositeTime d = new CompositeTime(x);
+    Double[] y = new Double[]{15.0,115.0,130.0};
+    CompositeTime e = new CompositeTime(y);
+    om.insert(a);
+    om.insert(b);
+    om.insert(c);
 
+    MapIterator<OString, Integer> mi = om.iterator();
+    mi.next();
+    ListIterator<Integer> li = mi.iterator();
+    li.add(d);
+    mi.next();
+    li = mi.iterator();
+    li.add(e);
+
+    miter.next();
+    liter = miter.iterator();
+    liter.add(10);
+    liter.add(42);
   }
 }
