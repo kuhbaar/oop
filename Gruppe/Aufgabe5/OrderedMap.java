@@ -1,7 +1,7 @@
 import java.util.ListIterator;
 import java.util.Iterator;
 
-class Wrapper<T extends Shorter<T>, U> implements Shorter<T> {
+class Wrapper<T extends Shorter<? super T>, U> implements Shorter<T> {
   private final T elem;
   private final MyList<U> list;
 
@@ -29,7 +29,7 @@ class Wrapper<T extends Shorter<T>, U> implements Shorter<T> {
   }
 }
 
-public class OrderedMap<T extends Shorter<T>, U> extends OrderedSet<T> {
+public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T> {
   protected MyList<Wrapper<T, U>> wrap_list;
 
   public OrderedMap (){

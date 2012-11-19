@@ -1,7 +1,7 @@
 import java.lang.Iterable;
 import java.util.ListIterator;
 
-public class OrderedSet<T extends Shorter<T>> extends Set<T> {
+public class OrderedSet<T extends Shorter<? super T>> extends Set<T> {
 	public OrderedSet(){
 		super();
 	}
