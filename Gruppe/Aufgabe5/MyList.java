@@ -1,7 +1,7 @@
 import java.util.NoSuchElementException;
 import java.util.ListIterator;
 
-public class MyList<T> {
+public class MyList<T> implements Iterable<T> {
   class Elem<T> {
     final T value;
 
@@ -28,7 +28,7 @@ public class MyList<T> {
     }
 
     public boolean hasPrevious() {
-      return cur.prev != null;
+      return cur != null;
     }
 
     public T next() {
@@ -44,7 +44,13 @@ public class MyList<T> {
       if(!hasPrevious())
         throw new NoSuchElementException();
 
-      cur = cur.prev;
+      if(this.cur.prev == null) {
+        Elem<T> temp = new Elem<T>(null);
+        temp.next = cur;
+        this.cur = temp;
+      } else {
+        this.cur = this.cur.prev;
+      }
       curIdx -= 1;
       return cur.value;
     }
