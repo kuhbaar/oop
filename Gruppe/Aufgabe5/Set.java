@@ -2,24 +2,24 @@ import java.lang.Iterable;
 import java.util.Iterator;
 
 public class Set<T> implements Iterable<T>{
-	protected MyList<T> list;
+	protected final MyList<T> list;
 
 	public Set(){
-		list = new MyList<T>();
+		this.list = new MyList<T>();
 	}
 
 	public Iterator<T> iterator(){
-		return list.iterator();
+		return this.list.iterator();
 	}
 
 	public void insert(T e){
-		if(!list.contains(e))
-			list.add(e);
+		if(!this.list.contains(e))
+			this.list.add(e);
 	}
 
 	public String toString() {
 		String out = "";
-		for(T e : list) {
+		for(T e : this.list) {
       out += e + "\n";
     }
     return out;

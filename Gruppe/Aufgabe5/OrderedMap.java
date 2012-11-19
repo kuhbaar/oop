@@ -1,77 +1,77 @@
 import java.util.ListIterator;
 import java.util.Iterator;
 
-class Wrapper<T extends Shorter<? super T>, U> implements Shorter<T> {
-  private final T elem;
-  private final MyList<U> list;
-
-  public Wrapper (T e){
-    this.elem = e;
-    list = new MyList<U>();
-  }
-
-  public T getElem() { return this.elem; }
-
-  public boolean shorter(T o){
-    return elem.shorter(o);
-  }
-
-  public void add(U listelem){
-    list.add(listelem);
-  }
-
-  public ListIterator<U> iterator(){
-    return this.list.iterator();
-  }
-
-  public boolean equals(Wrapper<T,U> that) {
-    return this.elem.equals(that.getElem());
-  }
-}
 
 public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T> {
-  protected MyList<Wrapper<T, U>> wrap_list;
+  private class Wrapper<T extends Shorter<? super T>, U> implements Shorter<T> {
+    private final T elem;
+    private final MyList<U> list;
+
+    public Wrapper (T e){
+      this.elem = e;
+      list = new MyList<U>();
+    }
+
+    public T getElem() { return this.elem; }
+
+    public boolean shorter(T o){
+      return elem.shorter(o);
+    }
+
+    public void add(U listelem){
+      list.add(listelem);
+    }
+
+    public ListIterator<U> iterator(){
+      return this.list.iterator();
+    }
+
+    public boolean equals(Wrapper<T,U> that) {
+      return this.elem.equals(that.getElem());
+    }
+  }
+
+  protected final MyList<Wrapper<T, U>> wrap_list;
 
   public OrderedMap (){
     super();
     this.wrap_list = new MyList<Wrapper<T, U>>();
   }
 
-  class MyIterator implements MapIterator<T, U> {
-      Iterator<T> iter;
-      Wrapper<T,U> cur;
+  private class MyIterator implements MapIterator<T, U> {
+    private final Iterator<T> iter;
+    private Wrapper<T,U> cur;
 
-      MyIterator(Iterator<T> i) {
-          this.iter = i;
-      }
-
-      public boolean hasNext() {
-          return iter.hasNext();
-      }
-
-      public T next() {
-        Wrapper<T, U> tmp = new Wrapper<T, U>(iter.next());
-        for(Wrapper<T, U> w : wrap_list) {
-          if(w.equals(tmp)) {
-            cur = w;
-            break;
-          }
-        }
-
-        return cur.getElem();
-      }
-
-      public void remove() {
-          iter.remove();
-      }
-
-      public ListIterator<U> iterator(){
-        return cur.iterator();
-      }
+    public MyIterator(Iterator<T> i) {
+      this.iter = i;
     }
 
-  @Override
-  public void insert(T e){
+    public boolean hasNext() {
+      return iter.hasNext();
+    }
+
+    public T next() {
+      Wrapper<T, U> tmp = new Wrapper<T, U>(iter.next());
+      for(Wrapper<T, U> w : wrap_list) {
+        if(w.equals(tmp)) {
+          cur = w;
+          break;
+        }
+      }
+
+      return cur.getElem();
+    }
+
+    public void remove() {
+        iter.remove();
+    }
+
+    public ListIterator<U> iterator(){
+      return cur.iterator();
+    }
+  }
+
+  @Override public void insert(T e){
     if(list.contains(e)) return;
 
     super.insert(e);
@@ -98,7 +98,6 @@ public class OrderedMap<T extends Shorter<? super T>, U> extends OrderedSet<T> {
       }
       out += "\n";
     }
-
     return out;
   }
 }

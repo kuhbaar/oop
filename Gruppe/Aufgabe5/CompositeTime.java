@@ -1,5 +1,5 @@
 public class CompositeTime extends ElapsedTime{
-	private Double[] times;
+	private final Double[] times;
 
 	public CompositeTime(Double[] d){
 		this.times = d;
