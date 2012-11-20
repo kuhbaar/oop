@@ -37,6 +37,7 @@ public class MeanElapsedTime extends ElapsedTime {
 	}
 
 	@Override public String toString() {
-		return count() + " measurements, avg " + getCompareTime() + ", max " + getLongest();
+		return String.format("%d timings, avg %7.1f - max %4.1f",
+		 count(), getCompareTime(), getLongest());
 	}
 }

@@ -27,6 +27,7 @@ public class CompositeTime extends ElapsedTime{
 	}
 
 	@Override public String toString() {
-		return count() + " measurements, total " + getCompareTime() + ", min " + getShortest();
+		return String.format("%d timings, total %5.1f - min %4.1f",
+		 count(), getCompareTime(), getShortest());
 	}
 }
