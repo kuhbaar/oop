@@ -113,7 +113,16 @@ public class Test {
 
     System.out.println(omap);
 
-    System.out.println("===== OrderedSet<Description>");
+    /* 1. Erzeugen Sie eine Instanz von OrderedSet deren Elemente vom Typ 
+          Description sind. Fügen Sie einige Elemente in unsortierter 
+          Reihenfolge ein, lesen Sie alle Elemente der Menge über den Iterator 
+          aus, und schreiben Sie die Anzahlen der Zeilen in die Standard-Ausgabe.
+          Führen Sie Änderungen durch und geben Sie die Elemente erneut aus. 
+          Diesen Vorgang können Sie mit unterschiedlichen Änderungen so oft
+          wiederholen, wie es Ihnen als nötig erscheint.
+     */
+
+    System.out.println("===== 1. OrderedSet<Description>");
     OrderedSet<Description> oDesc = new OrderedSet<Description>();
     oDesc.insert(new Description("this is a description"));
     oDesc.insert(new Description("another description"));
@@ -147,7 +156,7 @@ public class Test {
           ähnlich wie bei Punkt 1.
      */
 
-    System.out.println("===== OrderedMap<MeanElapsedTime, CompositeTime>");
+    System.out.println("===== 2. OrderedMap<MeanElapsedTime, CompositeTime>");
     OrderedMap<MeanElapsedTime, CompositeTime> om = 
       new OrderedMap<MeanElapsedTime,CompositeTime>();
     MeanElapsedTime a = new MeanElapsedTime();
@@ -203,18 +212,41 @@ public class Test {
           Untertypbeziehung besteht. 
      */
 
-    System.out.println("===== OrderedSet<MeanElapsedTime>");
-    OrderedSet<MeanElapsedTime> oElapsedTime = om;
+    System.out.println("===== 3. OrderedSet<MeanElapsedTime>");
+    OrderedSet<MeanElapsedTime> oMeanElapsedTime = om;
     MeanElapsedTime elapsedTime1 = new MeanElapsedTime();
     elapsedTime1.add(20.);
     elapsedTime1.add(10.);
     MeanElapsedTime elapsedTime2 = new MeanElapsedTime();
     elapsedTime1.add(35.);
     elapsedTime1.add(15.);
-    om.insert(elapsedTime1);
-    om.insert(elapsedTime2);
-    for(MeanElapsedTime elapsed : om) {
+    oMeanElapsedTime.insert(elapsedTime1);
+    oMeanElapsedTime.insert(elapsedTime2);
+    for(MeanElapsedTime elapsed : oMeanElapsedTime) {
       System.out.println(elapsed.getLongest());
+    }
+
+    /* 4. Erzeugen Sie eine Instanz von OrderedSet, deren Elemente vom Typ 
+          ElapsedTime sind. Lesen Sie alle Elemente der in Punkt 2 erzeugten 
+          (und möglicherweise in Punkt 3 erweiterten) Menge und alle Objekte, 
+          auf welche die Elemente verweisen, aus und fügen Sie diese (Instanzen 
+          von MeanElapsedTime ebenso wie von CompositeTime) in die neue Menge 
+          ein. Lesen Sie alle Elemente der neuen Menge aus, und schreiben Sie 
+          die durch count ermittelten Werte in die Standard-Ausgabe.
+     */
+
+    System.out.println("===== 4. OrderedSet<MeanElapsedTime>");
+    OrderedSet<ElapsedTime> oElapsedTime = new OrderedSet<ElapsedTime>();
+    mi = om.iterator();
+    while(mi.hasNext()) {
+      oElapsedTime.insert(mi.next());
+      li = mi.iterator();
+      while(li.hasNext())
+        oElapsedTime.insert(li.next());
+    }
+
+    for(ElapsedTime elapsed : oElapsedTime) {
+      System.out.println(elapsed + ": " + elapsed.count());
     }
 
   }
