@@ -1,13 +1,14 @@
 import java.util.Iterator;
 
-public class MeanElapsedTime extends ElapsedTime{
+public class MeanElapsedTime extends ElapsedTime {
 	private final Set<Double> times;
 
-	public MeanElapsedTime(){
+	public MeanElapsedTime() {
 		this.times = new Set<Double>();
 	}
 
-	public Double getCompareTime(){
+	public Double getCompareTime() {
+		if(this.count() == 0) return 0.0;
 		Double sum = new Double(0);
 		Iterator<Double> iter = times.iterator();
 		for(Double d : times)
@@ -15,7 +16,7 @@ public class MeanElapsedTime extends ElapsedTime{
 		return sum/this.count();
 	}
 
-	public void add(Double time){
+	public void add(Double time) {
 		times.insert(time);
 	}
 
@@ -27,11 +28,15 @@ public class MeanElapsedTime extends ElapsedTime{
 		return c;
 	}
 
-	public Double getLongest(){
+	public Double getLongest() {
 		Double max = new Double(0);
 		Iterator<Double> iter = times.iterator();
 		for(Double d : times)
 			if(d > max) max = d;
 		return max;
+	}
+
+	@Override public String toString() {
+		return count() + " measurements, avg " + getCompareTime() + ", max " + getLongest();
 	}
 }

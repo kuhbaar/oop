@@ -23,7 +23,7 @@ public class Test {
     iter.add("world");
     iter.add("!");
 
-    System.out.println("===== debug");
+    System.out.println("===== List iterator add test");
     for(int i = 0; i < l.size(); i++) {
       System.out.println(l.get(i));
     }
@@ -35,14 +35,14 @@ public class Test {
 
     l.add(3, "how are you?");
 
-    System.out.println("===== debug");
+    System.out.println("===== List iterator set test");
     for(int i = 0; i < l.size(); i++) {
       System.out.println(l.get(i));
     }
 
     l.remove(3);
 
-    System.out.println("===== debug");
+    System.out.println("===== List remove test");
     for(int i = 0; i < l.size(); i++) {
       System.out.println(l.get(i));
     }

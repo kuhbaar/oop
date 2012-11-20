@@ -1,11 +1,11 @@
 public class CompositeTime extends ElapsedTime{
 	private final Double[] times;
 
-	public CompositeTime(Double[] d){
+	public CompositeTime(Double[] d) {
 		this.times = d;
 	}
 
-	public Double getCompareTime(){
+	public Double getCompareTime() {
 		Double sum = new Double(0);
 		for(int i=0; i<times.length; i++){
 			sum+=times[i];
@@ -13,16 +13,20 @@ public class CompositeTime extends ElapsedTime{
 		return sum;
 	}
 
-	public int count(){
+	public int count() {
 		return times.length;
 	}
 
-	public Double getShortest(){
+	public Double getShortest() {
 		Double min = new Double(Double.MAX_VALUE);
 		for(int i=0; i<times.length; i++){
 			if(times[i] < min)
 				min = times[i];
 		}
 		return min;
+	}
+
+	@Override public String toString() {
+		return count() + " measurements, total " + getCompareTime() + ", min " + getShortest();
 	}
 }
