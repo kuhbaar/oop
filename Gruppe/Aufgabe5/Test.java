@@ -137,10 +137,19 @@ public class Test {
 
     System.out.println(oDesc);
 
-    /*Erzeugen Sie eine Instanz von OrderedMap, deren Elemente vom Typ MeanElapsedTime sind und die auf Objekte vom Typ CompositeTime verweisen – nicht sehr sinnvoll, aber gut zum Testen geeignet. Fügen Sie einige Elemente und damit verbundene Objekte ein, lesen Sie alles über die Iteratoren aus, und schreiben Sie jeweils den größten Messwert (für Elemente) bzw. die kürzeste Einzelzeit (für Objekte, auf die Elemente verweisen) in die Standard-Ausgabe. Testen Sie Änderungen ähnlich wie bei Punkt 1.*/
+    /* 2. Erzeugen Sie eine Instanz von OrderedMap, deren Elemente vom Typ  
+          MeanElapsedTime sind und die auf Objekte vom Typ CompositeTime 
+          verweisen – nicht sehr sinnvoll, aber gut zum Testen geeignet. Fügen 
+          Sie einige Elemente und damit verbundene Objekte ein, lesen Sie alles 
+          über die Iteratoren aus, und schreiben Sie jeweils den größten 
+          Messwert (für Elemente) bzw. die kürzeste Einzelzeit (für Objekte, auf 
+          die Elemente verweisen) in die Standard-Ausgabe. Testen Sie Änderungen
+          ähnlich wie bei Punkt 1.
+     */
 
     System.out.println("===== OrderedMap<MeanElapsedTime, CompositeTime>");
-    OrderedMap<MeanElapsedTime, CompositeTime> om = new OrderedMap<MeanElapsedTime,CompositeTime>();
+    OrderedMap<MeanElapsedTime, CompositeTime> om = 
+      new OrderedMap<MeanElapsedTime,CompositeTime>();
     MeanElapsedTime a = new MeanElapsedTime();
     MeanElapsedTime b = new MeanElapsedTime();
     MeanElapsedTime c = new MeanElapsedTime();
@@ -159,9 +168,9 @@ public class Test {
     om.insert(b);
     om.insert(c);
 
-    MapIterator<OString, Integer> mi = om.iterator();
+    MapIterator<MeanElapsedTime, CompositeTime> mi = om.iterator();
     mi.next();
-    ListIterator<Integer> li = mi.iterator();
+    ListIterator<CompositeTime> li = mi.iterator();
     li.add(d);
     mi.next();
     li = mi.iterator();
@@ -171,5 +180,42 @@ public class Test {
     liter = miter.iterator();
     liter.add(10);
     liter.add(42);
+
+    mi = om.iterator();
+    while(mi.hasNext()) {
+      System.out.print(mi.next());
+
+      li = mi.iterator();
+      if(li.hasNext())
+        System.out.print(": " + li.next());
+      while(li.hasNext())
+        System.out.println(", " + li.next());
+      System.out.println();
+    }
+
+    /* 3. Falls OrderedMap mit entsprechenden Typparameterersetzungen ein 
+          Untertyp von OrderedSet ist, betrachten Sie die in Punkt 2 erzeugte 
+          Menge als Instanz von OrderedSet, fügen Sie noch einige Elemente ein, 
+          lesen Sie alle Elemente über den Iterator aus, und schreiben Sie die 
+          größten Messwerte in die Standard-Ausgabe. Falls OrderedMap kein 
+          Untertyp von OrderedSet ist, geben Sie anstelle der Testergebnisse 
+          eine Begründung dafür aus, warum zwischen diesen Typen keine 
+          Untertypbeziehung besteht. 
+     */
+
+    System.out.println("===== OrderedSet<MeanElapsedTime>");
+    OrderedSet<MeanElapsedTime> oElapsedTime = om;
+    MeanElapsedTime elapsedTime1 = new MeanElapsedTime();
+    elapsedTime1.add(20.);
+    elapsedTime1.add(10.);
+    MeanElapsedTime elapsedTime2 = new MeanElapsedTime();
+    elapsedTime1.add(35.);
+    elapsedTime1.add(15.);
+    om.insert(elapsedTime1);
+    om.insert(elapsedTime2);
+    for(MeanElapsedTime elapsed : om) {
+      System.out.println(elapsed.getLongest());
+    }
+
   }
 }
