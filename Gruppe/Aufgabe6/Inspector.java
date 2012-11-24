@@ -5,5 +5,6 @@ public class Inspector {
 
   public void visit(Kaempfer a) {
     System.out.println("Kaempfer");
+    a.inspectSkin(new BeschuetzerSkinInspector());
   }
 }

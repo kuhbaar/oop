@@ -14,4 +14,8 @@ public abstract class Android{
       the only reason I've provided a default implementation here is because
       I'm to lazy to add it in all classes right now */
   }
+
+  public boolean inspectSkin(SkinInspector visitor) {
+    return s.accept(visitor);
+  }
 }
