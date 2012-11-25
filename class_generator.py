@@ -1,18 +1,29 @@
 #!/usr/bin/python
 from string import Template
 
-subclasses_template = Template("""public class $classname extends $superclass {
+middleclass_template = Template("""public abstract class $classname extends $superclass {
   public $classname(String n, Skin s, Software sw) {
     super(n, s, sw);
   }
 
   public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+    return visitor.visit(this);
   }
 }
 """)
 
-rootclass = Template("""public class $classname {
+bottomclass_template = Template("""public class $classname extends $superclass {
+  public $classname(String n, Skin s, Software sw) {
+    super(n, s, sw);
+  }
+
+  public boolean accept(Inspector visitor) {
+    return visitor.visit(this);
+  }
+}
+""")
+
+rootclass = Template("""public abstract class $classname {
   private final String seriennr;
   private Skin s;
   private Software sw;
@@ -24,19 +35,23 @@ rootclass = Template("""public class $classname {
   }
 
   public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+    return visitor.visit(this);
   }
 
   public boolean inspectSkin(SkinInspector visitor) {
     return s.accept(visitor);
+  }
+
+  public boolean inspectSoftware(SoftwareInspector visitor) {
+    return sw.accept(visitor);
   }
 }
 """)
 
 software_template = Template("""
 public class $classname extends Software {
-  public $classname(String serial) {
-    super(serial);
+  public $classname(String serial, int sicherheitsstufe) {
+    super(serial, sicherheitsstufe);
   }
 }
 """)
@@ -61,10 +76,12 @@ def create_droid(droid, supercls):
 
   if supercls == "":
     f.write(rootclass.substitute(classname=name, superclass=supercls))
-  else:
-    f.write(subclasses_template.substitute(classname=name, superclass=supercls))
+  elif subclasses == []:
     with open("Gruppe/Aufgabe6/%sSoftware.java" % name, "w") as g:
       g.write(software_template.substitute(classname="%sSoftware" % name))
+    f.write(bottomclass_template.substitute(classname=name, superclass=supercls))
+  else:
+    f.write(middleclass_template.substitute(classname=name, superclass=supercls))
 
   f.close()
 
