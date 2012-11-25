@@ -1,11 +1,14 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public abstract class SoftwareInspector {
-  public boolean visit(Software s) { return false; }
-  public boolean visit(HilskraftSoftware s) { return false; }
-  public boolean visit(GesellschafterSoftware s) { return false; }
-  public boolean visit(ObjektbewacherSoftware s) { return false; }
-  public boolean visit(LeibwaechterSoftware s) { return false; }
-  public boolean visit(KaempferSoftware s) { return false; }
-  public boolean visit(BauarbeiterSoftware s) { return false; }
-  public boolean visit(ServiceTechnikerSoftware s) { return false; }
-  public boolean visit(TransportarbeiterSoftware s) { return false; }
+  public List<Android> visit(Software s) { return new ArrayList<Android>(); }
+  public List<Android> visit(HilfskraftSoftware s) { return new ArrayList<Android>(); }
+  public List<Android> visit(GesellschafterSoftware s) { return new ArrayList<Android>(); }
+  public List<Android> visit(ObjektbewacherSoftware s) { return new ArrayList<Android>(); }
+  public List<Android> visit(LeibwaechterSoftware s) { return new ArrayList<Android>(); }
+  public List<Android> visit(KaempferSoftware s) { return new ArrayList<Android>(); }
+  public List<Android> visit(BauarbeiterSoftware s) { return new ArrayList<Android>(); }
+  public List<Android> visit(ServiceTechnikerSoftware s) { return new ArrayList<Android>(); }
+  public List<Android> visit(TransportarbeiterSoftware s) { return new ArrayList<Android>(); }
 }

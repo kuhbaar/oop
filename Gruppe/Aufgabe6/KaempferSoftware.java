@@ -1,6 +1,6 @@
 
 public class KaempferSoftware extends Software {
-  public KaempferSoftware(String serial, int sicherheitsstufe) {
-    super(serial, sicherheitsstufe);
+  public KaempferSoftware(String serial, Sicherheitsstufe stufe) {
+    super(serial, stufe);
   }
 }

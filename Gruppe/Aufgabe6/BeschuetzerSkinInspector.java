@@ -1,10 +1,16 @@
-public class BeschuetzerSkinInspector implements SkinInspector {
-  public boolean visit(Skin s) {
-    System.out.println("Skin");
-    return true;
+import java.util.List;
+
+public class BeschuetzerSkinInspector extends SkinInspector {
+  public BeschuetzerSkinInspector(List<Android> droids) {
+    super(droids);
   }
-  public boolean visit(HochfesterSkin s) {
+
+  public List<Android> visit(Skin s) {
+    System.out.println("Skin");
+    return droids;
+  }
+  public List<Android> visit(HochfesterSkin s) {
     System.out.println("HochfesterSkin");
-    return true;
+    return droids;
   }
 }

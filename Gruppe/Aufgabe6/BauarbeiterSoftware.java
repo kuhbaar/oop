@@ -1,6 +1,6 @@
 
 public class BauarbeiterSoftware extends Software {
-  public BauarbeiterSoftware(String serial, int sicherheitsstufe) {
-    super(serial, sicherheitsstufe);
+  public BauarbeiterSoftware(String serial, Sicherheitsstufe stufe) {
+    super(serial, stufe);
   }
 }

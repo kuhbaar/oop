@@ -1,5 +1,7 @@
+import java.util.List;
+
 public class HochfesterSkin extends Skin {
-  public boolean accept(SkinInspector visitor) {
+  public List<Android> accept(SkinInspector visitor) {
     return visitor.visit(this);
   }
 }

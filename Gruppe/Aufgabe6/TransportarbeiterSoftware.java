@@ -1,6 +1,6 @@
 
 public class TransportarbeiterSoftware extends Software {
-  public TransportarbeiterSoftware(String serial, int sicherheitsstufe) {
-    super(serial, sicherheitsstufe);
+  public TransportarbeiterSoftware(String serial, Sicherheitsstufe stufe) {
+    super(serial, stufe);
   }
 }

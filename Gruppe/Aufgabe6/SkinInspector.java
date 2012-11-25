@@ -1,5 +1,15 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public abstract class SkinInspector {
-  public boolean visit(HochfesterSkin s) { return false; }
-  public boolean visit(BeruehungsSensitiverSkin s) { return false; }
-  public boolean visit(GepanzerterSkin s) { return false; }
+  protected final List<Android> droids;
+
+  public SkinInspector(List<Android> droids) {
+    this.droids = droids;
+  }
+
+  public List<Android> visit(Skin s) { return new ArrayList<Android>(); }
+  public List<Android> visit(HochfesterSkin s) { return new ArrayList<Android>(); }
+  public List<Android> visit(BeruehrungsSensitiverSkin s) { return new ArrayList<Android>(); }
+  public List<Android> visit(GepanzerterSkin s) { return new ArrayList<Android>(); }
 }

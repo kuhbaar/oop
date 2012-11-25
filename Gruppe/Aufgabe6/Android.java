@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class Android {
   private final String seriennr;
   private Skin s;
@@ -9,15 +11,19 @@ public abstract class Android {
     this.sw = sw;
   }
 
-  public boolean accept(Inspector visitor) {
+  public String getSerial() {
+    return seriennr;
+  }
+
+  public List<Android> accept(Inspector visitor) {
     return visitor.visit(this);
   }
 
-  public boolean inspectSkin(SkinInspector visitor) {
+  public List<Android> inspectSkin(SkinInspector visitor) {
     return s.accept(visitor);
   }
 
-  public boolean inspectSoftware(SoftwareInspector visitor) {
+  public List<Android> inspectSoftware(SoftwareInspector visitor) {
     return sw.accept(visitor);
   }
 }

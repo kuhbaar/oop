@@ -1,14 +1,15 @@
+import java.util.List;
+
 public abstract class Software {
   private final String serial;
-  private final int sicherheitsstufe;
+  private final Sicherheitsstufe stufe;
 
-  public Software(String serial, int sicherheitsstufe) {
-    assert(sicherheitsstufe >= 1 && sicherheitsstufe <= 5);
+  public Software(String serial, Sicherheitsstufe stufe) {
     this.serial = serial;
-    this.sicherheitsstufe = sicherheitsstufe;
+    this.stufe = stufe;
   }
 
-  public boolean accept(SoftwareInspector inspector) {
+  public List<Android> accept(SoftwareInspector inspector) {
     return inspector.visit(this);
   }
 }
