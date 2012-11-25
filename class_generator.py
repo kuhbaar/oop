@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from string import Template
 
 subclasses_template = Template("""public class $classname extends $superclass {
@@ -5,7 +6,7 @@ subclasses_template = Template("""public class $classname extends $superclass {
     super(n, s, sw);
   }
 
-  public void accept(Inspector visitor) {
+  public boolean accept(Inspector visitor) {
     visitor.visit(this);
   }
 }
@@ -22,7 +23,7 @@ rootclass = Template("""public class $classname {
     this.sw = sw;
   }
 
-  public void accept(Inspector visitor) {
+  public boolean accept(Inspector visitor) {
     visitor.visit(this);
   }
 
@@ -30,11 +31,18 @@ rootclass = Template("""public class $classname {
     return s.accept(visitor);
   }
 }
+""")
 
+software_template = Template("""
+public class $classname extends Software {
+  public $classname(String serial) {
+    super(serial);
+  }
+}
 """)
 
 
-droid = ("Android",
+droids = ("Android",
   [
   ("Bediener", [("Hilfskraft", []), ("Gesellschafter", [])]),
   ("Schwerarbeiter", [("Bauarbeiter", []),
@@ -55,10 +63,12 @@ def create_droid(droid, supercls):
     f.write(rootclass.substitute(classname=name, superclass=supercls))
   else:
     f.write(subclasses_template.substitute(classname=name, superclass=supercls))
+    with open("Gruppe/Aufgabe6/%sSoftware.java" % name, "w") as g:
+      g.write(software_template.substitute(classname="%sSoftware" % name))
 
   f.close()
 
   for cls in subclasses:
     create_droid(cls, name)
 
-create_droid(droid, "")
+create_droid(droids, "")
