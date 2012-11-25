@@ -1,6 +1,6 @@
 
 public class GesellschafterSoftware extends Software {
-  public GesellschafterSoftware(String serial) {
-    super(serial);
+  public GesellschafterSoftware(String serial, int sicherheitsstufe) {
+    super(serial, sicherheitsstufe);
   }
 }

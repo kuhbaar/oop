@@ -1,10 +1,12 @@
 public class Inspector {
-  public void visit(Android a) {
+  public boolean visit(Android a) {
     System.out.println("Android");
+    return true;
   }
 
-  public void visit(Kaempfer a) {
+  public boolean visit(Kaempfer a) {
     System.out.println("Kaempfer");
     a.inspectSkin(new BeschuetzerSkinInspector());
+    return true;
   }
 }

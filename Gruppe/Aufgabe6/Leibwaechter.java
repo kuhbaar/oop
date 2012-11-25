@@ -4,6 +4,6 @@ public class Leibwaechter extends Beschuetzer {
   }
 
   public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+    return visitor.visit(this);
   }
 }

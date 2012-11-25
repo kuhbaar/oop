@@ -1,4 +1,4 @@
-public class Android {
+public abstract class Android {
   private final String seriennr;
   private Skin s;
   private Software sw;
@@ -10,10 +10,14 @@ public class Android {
   }
 
   public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+    return visitor.visit(this);
   }
 
   public boolean inspectSkin(SkinInspector visitor) {
     return s.accept(visitor);
+  }
+
+  public boolean inspectSoftware(SoftwareInspector visitor) {
+    return sw.accept(visitor);
   }
 }

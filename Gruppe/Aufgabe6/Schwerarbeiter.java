@@ -1,9 +1,9 @@
-public class Schwerarbeiter extends Android {
+public abstract class Schwerarbeiter extends Android {
   public Schwerarbeiter(String n, Skin s, Software sw) {
     super(n, s, sw);
   }
 
   public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+    return visitor.visit(this);
   }
 }

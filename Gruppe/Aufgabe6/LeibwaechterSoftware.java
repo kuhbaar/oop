@@ -1,6 +1,6 @@
 
 public class LeibwaechterSoftware extends Software {
-  public LeibwaechterSoftware(String serial) {
-    super(serial);
+  public LeibwaechterSoftware(String serial, int sicherheitsstufe) {
+    super(serial, sicherheitsstufe);
   }
 }

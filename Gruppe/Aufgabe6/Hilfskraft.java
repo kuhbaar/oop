@@ -4,6 +4,6 @@ public class Hilfskraft extends Bediener {
   }
 
   public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+    return visitor.visit(this);
   }
 }

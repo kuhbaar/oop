@@ -4,6 +4,6 @@ public class Transportarbeiter extends Schwerarbeiter {
   }
 
   public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+    return visitor.visit(this);
   }
 }
