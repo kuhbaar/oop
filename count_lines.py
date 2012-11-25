@@ -4,7 +4,7 @@ import commands
 import re
 import operator
 
-root = "./Gruppe/Aufgabe4/"
+root = "./Gruppe/Aufgabe6/"
 authors = {}
 files_touched_by = {}
 total_lines = 0
@@ -32,7 +32,7 @@ def count_authors(filename):
   for author in involved_authors:
     files_touched_by[author].append(filename)
     authors_per_file[filename].append(author)
-  
+
 
 def count_lines(filename):
   global total_lines
@@ -74,5 +74,5 @@ for author, files in files_owned_by.iteritems():
   filenames = [clean_filename(f) for f in files]
   print "%30s owns %s" % (author, ', '.join(sorted(filenames)))
 
-	
+
 
