@@ -3,7 +3,7 @@ public class Schwerarbeiter extends Android {
     super(n, s, sw);
   }
 
-  public void accept(Inspector visitor) {
+  public boolean accept(Inspector visitor) {
     visitor.visit(this);
   }
 }

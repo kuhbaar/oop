@@ -9,7 +9,7 @@ public class Android {
     this.sw = sw;
   }
 
-  public void accept(Inspector visitor) {
+  public boolean accept(Inspector visitor) {
     visitor.visit(this);
   }
 
