@@ -1,3 +1,4 @@
+#!/usr/bin/python
 from string import Template
 
 subclasses_template = Template("""public class $classname extends $superclass {
@@ -5,7 +6,7 @@ subclasses_template = Template("""public class $classname extends $superclass {
     super(n, s, sw);
   }
 
-  public void accept(Inspector visitor) {
+  public boolean accept(Inspector visitor) {
     visitor.visit(this);
   }
 }
@@ -22,7 +23,7 @@ rootclass = Template("""public class $classname {
     this.sw = sw;
   }
 
-  public void accept(Inspector visitor) {
+  public boolean accept(Inspector visitor) {
     visitor.visit(this);
   }
 
@@ -34,7 +35,9 @@ rootclass = Template("""public class $classname {
 
 software_template = Template("""
 public class $classname extends Software {
-
+  public $classname(String serial) {
+    super(serial);
+  }
 }
 """)
 
