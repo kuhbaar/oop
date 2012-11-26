@@ -42,8 +42,9 @@ public class Inspector {
 
   public List<Android> visit(Kaempfer a) {
     System.out.println("Kaempfer");
-    this.droids = a.inspectSkin(new BeschuetzerSkinInspector(droids));
-
+    this.droids = a.inspectSkin(new BeschuetzerSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new KaempferSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe5SoftwareSicherheitsInspector(this.droids));
 
     return this.droids;
   }

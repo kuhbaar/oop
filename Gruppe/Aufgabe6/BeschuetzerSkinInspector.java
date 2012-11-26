@@ -5,12 +5,9 @@ public class BeschuetzerSkinInspector extends SkinInspector {
     super(droids);
   }
 
-  public List<Android> visit(Skin s) {
-    System.out.println("Skin");
-    return droids;
-  }
-  public List<Android> visit(HochfesterSkin s) {
-    System.out.println("HochfesterSkin");
-    return droids;
-  }
+  /* Beschuetzer koennen jeden Skin haben */
+  public List<Android> visit(Skin s) { return droids; }
+  public List<Android> visit(HochfesterSkin s) { return droids; }
+  public List<Android> visit(BeruehrungsSensitiverSkin s) { return droids; }
+  public List<Android> visit(GepanzerterSkin s) { return droids; }
 }
