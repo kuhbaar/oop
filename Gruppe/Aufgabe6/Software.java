@@ -9,6 +9,10 @@ public abstract class Software {
     this.stufe = stufe;
   }
 
+  public Sicherheitsstufe getSecurity() {
+    return this.stufe;
+  }
+
   public List<Android> accept(SoftwareInspector inspector) {
     return inspector.visit(this);
   }

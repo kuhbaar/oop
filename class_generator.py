@@ -45,6 +45,10 @@ public abstract class $classname {
     return seriennr;
   }
 
+  public Sicherheitsstufe getSecurity() {
+    return sw.getSecurity();
+  }
+
   public List<Android> accept(Inspector visitor) {
     return visitor.visit(this);
   }

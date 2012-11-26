@@ -10,15 +10,20 @@ public class AndroidList {
     this.droids = new ArrayList<Android>();
   }
 
- /* Die Methode find liefert einen String mit der Beschreibung aller Ausstattungsdetails
-    des Androiden mit der als Parameter gegebenen Seriennummer zurück (oder null
-    falls kein Androide mit dieser Seriennummer existiert). */
-  public String find(String sn) {
+  /* null if Android doesn't exist */
+  private Android get(String sn) {
     HashMap<String, Android> m = new HashMap<String, Android>();
     for(Android a : this.droids)
       m.put(a.getSerial(), a);
 
-    Android a = m.get(sn);
+    return m.get(sn);
+  }
+
+ /* Die Methode find liefert einen String mit der Beschreibung aller Ausstattungsdetails
+    des Androiden mit der als Parameter gegebenen Seriennummer zurück (oder null
+    falls kein Androide mit dieser Seriennummer existiert). */
+  public String find(String sn) {
+    Android a = this.get(sn);
     return a == null ? null : a.toString();
   }
 
@@ -38,11 +43,19 @@ public class AndroidList {
     eine Skin und eine Software mit. */
   /* true wenn insert erfolgreich war, sonst false */
   public boolean insert(Android a) {
-    /* TODO: allow updates of androids, but only if type, and security level of
-      software haven't changed */
-    List<Android> aList = a.accept(new Inspector(this.droids));
-    aList.add(a);
-    return this.droids == aList;
+    Android old = this.get(a.getSerial());
 
+    if(old == null) {
+      /* we don't have this android yet - check rules, then add it */
+      List<Android> aList = a.accept(new RuleInspector(this.droids));
+      aList.add(a);
+      return this.droids == aList;
+    } else {
+      /* update - first, enforce update rules, then the normal ones */
+      List<Android> aList = a.accept(new UpdateInspector(this.droids, a));
+      aList = a.accept(new RuleInspector(this.droids));
+      aList.add(a);
+      return this.droids == aList;
+    }
   }
 }
