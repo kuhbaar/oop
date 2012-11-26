@@ -1,3 +1,4 @@
+/* auto-generated - change in class_generator.py */
 import java.util.List;
 
 public abstract class Bediener extends Android {

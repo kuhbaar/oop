@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from string import Template
+import time
 
 middleclass_template = Template("""import java.util.List;
 
@@ -98,6 +99,8 @@ droids = ("Android",
                    ("Kaempfer", [])])
   ])
 
+prefix = time.strftime("/* auto-generated - change in class_generator.py */\n")
+
 
 def create_droid(droid, supercls):
   name, subclasses = droid
@@ -105,17 +108,17 @@ def create_droid(droid, supercls):
   f = open("Gruppe/Aufgabe6/%s.java" % name, "w")
 
   if supercls == "":
-    f.write(rootclass.substitute(classname=name, superclass=supercls))
+    f.write(prefix + rootclass.substitute(classname=name, superclass=supercls))
   elif subclasses == []:
     with open("Gruppe/Aufgabe6/%sSoftware.java" % name, "w") as g:
-      g.write(software_template.substitute(classname="%sSoftware" % name))
+      g.write(prefix + software_template.substitute(classname="%sSoftware" % name))
     with open("Gruppe/Aufgabe6/%sSoftwareInspector.java" % name, "w") as g:
-      g.write(software_inspector_template.substitute(classname="%sSoftwareInspector" % name,
+      g.write(prefix + software_inspector_template.substitute(classname="%sSoftwareInspector" % name,
         softwarename="%sSoftware" % name))
 
-    f.write(bottomclass_template.substitute(classname=name, superclass=supercls))
+    f.write(prefix + bottomclass_template.substitute(classname=name, superclass=supercls))
   else:
-    f.write(middleclass_template.substitute(classname=name, superclass=supercls))
+    f.write(prefix + middleclass_template.substitute(classname=name, superclass=supercls))
 
   f.close()
 

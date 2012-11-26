@@ -1,3 +1,4 @@
+/* auto-generated - change in class_generator.py */
 import java.util.List;
 
 public class ServiceTechniker extends Schwerarbeiter {
