@@ -12,4 +12,8 @@ public abstract class Software {
   public List<Android> accept(SoftwareInspector inspector) {
     return inspector.visit(this);
   }
+
+  public List<Android> inspectSecurity(SicherheitsstufenInspector inspector) {
+    return this.stufe.accept(inspector);
+  }
 }
