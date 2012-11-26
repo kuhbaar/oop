@@ -38,6 +38,8 @@ public class AndroidList {
     eine Skin und eine Software mit. */
   /* true wenn insert erfolgreich war, sonst false */
   public boolean insert(Android a) {
+    /* TODO: allow updates of androids, but only if type, and security level of
+      software haven't changed */
     List<Android> aList = a.accept(new Inspector(this.droids));
     aList.add(a);
     return this.droids == aList;
