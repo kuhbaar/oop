@@ -130,3 +130,32 @@ def create_droid(droid, supercls):
     create_droid(cls, name)
 
 create_droid(droids, "")
+
+security_inspector = """import java.util.List;
+
+public class Stufe%dSoftwareSicherheitsInspector extends SicherheitsstufenInspector {
+  private final List<Android> droids;
+
+  public Stufe%dSoftwareSicherheitsInspector(List<Android> droids) {
+    this.droids = droids;
+  }
+
+  public List<Android> visit(Sicherheitsstufe%d s) { return droids; }
+}
+"""
+
+security = """import java.util.List;
+
+public class Sicherheitsstufe%d extends Sicherheitsstufe {
+  public List<Android> accept(SicherheitsstufenInspector visitor) {
+    return visitor.visit(this);
+  }
+}
+
+"""
+
+for i in range(1, 6):
+  with open("Gruppe/Aufgabe6/Stufe%dSoftwareSicherheitsInspector.java" % i, "w") as f:
+    f.write(prefix + security_inspector % (i, i, i))
+  with open("Gruppe/Aufgabe6/Sicherheitsstufe%d.java" % i, "w") as f:
+    f.write(prefix + security % (i))

@@ -1,3 +1,4 @@
+/* auto-generated - change in class_generator.py */
 import java.util.List;
 
 public class Sicherheitsstufe4 extends Sicherheitsstufe {
@@ -5,3 +6,4 @@ public class Sicherheitsstufe4 extends Sicherheitsstufe {
     return visitor.visit(this);
   }
 }
+
