@@ -75,6 +75,17 @@ public class $classname extends Software {
 }
 """)
 
+software_inspector_template = Template("""import java.util.List;
+
+public class $classname extends SoftwareInspector {
+  public $classname(List<Android> droids) {
+    super(droids);
+  }
+
+  @Override public List<Android> visit($softwarename s) { return droids; }
+}
+""")
+
 
 droids = ("Android",
   [
@@ -98,6 +109,10 @@ def create_droid(droid, supercls):
   elif subclasses == []:
     with open("Gruppe/Aufgabe6/%sSoftware.java" % name, "w") as g:
       g.write(software_template.substitute(classname="%sSoftware" % name))
+    with open("Gruppe/Aufgabe6/%sSoftwareInspector.java" % name, "w") as g:
+      g.write(software_inspector_template.substitute(classname="%sSoftwareInspector" % name,
+        softwarename="%sSoftware" % name))
+
     f.write(bottomclass_template.substitute(classname=name, superclass=supercls))
   else:
     f.write(middleclass_template.substitute(classname=name, superclass=supercls))
