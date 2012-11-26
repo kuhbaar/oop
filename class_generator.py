@@ -58,10 +58,15 @@ public abstract class $classname {
 }
 """)
 
-software_template = Template("""
+software_template = Template("""import java.util.List;
+
 public class $classname extends Software {
   public $classname(String serial, Sicherheitsstufe stufe) {
     super(serial, stufe);
+  }
+
+  public List<Android> accept(SoftwareInspector inspector) {
+    return inspector.visit(this);
   }
 }
 """)
