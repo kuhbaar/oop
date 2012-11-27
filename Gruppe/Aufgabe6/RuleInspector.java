@@ -13,31 +13,68 @@ public class RuleInspector extends Inspector {
   }
 
   public List<Android> visit(Hilfskraft a) {
-    throw new RuntimeException("not implemented");
+
+    System.out.println("Hilfskraft");
+    this.droids = a.inspectSkin(new BedienerSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new HilfsKraftSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe12SoftwareSicherheitsInspector(this.droids));
+
+    return this.droids;
   }
 
   public List<Android> visit(Gesellschafter a) {
-    throw new RuntimeException("not implemented");
+
+    System.out.println("Gesellschafter");
+    this.droids = a.inspectSkin(new BedienerSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new GesellschafterSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe1SoftwareSicherheitsInspector(this.droids));
+
+    return this.droids;
   }
 
   public List<Android> visit(Bauarbeiter a) {
-    throw new RuntimeException("not implemented");
+    System.out.println("Bauarbeiter");
+    this.droids = a.inspectSkin(new SchwerarbeiterSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new BauarbeiterSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe34SoftwareSicherheitsInspector(this.droids));
+
+    return this.droids;
   }
 
   public List<Android> visit(ServiceTechniker a) {
-    throw new RuntimeException("not implemented");
+    System.out.println("ServiceTechniker");
+    this.droids = a.inspectSkin(new SchwerarbeiterSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new ServiceTechnikerSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe34SoftwareSicherheitsInspector(this.droids));
+
+    return this.droids;
   }
 
   public List<Android> visit(Transportarbeiter a) {
-    throw new RuntimeException("not implemented");
+    System.out.println("Transportarbeiter");
+    this.droids = a.inspectSkin(new SchwerarbeiterSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new TransportarbeiterSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe34SoftwareSicherheitsInspector(this.droids));
+
+    return this.droids;
   }
 
   public List<Android> visit(Objektbewacher a) {
-    throw new RuntimeException("not implemented");
+    System.out.println("Objektbewacher");
+    this.droids = a.inspectSkin(new BeschuetzerSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new ObjektbewacherSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe4SoftwareSicherheitsInspector(this.droids));
+
+    return this.droids;
   }
 
   public List<Android> visit(Leibwaechter a) {
-    throw new RuntimeException("not implemented");
+    System.out.println("Leibwaechter");
+    this.droids = a.inspectSkin(new BeschuetzerSkinInspector(this.droids));
+    this.droids = a.inspectSoftware(new LeibwaechterSoftwareInspector(this.droids));
+    this.droids = a.inspectSecurity(new Stufe4SoftwareSicherheitsInspector(this.droids));
+
+    return this.droids;
   }
 
   public List<Android> visit(Kaempfer a) {
