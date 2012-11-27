@@ -5,6 +5,7 @@ public class LeistungsInspector extends SicherheitsstufenInspector {
   private final int leistung;
 
   public LeistungsInspector(List<Android> droids, double leistung) {
+    assert(leistung >= 0);
     this.droids = droids;
     this.leistung = Math.ceil(leistung);
   }
