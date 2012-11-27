@@ -2,8 +2,8 @@
 import java.util.List;
 
 public class ServiceTechniker extends Schwerarbeiter {
-  public ServiceTechniker(String n, Skin s, Software sw) {
-    super(n, s, sw);
+  public ServiceTechniker(String n, Skin s, Software sw, List<Actor> actors) {
+    super(n, s, sw, actors);
   }
 
   public List<Android> accept(Inspector visitor) {

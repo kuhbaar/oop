@@ -16,7 +16,7 @@ public class RuleInspector extends Inspector {
 
     System.out.println("Hilfskraft");
     this.droids = a.inspectSkin(new BedienerSkinInspector(this.droids));
-    this.droids = a.inspectSoftware(new HilfsKraftSoftwareInspector(this.droids));
+    this.droids = a.inspectSoftware(new HilfskraftSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe12SoftwareSicherheitsInspector(this.droids));
 
     return this.droids;
@@ -37,7 +37,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new SchwerarbeiterSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new BauarbeiterSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe34SoftwareSicherheitsInspector(this.droids));
-    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids,a.getLeistung()));
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
     return this.droids;
   }
 

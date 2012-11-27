@@ -5,8 +5,8 @@ import time
 middleclass_template = Template("""import java.util.List;
 
 public abstract class $classname extends $superclass {
-  public $classname(String n, Skin s, Software sw) {
-    super(n, s, sw);
+  public $classname(String n, Skin s, Software sw, List<Actor> actors) {
+    super(n, s, sw, actors);
   }
 
   public List<Android> accept(Inspector visitor) {
@@ -18,8 +18,8 @@ public abstract class $classname extends $superclass {
 bottomclass_template = Template("""import java.util.List;
 
 public class $classname extends $superclass {
-  public $classname(String n, Skin s, Software sw) {
-    super(n, s, sw);
+  public $classname(String n, Skin s, Software sw, List<Actor> actors) {
+    super(n, s, sw, actors);
   }
 
   public List<Android> accept(Inspector visitor) {
@@ -29,6 +29,7 @@ public class $classname extends $superclass {
 """)
 
 rootclass = Template("""import java.util.List;
+import java.util.ArrayList;
 
 public abstract class $classname {
   private final String seriennr;
@@ -40,7 +41,7 @@ public abstract class $classname {
     this.seriennr = n;
     this.s = s;
     this.sw = sw;
-    this.actors = actors;
+    this.actors = new ArrayList<Actor>(actors);
   }
 
   public String getSerial() {

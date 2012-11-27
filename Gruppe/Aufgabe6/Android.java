@@ -1,5 +1,6 @@
 /* auto-generated - change in class_generator.py */
 import java.util.List;
+import java.util.ArrayList;
 
 public abstract class Android {
   private final String seriennr;
@@ -11,7 +12,7 @@ public abstract class Android {
     this.seriennr = n;
     this.s = s;
     this.sw = sw;
-    this.actors = actors;
+    this.actors = new ArrayList<Actor>(actors);
   }
 
   public String getSerial() {

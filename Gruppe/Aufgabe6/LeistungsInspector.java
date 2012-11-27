@@ -1,14 +1,16 @@
 import java.util.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.lang.Math;
 
 public class LeistungsInspector extends SicherheitsstufenInspector {
   private final List<Android> droids;
   private final int leistung;
 
-  public LeistungsInspector(List<Android> droids, double leistung) {
+  public LeistungsInspector(List<Android> droids, Double leistung) {
     assert(leistung >= 0);
     this.droids = droids;
-    this.leistung = Math.ceil(leistung);
+    this.leistung = leistung.intValue();
   }
 
   public List<Android> visit(Sicherheitsstufe1 s) {

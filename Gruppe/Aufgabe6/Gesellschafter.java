@@ -2,8 +2,8 @@
 import java.util.List;
 
 public class Gesellschafter extends Bediener {
-  public Gesellschafter(String n, Skin s, Software sw) {
-    super(n, s, sw);
+  public Gesellschafter(String n, Skin s, Software sw, List<Actor> actors) {
+    super(n, s, sw, actors);
   }
 
   public List<Android> accept(Inspector visitor) {
