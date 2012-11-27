@@ -9,43 +9,71 @@ public class UpdateInspector extends Inspector {
     this.newAndroid = newAndroid;
   }
 
+
+  /* general type has to be the same (= subclass of Beschuetzer),
+      security level of software is not allowed to change */
+
   public List<Android> visit(Android a) {
-    System.out.println("Android");
-    return droids;
+    throw new RuntimeException("shouldn't happen");
   }
 
   public List<Android> visit(Hilfskraft a) {
-    throw new RuntimeException("not implemented");
+    this.droids = newAndroid.accept(new BedienerUpdateInspector(this.droids));
+    this.droids = newAndroid.inspectSecurity(
+      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+
+    return this.droids;
   }
 
   public List<Android> visit(Gesellschafter a) {
-    throw new RuntimeException("not implemented");
+    this.droids = newAndroid.accept(new BedienerUpdateInspector(this.droids));
+    this.droids = newAndroid.inspectSecurity(
+      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+
+    return this.droids;
   }
 
   public List<Android> visit(Bauarbeiter a) {
-    throw new RuntimeException("not implemented");
+    this.droids = newAndroid.accept(new SchwerarbeiterUpdateInspector(this.droids));
+    this.droids = newAndroid.inspectSecurity(
+      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+
+    return this.droids;
   }
 
   public List<Android> visit(ServiceTechniker a) {
-    throw new RuntimeException("not implemented");
+    this.droids = newAndroid.accept(new SchwerarbeiterUpdateInspector(this.droids));
+    this.droids = newAndroid.inspectSecurity(
+      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+
+    return this.droids;
   }
 
   public List<Android> visit(Transportarbeiter a) {
-    throw new RuntimeException("not implemented");
+    this.droids = newAndroid.accept(new SchwerarbeiterUpdateInspector(this.droids));
+    this.droids = newAndroid.inspectSecurity(
+      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+
+    return this.droids;
   }
 
   public List<Android> visit(Objektbewacher a) {
-    throw new RuntimeException("not implemented");
+    this.droids = newAndroid.accept(new BeschuetzerUpdateInspector(this.droids));
+    this.droids = newAndroid.inspectSecurity(
+      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+
+    return this.droids;
   }
 
   public List<Android> visit(Leibwaechter a) {
-    throw new RuntimeException("not implemented");
+    this.droids = newAndroid.accept(new BeschuetzerUpdateInspector(this.droids));
+    this.droids = newAndroid.inspectSecurity(
+      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+
+    return this.droids;
   }
 
   public List<Android> visit(Kaempfer a) {
-    /* general type has to be the same (= subclass of Beschuetzer),
-       security level of software is not allowed to change */
-    System.out.println("Kaempfer");
     this.droids = newAndroid.accept(new BeschuetzerUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
       new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
