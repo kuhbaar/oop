@@ -10,26 +10,26 @@ public class LeistungsInspector extends SicherheitsstufenInspector {
   public LeistungsInspector(List<Android> droids, Double leistung) {
     assert(leistung >= 0);
     this.droids = droids;
-    this.leistung = leistung.intValue();
+    this.leistung = (new Double(Math.ceil(leistung))).intValue();
   }
 
   public List<Android> visit(Sicherheitsstufe1 s) {
     HashMap<Integer, List<Android>> m = new HashMap<Integer, List<Android>>();
+    m.put(0, droids);
     m.put(1, droids);
-    m.put(2, droids);
     return m.get(this.leistung);
   }
 
   public List<Android> visit(Sicherheitsstufe2 s) {
     HashMap<Integer, List<Android>> m = new HashMap<Integer, List<Android>>();
+    m.put(0, droids);
     m.put(1, droids);
-    m.put(2, droids);
     return m.get(this.leistung);
   }
 
   public List<Android> visit(Sicherheitsstufe3 s) { 
     HashMap<Integer, List<Android>> m = new HashMap<Integer, List<Android>>();
-    for(int i = 0; i < 5; i++)
+    for(int i = 0; i <= 5; i++)
       m.put(i, droids);
 
     return m.get(this.leistung);
@@ -37,7 +37,7 @@ public class LeistungsInspector extends SicherheitsstufenInspector {
 
   public List<Android> visit(Sicherheitsstufe4 s) {
     HashMap<Integer, List<Android>> m = new HashMap<Integer, List<Android>>();
-    for(int i = 0; i < 10; i++)
+    for(int i = 0; i <= 10; i++)
       m.put(i, droids);
 
     return m.get(this.leistung);

@@ -8,8 +8,23 @@ public abstract class SkinInspector {
     this.droids = droids;
   }
 
-  public List<Android> visit(Skin s) { return null; }
-  public List<Android> visit(HochfesterSkin s) { return null; }
-  public List<Android> visit(BeruehrungsSensitiverSkin s) { return null; }
-  public List<Android> visit(GepanzerterSkin s) { return null; }
+  public List<Android> visit(Skin s) { 
+    System.err.println("ungueltiger Skin"); 
+    return null; 
+  }
+
+  public List<Android> visit(HochfesterSkin s) { 
+    System.err.println("ungueltiger HochfesterSkin"); 
+    return null; 
+  }
+
+  public List<Android> visit(BeruehrungsSensitiverSkin s) { 
+    System.err.println("ungueltiger BeruehrungsSensitiverSkin"); 
+    return null; 
+  }
+
+  public List<Android> visit(GepanzerterSkin s) { 
+    System.err.println("ungueltiger GepanzerterSkin"); 
+    return null; 
+  }
 }
