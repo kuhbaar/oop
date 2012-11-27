@@ -34,15 +34,24 @@ public abstract class $classname {
   private final String seriennr;
   private Skin s;
   private Software sw;
+  private List<Actor> actors;
 
-  public Android(String n, Skin s, Software sw) {
+  public Android(String n, Skin s, Software sw, List<Actor> actors) {
     this.seriennr = n;
     this.s = s;
     this.sw = sw;
+    this.actors = actors;
   }
 
   public String getSerial() {
     return seriennr;
+  }
+
+  public double getPower() {
+    double total = 0;
+    for(Actor a : actors)
+      total += a.getPower();
+    return total;
   }
 
   public Sicherheitsstufe getSecurity() {
