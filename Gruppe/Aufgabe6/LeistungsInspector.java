@@ -17,18 +17,14 @@ public class LeistungsInspector extends SicherheitsstufenInspector {
     HashMap<Integer, List<Android>> m = new HashMap<Integer, List<Android>>();
     m.put(1, droids);
     m.put(2, droids);
-    List<Android> as = m.get(this.leistung);
-
-    return as == null ? new ArrayList<Android>() : as;
+    return m.get(this.leistung);
   }
 
   public List<Android> visit(Sicherheitsstufe2 s) {
     HashMap<Integer, List<Android>> m = new HashMap<Integer, List<Android>>();
     m.put(1, droids);
     m.put(2, droids);
-    List<Android> as = m.get(this.leistung);
-
-    return as == null ? new ArrayList<Android>() : as;
+    return m.get(this.leistung);
   }
 
   public List<Android> visit(Sicherheitsstufe3 s) { 
@@ -36,10 +32,7 @@ public class LeistungsInspector extends SicherheitsstufenInspector {
     for(int i = 0; i < 5; i++)
       m.put(i, droids);
 
-    List<Android> as = m.get(this.leistung);
-
-
-    return as == null ? new ArrayList<Android>() : as;
+    return m.get(this.leistung);
   }
 
   public List<Android> visit(Sicherheitsstufe4 s) {
@@ -47,10 +40,7 @@ public class LeistungsInspector extends SicherheitsstufenInspector {
     for(int i = 0; i < 10; i++)
       m.put(i, droids);
 
-    List<Android> as = m.get(this.leistung);
-
-
-    return as == null ? new ArrayList<Android>() : as;
+    return m.get(this.leistung);
   }
 
   public List<Android> visit(Sicherheitsstufe5 s) { return droids; }

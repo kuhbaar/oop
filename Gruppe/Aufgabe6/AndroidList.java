@@ -48,14 +48,23 @@ public class AndroidList {
     if(old == null) {
       /* we don't have this android yet - check rules, then add it */
       List<Android> aList = a.accept(new RuleInspector(this.droids));
+      if(aList == null) return false;
       aList.add(a);
-      return this.droids == aList;
     } else {
       /* update - first, enforce update rules, then the normal ones */
-      List<Android> aList = a.accept(new UpdateInspector(this.droids, a));
-      aList = a.accept(new RuleInspector(this.droids));
-      aList.add(a);
-      return this.droids == aList;
+      List<Android> aList = a.accept(new UpdateInspector(this.droids, a, old));
+      aList = a.accept(new RuleInspector(aList));
+      if(aList == null) return false;
+      aList.set(this.droids.indexOf(old), a);
     }
+
+    return true;
+  }
+
+  public String toString() {
+    String out = "";
+    for(Android a : this.droids)
+      out += a.toString() + "\n";
+    return out;
   }
 }

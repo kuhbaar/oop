@@ -74,6 +74,10 @@ public abstract class $classname {
   public List<Android> inspectSecurity(SicherheitsstufenInspector visitor) {
     return sw.inspectSecurity(visitor);
   }
+
+  public String toString() {
+    return "Android " + this.seriennr;
+  }
 }
 """)
 

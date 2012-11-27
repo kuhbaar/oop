@@ -11,17 +11,27 @@ public class Test {
 
     expect(list.insert(kaempfer), true, "gueltiger kaempfer");
 
+
     Android bauarbeiter = new Bauarbeiter("008", new HochfesterSkin(),
       new BauarbeiterSoftware("008", new Sicherheitsstufe3()),
       Arrays.asList(new Actor("greifarm", 4.8)));
 
     expect(list.insert(bauarbeiter), true, "gueltiger bauarbeiter");
 
+
     bauarbeiter = new Transportarbeiter("008", new HochfesterSkin(),
       new TransportarbeiterSoftware("008", new Sicherheitsstufe3()),
       Arrays.asList(new Actor("greifarm", 4.8)));
 
-    expect(list.insert(bauarbeiter), true, "gueltiger update des bauarbeiters");
+    expect(list.insert(bauarbeiter), true, "gueltiges update des bauarbeiters");
+
+
+    bauarbeiter = new Transportarbeiter("008", new HochfesterSkin(),
+      new TransportarbeiterSoftware("008", new Sicherheitsstufe4()),
+      Arrays.asList(new Actor("greifarm", 4.8)));
+
+    expect(list.insert(bauarbeiter), false, "ungueltiges update des bauarbeiters");
+
 
     Android hilfskraft = new Hilfskraft("001", new GepanzerterSkin(),
       new HilfskraftSoftware("001", new Sicherheitsstufe1()),

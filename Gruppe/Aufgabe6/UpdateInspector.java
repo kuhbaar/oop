@@ -3,10 +3,12 @@ import java.util.List;
 public class UpdateInspector extends Inspector {
   private List<Android> droids;
   private Android newAndroid;
+  private Android oldAndroid;
 
-  public UpdateInspector(List<Android> droids, Android newAndroid) {
+  public UpdateInspector(List<Android> droids, Android newAndroid, Android oldAndroid) {
     this.droids = droids;
     this.newAndroid = newAndroid;
+    this.oldAndroid = oldAndroid;
   }
 
 
@@ -20,7 +22,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(Hilfskraft a) {
     this.droids = newAndroid.accept(new BedienerUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
@@ -28,7 +30,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(Gesellschafter a) {
     this.droids = newAndroid.accept(new BedienerUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
@@ -36,7 +38,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(Bauarbeiter a) {
     this.droids = newAndroid.accept(new SchwerarbeiterUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
@@ -44,7 +46,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(ServiceTechniker a) {
     this.droids = newAndroid.accept(new SchwerarbeiterUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
@@ -52,7 +54,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(Transportarbeiter a) {
     this.droids = newAndroid.accept(new SchwerarbeiterUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
@@ -60,7 +62,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(Objektbewacher a) {
     this.droids = newAndroid.accept(new BeschuetzerUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
@@ -68,7 +70,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(Leibwaechter a) {
     this.droids = newAndroid.accept(new BeschuetzerUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
@@ -76,7 +78,7 @@ public class UpdateInspector extends Inspector {
   public List<Android> visit(Kaempfer a) {
     this.droids = newAndroid.accept(new BeschuetzerUpdateInspector(this.droids));
     this.droids = newAndroid.inspectSecurity(
-      new SicherheitsstufenUpdateInspector(this.droids, newAndroid.getSecurity()));
+      new SicherheitsstufenUpdateInspector(this.droids, oldAndroid.getSecurity()));
 
     return this.droids;
   }
