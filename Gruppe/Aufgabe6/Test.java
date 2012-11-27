@@ -33,11 +33,25 @@ public class Test {
     expect(list.insert(bauarbeiter), false, "ungueltiges update des bauarbeiters");
 
 
+    bauarbeiter = new Gesellschafter("008", new BeruehrungsSensitiverSkin(),
+      new GesellschafterSoftware("008", new Sicherheitsstufe1()),
+      Arrays.asList(new Actor("greifarm", 0.8)));
+
+    expect(list.insert(bauarbeiter), false, "ungueltiges update des bauarbeiters");
+
+
     Android hilfskraft = new Hilfskraft("001", new GepanzerterSkin(),
       new HilfskraftSoftware("001", new Sicherheitsstufe1()),
       Arrays.asList(new Actor("staubsauger", 0.8)));
 
     expect(list.insert(hilfskraft), false, "falscher skin");
+
+    Android gesellschafter = new Gesellschafter("010", new BeruehrungsSensitiverSkin(),
+      new GesellschafterSoftware("008", new Sicherheitsstufe1()),
+      Arrays.asList(new Actor("faecher", 0.8)));
+
+    expect(list.insert(gesellschafter), false, "gueltiger Gesellschafter");
+
   }
 
   public static void expect(boolean a, boolean b, String msg) {
