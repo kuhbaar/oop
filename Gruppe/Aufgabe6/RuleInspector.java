@@ -18,7 +18,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new BedienerSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new HilfskraftSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe12SoftwareSicherheitsInspector(this.droids));
-
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
     return this.droids;
   }
 
@@ -28,6 +28,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new BedienerSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new GesellschafterSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe1SoftwareSicherheitsInspector(this.droids));
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
 
     return this.droids;
   }
@@ -46,6 +47,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new SchwerarbeiterSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new ServiceTechnikerSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe34SoftwareSicherheitsInspector(this.droids));
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
 
     return this.droids;
   }
@@ -55,6 +57,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new SchwerarbeiterSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new TransportarbeiterSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe34SoftwareSicherheitsInspector(this.droids));
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
 
     return this.droids;
   }
@@ -64,6 +67,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new BeschuetzerSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new ObjektbewacherSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe4SoftwareSicherheitsInspector(this.droids));
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
 
     return this.droids;
   }
@@ -73,6 +77,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new BeschuetzerSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new LeibwaechterSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe4SoftwareSicherheitsInspector(this.droids));
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
 
     return this.droids;
   }
@@ -82,6 +87,7 @@ public class RuleInspector extends Inspector {
     this.droids = a.inspectSkin(new BeschuetzerSkinInspector(this.droids));
     this.droids = a.inspectSoftware(new KaempferSoftwareInspector(this.droids));
     this.droids = a.inspectSecurity(new Stufe5SoftwareSicherheitsInspector(this.droids));
+    this.droids = a.inspectSecurity(new LeistungsInspector(this.droids, a.getPower()));
 
     return this.droids;
   }
