@@ -1,6 +1,12 @@
+/* auto-generated - change in class_generator.py */
+import java.util.List;
 
 public class ObjektbewacherSoftware extends Software {
-  public ObjektbewacherSoftware(String serial) {
-    super(serial);
+  public ObjektbewacherSoftware(String serial, Sicherheitsstufe stufe) {
+    super(serial, stufe);
+  }
+
+  public List<Android> accept(SoftwareInspector inspector) {
+    return inspector.visit(this);
   }
 }

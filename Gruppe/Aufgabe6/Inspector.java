@@ -1,10 +1,14 @@
-public class Inspector {
-  public void visit(Android a) {
-    System.out.println("Android");
-  }
+import java.util.List;
+import java.util.ArrayList;
 
-  public void visit(Kaempfer a) {
-    System.out.println("Kaempfer");
-    a.inspectSkin(new BeschuetzerSkinInspector());
-  }
+public abstract class Inspector {
+  public List<Android> visit(Android a) { return new ArrayList<Android>(); }
+  public List<Android> visit(Hilfskraft a) { return new ArrayList<Android>(); }
+  public List<Android> visit(Gesellschafter a) { return new ArrayList<Android>(); }
+  public List<Android> visit(Bauarbeiter a) { return new ArrayList<Android>(); }
+  public List<Android> visit(ServiceTechniker a) { return new ArrayList<Android>(); }
+  public List<Android> visit(Transportarbeiter a) { return new ArrayList<Android>(); }
+  public List<Android> visit(Objektbewacher a) { return new ArrayList<Android>(); }
+  public List<Android> visit(Leibwaechter a) { return new ArrayList<Android>(); }
+  public List<Android> visit(Kaempfer a) { return new ArrayList<Android>(); }
 }

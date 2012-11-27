@@ -1,4 +1,7 @@
-public class Android {
+/* auto-generated - change in class_generator.py */
+import java.util.List;
+
+public abstract class Android {
   private final String seriennr;
   private Skin s;
   private Software sw;
@@ -9,11 +12,27 @@ public class Android {
     this.sw = sw;
   }
 
-  public boolean accept(Inspector visitor) {
-    visitor.visit(this);
+  public String getSerial() {
+    return seriennr;
   }
 
-  public boolean inspectSkin(SkinInspector visitor) {
+  public Sicherheitsstufe getSecurity() {
+    return sw.getSecurity();
+  }
+
+  public List<Android> accept(Inspector visitor) {
+    return visitor.visit(this);
+  }
+
+  public List<Android> inspectSkin(SkinInspector visitor) {
     return s.accept(visitor);
+  }
+
+  public List<Android> inspectSoftware(SoftwareInspector visitor) {
+    return sw.accept(visitor);
+  }
+
+  public List<Android> inspectSecurity(SicherheitsstufenInspector visitor) {
+    return sw.inspectSecurity(visitor);
   }
 }
