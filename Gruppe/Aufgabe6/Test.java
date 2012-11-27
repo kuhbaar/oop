@@ -3,10 +3,10 @@ import java.util.ArrayList;
 public class Test {
   public static void main(String[] args) {
     Android a = new Kaempfer("007", new HochfesterSkin(),
-      new KaempferSoftware("007", new Sicherheitsstufe5()));
+      new KaempferSoftware("007", new Sicherheitsstufe5()),13);
 
     Android b = new Hilfskraft("001", new GepanzerterSkin(),
-      new HilfskraftSoftware("001", new Sicherheitsstufe1()));
+      new HilfskraftSoftware("001", new Sicherheitsstufe1()),1);
 
     AndroidList list = new AndroidList();
     expect(list.insert(a), true, "gueltiger kaempfer");

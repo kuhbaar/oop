@@ -5,15 +5,21 @@ public abstract class Android {
   private final String seriennr;
   private Skin s;
   private Software sw;
+  private double leistung;
 
-  public Android(String n, Skin s, Software sw) {
+  public Android(String n, Skin s, Software sw,double leistung) {
     this.seriennr = n;
     this.s = s;
     this.sw = sw;
+    this.leistung=leistung;
   }
 
   public String getSerial() {
     return seriennr;
+  }
+
+  public double leistung(){
+    return leistung;
   }
 
   public Sicherheitsstufe getSecurity() {
