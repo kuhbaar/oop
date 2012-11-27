@@ -8,7 +8,8 @@ public class RuleInspector extends Inspector {
   }
 
   public List<Android> visit(Android a) {
-    throw new RuntimeException("shouldn't happen");
+    assert(false);    /* should never be reached */
+    return null;
   }
 
   public List<Android> visit(Hilfskraft a) {

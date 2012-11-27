@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public abstract class Inspector {
   public List<Android> visit(Android a) { 
-    throw new RuntimeException("shouldn't happen");
+    assert(false);    /* should never be reached */
+    return null;
   }
 
   public List<Android> visit(Hilfskraft a) { 

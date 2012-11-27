@@ -45,12 +45,20 @@ public class Test {
       Arrays.asList(new Actor("staubsauger", 0.8)));
 
     expect(list.insert(hilfskraft), false, "falscher skin");
+    
 
     Android gesellschafter = new Gesellschafter("010", new BeruehrungsSensitiverSkin(),
       new GesellschafterSoftware("010", new Sicherheitsstufe1()),
       Arrays.asList(new Actor("faecher", 0.8)));
 
     expect(list.insert(gesellschafter), true, "gueltiger Gesellschafter");
+
+
+    Android gesellschafter2 = new Gesellschafter("011", new BeruehrungsSensitiverSkin(),
+      new GesellschafterSoftware("011", new Sicherheitsstufe1()),
+      Arrays.asList(new Actor("faecher", 1.1)));
+
+    expect(list.insert(gesellschafter2), false, "ungueltiger Gesellschafter");
 
   }
 
