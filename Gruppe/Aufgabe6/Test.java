@@ -73,6 +73,35 @@ public class Test {
 
     expectFailure(list.insert(servicetechniker), "gueltiger ServiceTechniker - leistung zu hoch");
 
+    Android bewacher = new Objektbewacher("013", new BeruehrungsSensitiverSkin(),
+      new ObjektbewacherSoftware("011", new Sicherheitsstufe4()),
+      Arrays.asList(new Actor("pistole", 3.4), new Actor("energieschild", 5.3)));
+
+    expectSuccess(list.insert(bewacher), "gueltiger Objektbewacher");
+
+    bewacher = new Objektbewacher("013", new BeruehrungsSensitiverSkin(),
+      new ObjektbewacherSoftware("011", new Sicherheitsstufe5()),
+      Arrays.asList(new Actor("pistole", 3.4), new Actor("energieschild", 5.3)));
+
+    expectFailure(list.insert(bewacher), "ungueltiger Objektbewacher - falsche sicherheitsstufe");
+
+    bewacher = new Objektbewacher("013", new BeruehrungsSensitiverSkin(),
+      new KaempferSoftware("011", new Sicherheitsstufe4()),
+      Arrays.asList(new Actor("pistole", 3.4), new Actor("energieschild", 5.3)));
+
+    expectFailure(list.insert(bewacher), "ungueltiger Objektbewacher - falsche software");
+
+    Android leibwaechter = new Leibwaechter("014", new HochfesterSkin(),
+      new LeibwaechterSoftware("014", new Sicherheitsstufe4()),
+      Arrays.asList(new Actor("CPR", 4.5), new Actor("laser", 5.5)));
+
+    expectSuccess(list.insert(leibwaechter), "gueltiger leibwaechter");
+
+    leibwaechter = new Leibwaechter("014", new GepanzerterSkin(),
+      new LeibwaechterSoftware("014", new Sicherheitsstufe5()),
+      Arrays.asList(new Actor("CPR", 4.5), new Actor("laser", 5.5)));
+
+    expectFailure(list.insert(leibwaechter), "ungueltiger leibwaechter - falsche sicherheitsstufe");
   }
 
   public static void expectSuccess(boolean a, String msg) {
