@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-public abstract class Car extends Thread {
+public abstract class Car extends Thread implements Comparable<Car> {
   private final AI ai;
   private final String name;
   private final int MAX_POINTS = 10;
@@ -25,6 +25,7 @@ public abstract class Car extends Thread {
 
   @Override public void run() {
     while(driving) {
+      Debug.info("step");
       try {
         /* calculate possible directions */
         List<Direction> possibleDirections = new ArrayList<Direction>();
@@ -64,8 +65,9 @@ public abstract class Car extends Thread {
           if(newCell.hasCar()) {
             /* collisions */
             Debug.info("explode");
-            addPoints(1);
+            changePoints(1);
             /* TODO: check direction of other car */
+            newCell.gotHit(newAbsDir);
           } else {
             /* update position */
             oldCell.removeCar();
@@ -90,7 +92,16 @@ public abstract class Car extends Thread {
 
   protected abstract List<Direction> getPossibleDirections();
 
-  private void addPoints(int p) {
+  public void gotHit(AbsoluteDirection d) {
+    final AbsoluteDirection opposite = Helpers.rotateLeft(d, 4);
+    if(this.curMov.dir.equals(opposite)) {
+      /* frontal crash - nothing happens */
+    } else {
+      changePoints(-1);
+    }
+  }
+
+  private void changePoints(int p) {
     points += p;
     if(points >=  MAX_POINTS) {
       Debug.info("WWINNNNERERRR !!!!");
@@ -124,8 +135,9 @@ public abstract class Car extends Thread {
   }
 
   public String getDescription() {
-    return String.format("%s with %s: %s", this.getClass().getCanonicalName(),
-      this.ai.getClass().getCanonicalName(), this.name);
+    String desc = String.format("%s (%s)", this.getClass().getCanonicalName(),
+      this.ai.getClass().getCanonicalName());
+    return String.format("%-25s %7s: %3d points", desc, this.name, this.points);
   }
 
   @Override public String toString() {
@@ -142,5 +154,9 @@ public abstract class Car extends Thread {
         assert(false);
     }
     throw new RuntimeException("unreachable");
+  }
+
+  public int compareTo(Car that) {
+    return that.points - this.points;
   }
 }

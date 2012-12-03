@@ -1,9 +1,11 @@
 public class Debug {
+  private final static boolean debug = true;
+
   public static void info(String msg) {
-    System.out.println(msg);
+    if(debug) System.out.println(msg);
   }
 
   public static void error(String msg) {
-    System.err.println(msg);
+    if(debug) System.err.println(msg);
   }
 }

@@ -47,13 +47,13 @@ public class Helpers {
   public static AbsoluteDirection rotate(AbsoluteDirection absD, Direction dir) {
     switch(dir) {
       case FORWARD:
-      case FORWARD_LEFT:
-      case FORWARD_RIGHT:
         return absD;
 
+      case FORWARD_LEFT:
       case LEFT:
         return rotateLeft(absD, 2);
 
+      case FORWARD_RIGHT:
       case RIGHT:
         return rotateLeft(absD, 6);
       default:

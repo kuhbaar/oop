@@ -7,7 +7,7 @@ cd Gruppe/Aufgabe7
 javac -Xlint:all -Werror *.java
 
 if [ $? -eq 0 ]; then
-  java Test
+  java -enableassertions Test
 else
   cd ../..
   ./clean.sh

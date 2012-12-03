@@ -30,6 +30,11 @@ public class Cell {
     return car.isDefined();
   }
 
+  public void gotHit(AbsoluteDirection d) {
+    if(hasCar())
+      this.car.get().gotHit(d);
+  }
+
   @Override public String toString() {
     if(car.isDefined())
       return car.get().toString();

@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.Collections;
 
 public class Field {
   private final Cell field[][];
@@ -42,11 +43,23 @@ public class Field {
       for(Car car : cars)
         car.end();
 
-      Debug.info("car has won: " + c.getDescription());
+      System.out.println("The race was won by " + c.getDescription());
+      printStats();
 
       latch.countDown();
     }
 
+  }
+  public void printStats() {
+    System.out.println("==== Leaderboard");
+    Collections.sort(this.cars);
+    for(Car c : cars)
+      System.out.println(c.getDescription());
+
+    System.out.println("");
+
+    System.out.println("==== Final field");
+    System.out.println(this);
   }
 
   public void add(Car c) {
@@ -71,9 +84,9 @@ public class Field {
     for(Car c : cars)
       c.start();
 
-    for(int i = 0; i < 10000; i++) {
+    for(int i = 0; i < 40 * seconds; i++) {
       try {
-        if(latch.await(100, TimeUnit.MILLISECONDS)) {
+        if(latch.await(25, TimeUnit.MILLISECONDS)) {
           /* somebody just won */
           return;
         } else {
@@ -90,6 +103,9 @@ public class Field {
 
     for(Car c : cars)
       c.end();
+
+    System.out.println("The race ended without a winner.");
+    printStats();
   }
 
   @Override public String toString() {
@@ -108,9 +124,14 @@ public class Field {
   }
 
   private void lockAll() {
+    Debug.info("try to lock all");
     for(int i = 0; i < w; i++)
       for(int j = 0; j < h; j++)
-        while(!this.field[i][j].tryAcquire());
+        while(!this.field[i][j].tryAcquire()) {
+          Debug.info(i + ":" + j);
+          Debug.info(this.field[i][j].toString());
+        }
+    Debug.info("locked all");
   }
 
   private void releaseAll() {
