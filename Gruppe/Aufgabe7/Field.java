@@ -21,7 +21,17 @@ public class Field {
 
   private class TerminationListenerImpl implements TerminationListener {
     public void notifyVictory(Car c) {
-      carWon(c);
+      if(raceRunning) {
+        System.out.println("The race was won by " + c.getDescription());
+        raceOver();
+      }
+    }
+
+    public void notifyOutOfMoves(Car c) {
+      if(raceRunning) {
+        System.out.println("Car is out of moves: " + c.getDescription());
+        raceOver();
+      }
     }
   }
 
@@ -36,19 +46,17 @@ public class Field {
         this.field[i][j] = new Cell();
   }
 
-  private synchronized void carWon(Car c) {
+  private synchronized void raceOver() {
     if(raceRunning) {
       raceRunning = false;
 
       for(Car car : cars)
         car.end();
 
-      System.out.println("The race was won by " + c.getDescription());
-
       latch.countDown();
     }
-
   }
+
 
   public void printStats() {
     System.out.println("==== Leaderboard");

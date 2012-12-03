@@ -7,7 +7,7 @@ public class FastCar extends Car {
   }
 
   protected int getSleepTime() {
-    return 133;
+    return 13;
   }
 
   protected List<Direction> getPossibleDirections() {

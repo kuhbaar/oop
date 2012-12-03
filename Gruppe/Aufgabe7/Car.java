@@ -5,6 +5,7 @@ public abstract class Car extends Thread implements Comparable<Car> {
   private final AI ai;
   private final String name;
   private final int MAX_POINTS = 10;
+  private final int MAX_MOVES = 42;
 
   private CellAccessor ca;
   private TerminationListener tl;
@@ -13,6 +14,7 @@ public abstract class Car extends Thread implements Comparable<Car> {
   private Movement curMov;
   private Position bounds;
   private int points = 0;
+  private int numMoves = 0;
 
   public Car(AI ai, String name) {
     this.ai = ai;
@@ -71,6 +73,10 @@ public abstract class Car extends Thread implements Comparable<Car> {
           newCell.addCar(this);
 
           this.curMov = new Movement(newPos, newAbsDir);
+          numMoves += 1;
+          if(numMoves >= MAX_MOVES) {
+            tl.notifyOutOfMoves(this);
+          }
         }
 
         /* free cells */
