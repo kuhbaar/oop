@@ -44,12 +44,12 @@ public class Field {
         car.end();
 
       System.out.println("The race was won by " + c.getDescription());
-      printStats();
 
       latch.countDown();
     }
 
   }
+
   public void printStats() {
     System.out.println("==== Leaderboard");
     Collections.sort(this.cars);
@@ -59,7 +59,7 @@ public class Field {
     System.out.println("");
 
     System.out.println("==== Final field");
-    System.out.println(this);
+    System.out.println(this.toString());
   }
 
   public void add(Car c) {
@@ -87,7 +87,7 @@ public class Field {
     for(int i = 0; i < 40 * seconds; i++) {
       try {
         if(latch.await(25, TimeUnit.MILLISECONDS)) {
-          /* somebody just won */
+          printStats();
           return;
         } else {
           /* race still ongoing, continue to wait */
@@ -108,7 +108,7 @@ public class Field {
     printStats();
   }
 
-  @Override public String toString() {
+  @Override public synchronized String toString() {
     lockAll();
     String out = "";
 

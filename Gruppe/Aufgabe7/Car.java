@@ -20,67 +20,65 @@ public abstract class Car extends Thread implements Comparable<Car> {
   }
 
   public void end() {
-    driving = false;
+    this.driving = false;
   }
 
   @Override public void run() {
-    while(driving) {
-      Debug.info("step");
-      try {
-        /* calculate possible directions */
-        List<Direction> possibleDirections = new ArrayList<Direction>();
+    while(this.driving) {
+      /* calculate possible directions */
+      List<Direction> possibleDirections = new ArrayList<Direction>();
 
-        for(Direction d : getPossibleDirections()) {
-          final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, d);
-          final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
+      for(Direction d : getPossibleDirections()) {
+        final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, d);
+        final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
 
-          if(newPos.w < bounds.w && newPos.h < bounds.h && newPos.w >= 0 && newPos.h >= 0) {
-            possibleDirections.add(d);
-          }
+        if(newPos.w < bounds.w && newPos.h < bounds.h && newPos.w >= 0 && newPos.h >= 0) {
+          possibleDirections.add(d);
         }
+      }
 
-        final Maybe<Direction> maybeDirection = ai.getNextMove(curMov, possibleDirections);
+      final Maybe<Direction> maybeDirection = ai.getNextMove(curMov, possibleDirections);
 
-        if(maybeDirection.isDefined()) {
-          final Direction newDir = maybeDirection.get();
+      if(maybeDirection.isDefined()) {
+        final Direction newDir = maybeDirection.get();
 
-          final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, newDir);
-          final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
+        final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, newDir);
+        final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
 
-          final AbsoluteDirection newAbsDir = Helpers.rotate(curMov.dir, newDir);
+        final AbsoluteDirection newAbsDir = Helpers.rotate(curMov.dir, newDir);
 
-          Cell oldCell  = ca.getCell(curMov.pos);
-          Cell newCell = ca.getCell(newPos);
+        Cell oldCell  = ca.getCell(curMov.pos);
+        Cell newCell = ca.getCell(newPos);
 
-          /* lock cells */
-          if(!oldCell.tryAcquire())
-            continue;
+        /* lock cells */
+        if(!oldCell.tryAcquire())
+          continue;
 
-          if(!newCell.tryAcquire()) {
-            oldCell.release();
-            continue;
-          }
-
-          /* check for collisions */
-          if(newCell.hasCar()) {
-            /* collisions */
-            Debug.info("explode");
-            changePoints(1);
-            /* TODO: check direction of other car */
-            newCell.gotHit(newAbsDir);
-          } else {
-            /* update position */
-            oldCell.removeCar();
-            newCell.addCar(this);
-
-            this.curMov = new Movement(newPos, newAbsDir);
-          }
-
-          /* free cells */
+        if(!newCell.tryAcquire()) {
           oldCell.release();
-          newCell.release();
+          continue;
         }
 
+        /* check for collisions */
+        if(newCell.hasCar()) {
+          /* collisions */
+          changePoints(1);
+          /* TODO: check direction of other car */
+          newCell.gotHit(newAbsDir);
+        } else {
+          /* update position */
+          oldCell.removeCar();
+          newCell.addCar(this);
+
+          this.curMov = new Movement(newPos, newAbsDir);
+        }
+
+        /* free cells */
+        oldCell.release();
+        newCell.release();
+      }
+
+      try {
         Thread.sleep(this.getSleepTime());
       } catch (java.lang.InterruptedException ex) {
         driving = false;
@@ -104,6 +102,7 @@ public abstract class Car extends Thread implements Comparable<Car> {
   private void changePoints(int p) {
     points += p;
     if(points >=  MAX_POINTS) {
+      this.driving = false;
       Debug.info("WWINNNNERERRR !!!!");
       // game is over, car has won
       tl.notifyVictory(this);
