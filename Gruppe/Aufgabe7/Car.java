@@ -60,6 +60,11 @@ public abstract class Car extends Thread implements Comparable<Car> {
     return new Movement(newPos, newAbsDir);
   }
 
+  /* run method of this thread, loops while the car is still driving around. 
+     Can be stopped by calling end(). For each step, calculates a new cell to move
+     to with the AI and then tries to drive there. If there's a collision, calculates
+     points and stays in the current cell. Otherwise, the car moves to the new cell.
+     Sleeps for getSleepTime() ms after each step */
   @Override public void run() {
     while(this.driving) {
       final List<Direction> possibleDirections = calculatePossibleDirections();    
@@ -168,12 +173,17 @@ public abstract class Car extends Thread implements Comparable<Car> {
     cell.release();
   }
 
+  /* returns a description of the current car, consisting of the name of the class
+     of this object, the name of the AI's class and the name given to this car,
+     as well as the current points */
   public String getDescription() {
     String desc = String.format("%s (%s)", this.getClass().getCanonicalName(),
       this.ai.getClass().getCanonicalName());
     return String.format("%-25s %7s: %3d points", desc, this.name, this.points);
   }
 
+  /* represent this car as a string - returns a single character showing in which
+     direction the car is facing */
   @Override public String toString() {
     switch(this.curMov.dir) {
       case N:
@@ -190,11 +200,12 @@ public abstract class Car extends Thread implements Comparable<Car> {
     throw new RuntimeException("unreachable");
   }
 
+  /* compare to another car by number of points. used for sorting the highscore list */
   public int compareTo(Car that) {
     return that.points - this.points;
   }
 
-  /* waits for this car to stop moving */
+  /* wait for this car to stop moving */
   public void await() throws java.lang.InterruptedException {
     this.latch.await();
   } 
