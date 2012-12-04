@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Semaphore;
 import java.util.Collections;
 
 public class Field {
@@ -11,6 +12,7 @@ public class Field {
   private final int w;
   private final int h;
   private final CountDownLatch latch = new CountDownLatch(1);
+  private final Semaphore notificationLock = new Semaphore(1);
   private boolean raceRunning = false;
 
   private class CellAccessorImpl implements CellAccessor {
@@ -21,21 +23,21 @@ public class Field {
 
   private class TerminationListenerImpl implements TerminationListener {
     public void notifyVictory(Car c) {
-      synchronized(Field.this) {
-        if(raceRunning) {
-          System.out.println("The race was won by " + c.getDescription());
-          raceOver();
-        }
+      notificationLock.acquireUninterruptibly();
+      if(raceRunning) {
+        System.out.println("The race was won by " + c.getDescription());
+        raceOver();
       }
+      notificationLock.release();
     }
 
     public void notifyOutOfMoves(Car c) {
-      synchronized(Field.this) {
-        if(raceRunning) {
-          System.out.println("Car is out of moves: " + c.getDescription());
-          raceOver();
-        }
+      notificationLock.acquireUninterruptibly();
+      if(raceRunning) {
+        System.out.println("Car is out of moves: " + c.getDescription());
+        raceOver();
       }
+      notificationLock.release();
     }
   }
 
@@ -50,7 +52,7 @@ public class Field {
         this.field[i][j] = new Cell();
   }
 
-  private synchronized void raceOver() {
+  private void raceOver() {
     if(raceRunning) {
       Debug.info("End of race");
       raceRunning = false;
@@ -109,9 +111,11 @@ public class Field {
     for(int i = 0; i < 40 * seconds; i++) {
       try {
         if(latch.await(25, TimeUnit.MILLISECONDS)) {
+          Debug.info("race over, print stats");
           printStats();
           return;
         } else {
+          Debug.info("waiting");
           /* race still ongoing, continue to wait */
         }
       } catch (InterruptedException e) {
