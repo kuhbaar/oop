@@ -1,11 +1,13 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
 
 public abstract class Car extends Thread implements Comparable<Car> {
   private final AI ai;
   private final String name;
   private final int MAX_POINTS = 10;
   private final int MAX_MOVES = 42;
+  private final CountDownLatch latch = new CountDownLatch(1);
 
   private CellAccessor ca;
   private TerminationListener tl;
@@ -16,11 +18,15 @@ public abstract class Car extends Thread implements Comparable<Car> {
   private int points = 0;
   private int numMoves = 0;
 
+  /* create a new car with a given AI (responsible for calculating the next move)
+     and a given name */
   public Car(AI ai, String name) {
     this.ai = ai;
     this.name = name;
   }
 
+  /* stop driving around - sets a variable that will cause the main loop of the
+     thread to end */
   public void end() {
     this.driving = false;
   }
@@ -44,11 +50,13 @@ public abstract class Car extends Thread implements Comparable<Car> {
     return possibleDirections;
   }
 
+  /* calculate the next movement from a given direction. this is the next cell
+     the car will try to move to, including its new absolute direction */
   private Movement calculateNextMovement(Direction direction) {
-    final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, newDir);
+    final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, direction);
     final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
 
-    final AbsoluteDirection newAbsDir = Helpers.rotate(curMov.dir, newDir);
+    final AbsoluteDirection newAbsDir = Helpers.rotate(curMov.dir, direction);
     return new Movement(newPos, newAbsDir);
   }
 
@@ -62,7 +70,7 @@ public abstract class Car extends Thread implements Comparable<Car> {
         final Movement newMov = calculateNextMovement(newDir);
 
         Cell oldCell  = ca.getCell(curMov.pos);
-        Cell newCell = ca.getCell(newPos);
+        Cell newCell = ca.getCell(newMov.pos);
 
         /* lock cells */
         if(!oldCell.tryAcquire())
@@ -73,11 +81,10 @@ public abstract class Car extends Thread implements Comparable<Car> {
           continue;
         }
 
-        
         if(newCell.hasCar()) {        /* check for collisions */
           /* collision */
           changePoints(1);
-          newCell.gotHit(newAbsDir);  /* tell other car it was hit to deduct points */
+          newCell.gotHit(newMov.dir);  /* tell other car it was hit to deduct points */
         } else {
           /* no collision, update position */
           oldCell.removeCar();
@@ -95,18 +102,21 @@ public abstract class Car extends Thread implements Comparable<Car> {
         newCell.release();
       }
 
-      try {
-        Thread.sleep(this.getSleepTime());
-      } catch (java.lang.InterruptedException ex) {
-        driving = false;
-      }
+      try { Thread.sleep(this.getSleepTime()); } 
+      catch (java.lang.InterruptedException ex) { driving = false; }
     }
+
+    this.latch.countDown();         // stop running - release our latch
   }
 
+  /* returns how long (in milliseconds) the car should sleep between moves */
   protected abstract int getSleepTime();
 
+  /* returns the list of possible directions the car can drive in */
   protected abstract List<Direction> getPossibleDirections();
 
+  /* handle a hit from a given absolute direction - if it was a frontal crash,
+     nothing happens. Otherwise, deduct a point */
   public void gotHit(AbsoluteDirection d) {
     final AbsoluteDirection opposite = Helpers.rotateLeft(d, 4);
     if(this.curMov.dir.equals(opposite)) {
@@ -116,9 +126,11 @@ public abstract class Car extends Thread implements Comparable<Car> {
     }
   }
 
+  /* adjust the internal point counter and check if this car has already won 
+     (by having >= MAX_POINTS) */
   private void changePoints(int p) {
     points += p;
-    if(points >=  MAX_POINTS) {
+    if(points >= MAX_POINTS) {
       this.driving = false;
       Debug.info("WWINNNNERERRR !!!!");
       // game is over, car has won
@@ -126,18 +138,25 @@ public abstract class Car extends Thread implements Comparable<Car> {
     }
   }
 
+  /* set the CellAccessor, used to get access to cells the car wants to move 
+     away from or to */
   public void setCellAccessor(CellAccessor ca) {
     this.ca = ca;
   }
 
+  /* set the TerminationListener, used to notify the main thread that this car has
+     either won or run out of moves */
   public void setTerminationListener(TerminationListener tl) {
     this.tl = tl;
   }
 
+  /* sets the maximum dimensions of the playing field, used to check if a car wants
+     to move out of bounds */
   public void setDimension(int maxW, int maxH) {
     this.bounds = new Position(maxW, maxH);
   }
 
+  /* set the initial position and direction of a car */
   public void setInitialPosition(int w, int h, AbsoluteDirection d) {
     this.curMov = new Movement(new Position(w, h), d);
 
@@ -147,7 +166,6 @@ public abstract class Car extends Thread implements Comparable<Car> {
     }
     cell.addCar(this);
     cell.release();
-
   }
 
   public String getDescription() {
@@ -175,4 +193,9 @@ public abstract class Car extends Thread implements Comparable<Car> {
   public int compareTo(Car that) {
     return that.points - this.points;
   }
+
+  /* waits for this car to stop moving */
+  public void await() throws java.lang.InterruptedException {
+    this.latch.await();
+  } 
 }

@@ -35,6 +35,13 @@ public class Cell {
       this.car.get().gotHit(d);
   }
 
+  public String getDescription() {
+    if(car.isDefined())
+      return car.get().getDescription();
+    else
+      return "empty";
+  }
+
   @Override public String toString() {
     if(car.isDefined())
       return car.get().toString();

@@ -10,8 +10,8 @@ public class Field {
   private final Random r = new Random();
   private final int w;
   private final int h;
+  private final CountDownLatch latch = new CountDownLatch(1);
   private boolean raceRunning = false;
-  private CountDownLatch latch = new CountDownLatch(1);
 
   private class CellAccessorImpl implements CellAccessor {
     public Cell getCell(Position p) {
@@ -21,16 +21,20 @@ public class Field {
 
   private class TerminationListenerImpl implements TerminationListener {
     public void notifyVictory(Car c) {
-      if(raceRunning) {
-        System.out.println("The race was won by " + c.getDescription());
-        raceOver();
+      synchronized(Field.this) {
+        if(raceRunning) {
+          System.out.println("The race was won by " + c.getDescription());
+          raceOver();
+        }
       }
     }
 
     public void notifyOutOfMoves(Car c) {
-      if(raceRunning) {
-        System.out.println("Car is out of moves: " + c.getDescription());
-        raceOver();
+      synchronized(Field.this) {
+        if(raceRunning) {
+          System.out.println("Car is out of moves: " + c.getDescription());
+          raceOver();
+        }
       }
     }
   }
@@ -48,17 +52,27 @@ public class Field {
 
   private synchronized void raceOver() {
     if(raceRunning) {
+      Debug.info("End of race");
       raceRunning = false;
 
       for(Car car : cars)
         car.end();
 
       latch.countDown();
+      Debug.info("done");
     }
   }
 
 
   public void printStats() {
+    /* wait for all cars to terminate */
+    try {
+      for(Car car : cars)
+        car.await();
+    } catch (java.lang.InterruptedException ex) {
+      System.err.println("should never happen");
+    }
+
     System.out.println("==== Leaderboard");
     Collections.sort(this.cars);
     for(Car c : cars)
@@ -86,7 +100,7 @@ public class Field {
   }
 
   public void runWithMaxDuration(int seconds) {
-    raceRunning = true;
+    this.raceRunning = true;
     Debug.info(this.toString());
 
     for(Car c : cars)
@@ -136,8 +150,8 @@ public class Field {
     for(int i = 0; i < w; i++)
       for(int j = 0; j < h; j++)
         while(!this.field[i][j].tryAcquire()) {
-          Debug.info(i + ":" + j);
-          Debug.info(this.field[i][j].toString());
+          try { Thread.sleep(100); } catch (Exception ex) { }
+          Debug.info(i + ":" + j + ", " + this.field[i][j].getDescription());
         }
     Debug.info("locked all");
   }

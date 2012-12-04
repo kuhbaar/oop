@@ -11,8 +11,6 @@ public class Test {
 
     f.runWithMaxDuration(1);
 
-
-
     System.out.println("\n\n\tSingle driver");
     f = new Field(8, 8);
     f.add(new FlexCar(new RandomAI(), "forever alone guy"));
@@ -30,9 +28,6 @@ public class Test {
       f.add(new FastCar(new RandomAI(), "kuba" + i));
 
     f.runWithMaxDuration(1);
-
-
-
 
   }
 }
