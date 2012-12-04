@@ -1,3 +1,5 @@
+/*AI used to turn left each turn*/
+
 import java.util.List;
 
 public class AlwaysLeftAI extends AI {

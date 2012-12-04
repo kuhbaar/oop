@@ -15,12 +15,16 @@ public class Field {
   private final Semaphore notificationLock = new Semaphore(1);
   private boolean raceRunning = false;
 
+  /*capsuled class to give a car access to a single cell of the field*/
   private class CellAccessorImpl implements CellAccessor {
     public Cell getCell(Position p) {
       return field[p.w][p.h];
     }
   }
 
+  /*capsuled class to be accessed by a car in case it won or is out of moves
+  prints either of the 2 ways to end the race and ends the race
+  the notificationlock semaphore is locked in the meantime*/
   private class TerminationListenerImpl implements TerminationListener {
     public void notifyVictory(Car c) {
       notificationLock.acquireUninterruptibly();
@@ -41,7 +45,8 @@ public class Field {
     }
   }
 
-
+  /*creates a rectangular field of empty cells with the 
+  parameters given */
   public Field(int w, int h) {
     this.w = w;
     this.h = h;
@@ -52,6 +57,8 @@ public class Field {
         this.field[i][j] = new Cell();
   }
 
+  /*sets raceRunning to false which will terminate 
+  the race once its been checked for*/
   private void raceOver() {
     if(raceRunning) {
       Debug.info("End of race");
@@ -65,7 +72,7 @@ public class Field {
     }
   }
 
-
+  /*prints the stats as well as the field at the end of the race*/
   public void printStats() {
     /* wait for all cars to terminate */
     try {
@@ -86,6 +93,8 @@ public class Field {
     System.out.println(this.toString());
   }
 
+  /*adds a new car to this field
+  chooses a random empty cell and a random alignment*/
   public void add(Car c) {
     c.setCellAccessor(new CellAccessorImpl());
     c.setTerminationListener(new TerminationListenerImpl());
@@ -101,6 +110,10 @@ public class Field {
     cars.add(c);
   }
 
+  /* starts the race
+  starts each car and the waits 10 seconds
+  waiting for 1 car to end the race
+  else ends it itself without a winner*/
   public void runWithMaxDuration(int seconds) {
     this.raceRunning = true;
     Debug.info(this.toString());
@@ -134,6 +147,9 @@ public class Field {
     printStats();
   }
 
+  /*locks and prints the current field 
+  afterwards unlocks it again
+  synchronized not to try to lock cells locked by another toString*/
   @Override public synchronized String toString() {
     lockAll();
     String out = "";
@@ -149,6 +165,7 @@ public class Field {
     return out;
   }
 
+  /*locks all cells*/
   private void lockAll() {
     Debug.info("try to lock all");
     for(int i = 0; i < w; i++)
@@ -160,6 +177,7 @@ public class Field {
     Debug.info("locked all");
   }
 
+  /*realeases all cells*/
   private void releaseAll() {
     for(int i = 0; i < w; i++)
       for(int j = 0; j < h; j++)

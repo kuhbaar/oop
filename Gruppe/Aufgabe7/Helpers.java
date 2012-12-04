@@ -1,4 +1,5 @@
 public class Helpers {
+  /* rotates an absolute direction to the left and returns it*/
   public static AbsoluteDirection rotateLeft(AbsoluteDirection d, int steps) {
     if(steps <= 0)
       return d;
@@ -26,6 +27,7 @@ public class Helpers {
     throw new RuntimeException("unreachable");
   }
 
+  /*calculates the new absolute direction after a move*/
   public static AbsoluteDirection rotateForMove(AbsoluteDirection absD, Direction dir) {
     switch(dir) {
       case FORWARD:
@@ -44,6 +46,8 @@ public class Helpers {
     throw new RuntimeException("unreachable");
   }
 
+  /*rotates an absolutes direction by 90 degrees and returns the direction a car
+  is facing after a move*/
   public static AbsoluteDirection rotate(AbsoluteDirection absD, Direction dir) {
     switch(dir) {
       case FORWARD:
@@ -62,6 +66,7 @@ public class Helpers {
     throw new RuntimeException("unreachable");
   }
 
+  /*returns the position of a car after a move*/
   public static Position move(Position p, AbsoluteDirection d) {
     switch(d) {
       case N:
@@ -86,14 +91,3 @@ public class Helpers {
     throw new RuntimeException("unreachable");
   }
 }
-
-/*
-  N,
-  NE,
-  E,
-  SE,
-  S,
-  SW,
-  W,
-  NW
-  */

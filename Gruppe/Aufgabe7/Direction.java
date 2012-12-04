@@ -1,3 +1,4 @@
+/*List of relative directions*/
 public enum Direction {
   FORWARD,
   LEFT,
