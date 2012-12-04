@@ -25,29 +25,41 @@ public abstract class Car extends Thread implements Comparable<Car> {
     this.driving = false;
   }
 
+  /* calculates all possible directions the car can drive in right now, ie those,
+     possible by the make of the car (returned by getPossibleDirections()) minus
+     those blocked by the borders of the field. if there are no possible directions,
+     the list is empty */
+  private List<Direction> calculatePossibleDirections() {
+    List<Direction> possibleDirections = new ArrayList<Direction>();
+
+    for(Direction d : getPossibleDirections()) {
+      final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, d);
+      final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
+
+      if(newPos.w < bounds.w && newPos.h < bounds.h && newPos.w >= 0 && newPos.h >= 0) {
+        possibleDirections.add(d);
+      }
+    }
+
+    return possibleDirections;
+  }
+
+  private Movement calculateNextMovement(Direction direction) {
+    final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, newDir);
+    final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
+
+    final AbsoluteDirection newAbsDir = Helpers.rotate(curMov.dir, newDir);
+    return new Movement(newPos, newAbsDir);
+  }
+
   @Override public void run() {
     while(this.driving) {
-      /* calculate possible directions */
-      List<Direction> possibleDirections = new ArrayList<Direction>();
-
-      for(Direction d : getPossibleDirections()) {
-        final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, d);
-        final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
-
-        if(newPos.w < bounds.w && newPos.h < bounds.h && newPos.w >= 0 && newPos.h >= 0) {
-          possibleDirections.add(d);
-        }
-      }
-
+      final List<Direction> possibleDirections = calculatePossibleDirections();    
       final Maybe<Direction> maybeDirection = ai.getNextMove(curMov, possibleDirections);
 
       if(maybeDirection.isDefined()) {
         final Direction newDir = maybeDirection.get();
-
-        final AbsoluteDirection tempAbsDir = Helpers.rotateForMove(curMov.dir, newDir);
-        final Position newPos = Helpers.move(curMov.pos, tempAbsDir);
-
-        final AbsoluteDirection newAbsDir = Helpers.rotate(curMov.dir, newDir);
+        final Movement newMov = calculateNextMovement(newDir);
 
         Cell oldCell  = ca.getCell(curMov.pos);
         Cell newCell = ca.getCell(newPos);
@@ -61,18 +73,17 @@ public abstract class Car extends Thread implements Comparable<Car> {
           continue;
         }
 
-        /* check for collisions */
-        if(newCell.hasCar()) {
-          /* collisions */
+        
+        if(newCell.hasCar()) {        /* check for collisions */
+          /* collision */
           changePoints(1);
-          /* TODO: check direction of other car */
-          newCell.gotHit(newAbsDir);
+          newCell.gotHit(newAbsDir);  /* tell other car it was hit to deduct points */
         } else {
-          /* update position */
+          /* no collision, update position */
           oldCell.removeCar();
           newCell.addCar(this);
 
-          this.curMov = new Movement(newPos, newAbsDir);
+          this.curMov = newMov;
           numMoves += 1;
           if(numMoves >= MAX_MOVES) {
             tl.notifyOutOfMoves(this);
