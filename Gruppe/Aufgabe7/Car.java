@@ -23,6 +23,7 @@ public abstract class Car extends Thread implements Comparable<Car> {
   public Car(AI ai, String name) {
     this.ai = ai;
     this.name = name;
+    this.setName(name);
   }
 
   /* stop driving around - sets a variable that will cause the main loop of the
