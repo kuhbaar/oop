@@ -5,31 +5,35 @@ public class Cell {
   Maybe<Car> car;
 
 
+  /* creates a new cell, initially unlocked and without a car */
   public Cell() {
     this.s = new Semaphore(1);
     this.car = new None<Car>();
   }
 
-  /*if not locked acquires this cell and returns true if it worked*/
+  /* try to lock this cell - returns true if it succeeded, false otherwise */
   public boolean tryAcquire() {
     return this.s.tryAcquire();
   }
 
+  /* release the lock again */
   public void release() {
     this.s.release();
   }
 
+  /* remove the car from this cell */
   public void removeCar() {
     this.car = new None<Car>();
   }
 
-  /*adds a car to this cell
+  /* adds a car to this cell
   cell cannot have another car already*/
   public void addCar(Car c) {
     assert(!hasCar());
     this.car = new Some<Car>(c);
   }
 
+  /* true if the cell has a car, false otherwise */
   public boolean hasCar() {
     return car.isDefined();
   }
@@ -49,7 +53,8 @@ public class Cell {
       return "empty";
   }
 
-  /*returns a String of a single char pointing in the direction the car is aligned*/
+  /*returns a String of a single char pointing in the direction the car is aligned
+    if there is no car, simply returns "." */
   @Override public String toString() {
     if(car.isDefined())
       return car.get().toString();
