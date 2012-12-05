@@ -1,8 +1,5 @@
 public class Test {
   public static void main(String[] args) {
-    //while(true) 
-    {
-
 
     System.out.println("\n\n\tCompletely full field");
     Field f = new Field(8, 8);
@@ -34,8 +31,6 @@ public class Test {
       f.add(new FastCar(new RandomAI(), "kuba" + i));
 
     f.runWithMaxDuration(1);
-
-  }
 
   }
 }
