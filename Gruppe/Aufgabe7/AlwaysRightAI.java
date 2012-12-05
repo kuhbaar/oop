@@ -6,9 +6,6 @@ public class AlwaysRightAI extends AI {
   /* always tries to turn as far right as possible. Returns Some(direction) if
      possible, otherwise None() */
   public Maybe<Direction> getNextMove(Movement m, List<Direction> possibleDirections) {
-    final AbsoluteDirection d = m.dir;
-    final Position p = m.pos;
-
     if(possibleDirections.contains(Direction.RIGHT)) {
       return new Some<Direction>(Direction.RIGHT);
     } else if(possibleDirections.contains(Direction.FORWARD_RIGHT)) {

@@ -3,18 +3,27 @@
 import java.util.List;
 
 public class InfinityAI extends AI {
-  /* always tries to turn as far left as possible. Returns Some(direction) if
-     possible, otherwise None() */
+  private int index = 0;
+  /* tries to drive around in a figure 8 / infinity symbol */
   public Maybe<Direction> getNextMove(Movement m, List<Direction> possibleDirections) {
-    final AbsoluteDirection d = m.dir;
-    final Position p = m.pos;
+    index = (index + 1) % 8;
 
-    if(possibleDirections.contains(Direction.LEFT)) {
-      return new Some<Direction>(Direction.LEFT);
-    } else if(possibleDirections.contains(Direction.FORWARD_LEFT)) {
-      return new Some<Direction>(Direction.FORWARD_LEFT);
+    if(index < 4) {
+      if(possibleDirections.contains(Direction.LEFT)) {
+        return new Some<Direction>(Direction.LEFT);
+      } else if(possibleDirections.contains(Direction.FORWARD_LEFT)) {
+        return new Some<Direction>(Direction.FORWARD_LEFT);
+      } else {
+        return new None<Direction>();
+      }
     } else {
-      return new None<Direction>();
+      if(possibleDirections.contains(Direction.RIGHT)) {
+        return new Some<Direction>(Direction.RIGHT);
+      } else if(possibleDirections.contains(Direction.FORWARD_RIGHT)) {
+        return new Some<Direction>(Direction.FORWARD_RIGHT);
+      } else {
+        return new None<Direction>();
+      }
     }
   }
 }
