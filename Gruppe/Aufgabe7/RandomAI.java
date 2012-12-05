@@ -4,7 +4,8 @@ import java.util.Random;
 public class RandomAI extends AI {
   private final Random r = new Random();
 
-  /*returns a random direction out of the list of possible directions*/
+  /* returns a random direction out of the list of possible directions, or None()
+     if there are no possible directions. */
   public Maybe<Direction> getNextMove(Movement m, List<Direction> possibleDirections) {
     if(possibleDirections.isEmpty()) {
       return new None<Direction>();

@@ -32,5 +32,22 @@ public class Test {
 
     f.runWithMaxDuration(1);
 
+
+
+
+    System.out.println("\n\n\tLeft-Right Race");
+    f = new Field(8, 8);
+
+    for(int i = 0; i < 5; i++)
+      f.add(new FlexCar(new AlwaysLeftAI(), "communist" + i));
+
+    for(int i = 0; i < 5; i++)
+      f.add(new FastCar(new AlwaysRightAI(), "nazi" + i));
+
+    for(int i = 0; i < 5; i++)
+      f.add(new FastCar(new RandomAI(), "bzoe" + i));
+
+    f.runWithMaxDuration(1);
+
   }
 }

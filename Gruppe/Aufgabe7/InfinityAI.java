@@ -2,7 +2,7 @@
 
 import java.util.List;
 
-public class AlwaysLeftAI extends AI {
+public class InfinityAI extends AI {
   /* always tries to turn as far left as possible. Returns Some(direction) if
      possible, otherwise None() */
   public Maybe<Direction> getNextMove(Movement m, List<Direction> possibleDirections) {
