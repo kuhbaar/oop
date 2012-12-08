@@ -11,6 +11,7 @@ public abstract class Traktor<T extends Number>{
   public Traktor(String name){
     this.id = name;
     this.stunden = 0;
+    //this.verbraucht = (Class<T>) new Double(0);
   }
 
   public int getStunden(){ return this.stunden; }
@@ -18,7 +19,11 @@ public abstract class Traktor<T extends Number>{
   public Double getMaschineVar(){ return (Double)m.getVar(); }
 
   public void incrStunden(){ this.stunden++; }
-  public void changeVerbraucht(int menge){}
-  public void changeEinsatzart(Maschine m){}
+  public void changeVerbraucht(int menge){
+    //this.verbraucht += verbraucht + (Class<T>) menge;
+  }
+  public void changeEinsatzart(Maschine m){
+    this.m = m;
+  }
 
 }

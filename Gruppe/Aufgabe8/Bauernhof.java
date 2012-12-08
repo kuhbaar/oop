@@ -21,4 +21,6 @@ public class Bauernhof{
   public void changeTraktor(Traktor t){
     //Einsatzart des Traktoren ändern
   }
+
+  // TODO stat-werte berechnen
 }

@@ -1,8 +1,5 @@
-public class DieselTraktor extends Traktor{
-  private int verbraucht;
-
+public class DieselTraktor extends Traktor<Integer>{
   public DieselTraktor(String name){
     super(name);
-    verbraucht = 0;
   }
 }
