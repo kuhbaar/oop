@@ -1,3 +1,4 @@
+@AuthorClass(author="Jakub Zarzycki")
 public class DuengerStreuer extends Maschine{
   private final double behaelter;
 
