@@ -15,7 +15,7 @@ public class Test{
 
     Method[] ma = Traktor.class.getMethods();
     for(Method m : ma){
-      AuthorMethod am = ma.getAnnotation(AuthorMethod.class);
+      AuthorMethod am = m.getAnnotation(AuthorMethod.class);
       if(am != null){
         s += am.author() + " wrote Method " + m + "\n";
       }

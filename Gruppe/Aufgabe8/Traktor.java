@@ -17,7 +17,11 @@ public abstract class Traktor<T extends Number>{
   public int getStunden(){ return this.stunden; }
   @AuthorMethod(author="Karsi")
   public T getVerbraucht(){ return this.verbraucht; }
-  public Double getMaschineVar(){ return (Double)m.getVar(); }
+  public double getMaschineVar(){
+    if(m.getSaeschere() != 0)  return m.getSaeschere();
+    else if(m.getBehaelter() != 0) return m.getBehaelter();
+    else return 0;
+  }
 
   public void incrStunden(){ this.stunden++; }
   public void changeVerbraucht(int menge){

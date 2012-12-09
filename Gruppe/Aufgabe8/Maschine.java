@@ -1,5 +1,6 @@
 import java.lang.Number;
 
-public interface Maschine<T extends Number>{
-  public T getVar();
+public abstract class Maschine{
+  public int getSaeschere(){ return 0; }
+  public double getBehaelter(){ return 0; }
 }

@@ -1,9 +1,9 @@
-public class DuengerStreuer implements Maschine<Double>{
-  private final Double baehelter;
+public class DuengerStreuer extends Maschine{
+  private final double behaelter;
 
   public DuengerStreuer(double vol){
-    this.baehelter = new Double(vol);
+    this.behaelter = new Double(vol);
   }
 
-  public Double getVar(){ return baehelter; }
+  public double getBehaelter(){ return this.behaelter; }
 }
