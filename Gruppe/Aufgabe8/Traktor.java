@@ -1,6 +1,6 @@
 import java.lang.Number;
 
-@Author(author="Jakub Zarzycki")
+@AuthorClass(author="Jakub Zarzycki")
 public abstract class Traktor<T extends Number>{
   protected final String id;
 
@@ -13,8 +13,9 @@ public abstract class Traktor<T extends Number>{
     this.stunden = 0;
     //this.verbraucht = (Class<T>) new Double(0);
   }
-
+  @AuthorMethod(author="Karli")
   public int getStunden(){ return this.stunden; }
+  @AuthorMethod(author="Karsi")
   public T getVerbraucht(){ return this.verbraucht; }
   public Double getMaschineVar(){ return (Double)m.getVar(); }
 

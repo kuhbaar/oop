@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
+@AuthorClass(author="Jakub Zarzycki")
 public class Bauernhof{
   private final String name;
   private final List<Traktor> traktoren;
