@@ -19,8 +19,8 @@ public class Bauernhof{
     traktoren.remove(t);
   }
 
-  public void changeTraktor(Traktor t){
-    //Einsatzart des Traktoren ändern
+  public void changeTraktor(Traktor t, Maschine m){
+    t.changeEinsatzart(m);
   }
 
   // TODO stat-werte berechnen
