@@ -32,7 +32,7 @@ public class Bauernhof{
     }
     return sum/traktoren.size();
   }
-
+ /*
   public double getHoursSow(){
     double sum=0;
     int count = 0;
@@ -44,7 +44,7 @@ public class Bauernhof{
 
 
     }
-    retun sum/count;
+    return sum/count;
   }
 
   public double getHoursDrill(){
@@ -58,8 +58,10 @@ public class Bauernhof{
 
 
     }
-    retun sum/count;
+    return sum/count;
   }
+
+  */
 
   // TODO stat-werte berechnen
 }
