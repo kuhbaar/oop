@@ -1,11 +1,11 @@
 import java.lang.Number;
 
 @AuthorClass(author="Jakub Zarzycki")
-public abstract class Traktor<T extends Number>{
+public abstract class Traktor {
   protected final String id;
 
   protected int stunden;
-  protected T verbraucht;
+  protected Number verbraucht;
   protected Maschine m;
 
   public Traktor(String name){
@@ -13,20 +13,32 @@ public abstract class Traktor<T extends Number>{
     this.stunden = 0;
     //this.verbraucht = (Class<T>) new Double(0);
   }
-  @AuthorMethod(author="Karli")
+
+  @AuthorMethod(author="Kuba")
   public int getStunden(){ return this.stunden; }
-  @AuthorMethod(author="Karsi")
-  public T getVerbraucht(){ return this.verbraucht; }
-  public double getMaschineVar(){
-    if(m.getSaeschere() != 0)  return m.getSaeschere();
-    else if(m.getBehaelter() != 0) return m.getBehaelter();
-    else return 0;
+
+  @AuthorMethod(author="Kuba")
+  public Number getVerbraucht(){ return this.verbraucht; }
+
+  @AuthorMethod(author="Kuba")
+  public MaybeNumber getSaeschere(){
+    return m.getSaeschere();
   }
 
+  @AuthorMethod(author="Julian")
+  public MaybeNumber getBehaelter() {
+    return m.getBehaelter();
+  }
+
+  @AuthorMethod(author="Kuba")
   public void incrStunden(){ this.stunden++; }
+
+  @AuthorMethod(author="Kuba")
   public void changeVerbraucht(int menge){
     //this.verbraucht += verbraucht + (Class<T>) menge;
   }
+
+  @AuthorMethod(author="Kuba")
   public void changeEinsatzart(Maschine m){
     this.m = m;
   }
