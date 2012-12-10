@@ -12,6 +12,11 @@ public abstract class Traktor {
     this.stunden = 0;
   }
 
+  @AuthorMethod(author="Julian")
+  public String getID() {
+    return this.id;
+  }
+
   @AuthorMethod(author="Kuba")
   public int getStunden(){ return this.stunden; }
 

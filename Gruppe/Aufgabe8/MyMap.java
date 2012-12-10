@@ -1,7 +1,7 @@
 import java.util.NoSuchElementException;
-import java.util.ListIterator;
+import java.util.Iterator;
 
-public class MyMap {
+public class MyMap implements Iterable {
   private class Elem {
     private final String key;
     private final Object value;
@@ -16,7 +16,7 @@ public class MyMap {
 
   }
 
-  private class MyIterator {
+  private class MyIterator implements Iterator {
     private Elem cur;
     private int curIdx = -1;
 
@@ -26,7 +26,7 @@ public class MyMap {
       this.cur = temp;
     }
 
-    private boolean hasNext() {
+    public boolean hasNext() {
       return cur.next != null;
     }
 
@@ -34,7 +34,7 @@ public class MyMap {
       return cur.prev != null;
     }
 
-    private String next() {
+    public String next() {
       if(!hasNext())
         throw new NoSuchElementException();
 
@@ -51,7 +51,7 @@ public class MyMap {
       return curIdx + 1;
     }
 
-    private void remove() {
+    public void remove() {
       if(curIdx < 0)
         throw new IllegalStateException();
 
@@ -98,12 +98,12 @@ public class MyMap {
     return size;
   }
 
-  private MyIterator  iterator() {
+  public Iterator iterator() {
     return new MyIterator(first);
   }
 
   public boolean contains(String key) {
-    MyIterator iter = iterator();
+    MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
       if(iter.next() == key)
         return true;
@@ -111,7 +111,7 @@ public class MyMap {
   }
 
   public void put(String key, Object value) {
-    MyIterator iter = iterator();
+    MyIterator iter = new MyIterator(first);
     while(iter.hasNext()) {
       if(iter.next() == key) {
         /* already have the key, change the value */
@@ -136,7 +136,7 @@ public class MyMap {
   }
 
   public Object get(String key) {
-    MyIterator iter = iterator();
+    MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
       if(iter.next() == key)
         return iter.value();
@@ -144,7 +144,7 @@ public class MyMap {
   }
 
   public void remove(String key) {
-    MyIterator iter = iterator();
+    MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
       if(iter.next() == key)
         iter.remove();
