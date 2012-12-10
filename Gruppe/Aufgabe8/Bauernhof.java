@@ -23,6 +23,7 @@ public class Bauernhof{
     t.changeEinsatzart(m);
   }
 
+
   public double getHoursComplete(){
     double sum=0;
 
@@ -38,5 +39,6 @@ public class Bauernhof{
       if(t.)
     }
   }
+
   // TODO stat-werte berechnen
 }
