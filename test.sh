@@ -1,7 +1,7 @@
 #!/bin/bash
 ./clean.sh
 
-cd Gruppe/Aufgabe7
+cd Gruppe/Aufgabe8
 
 # all required files are built recursively
 javac -Xlint:all -Werror *.java
