@@ -16,7 +16,7 @@ public abstract class Traktor {
   public int getStunden(){ return this.stunden; }
 
   @AuthorMethod(author="Kuba")
-  public MaybeNumber getSaeschere(){
+  public MaybeNumber getSaeschere() {
     return m.getSaeschere();
   }
 
