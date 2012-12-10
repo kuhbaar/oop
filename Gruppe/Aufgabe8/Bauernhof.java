@@ -23,5 +23,20 @@ public class Bauernhof{
     t.changeEinsatzart(m);
   }
 
+  public double getHoursComplete(){
+    double sum=0;
+
+    for(Traktor t: traktoren){
+      sum +=t.getStunden();
+    }
+    return sum/traktoren.size();
+  }
+
+  public double getHoursSow(){
+    double sum=0;
+    for(Traktor t: traktoren){
+      if(t.)
+    }
+  }
   // TODO stat-werte berechnen
 }
