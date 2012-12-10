@@ -37,7 +37,7 @@ public class Bauernhof{
     double sum=0;
     int count = 0;
     for(Traktor t: traktoren){
-      if(t.getMaschineVar() instanceof double) {
+      if(t.getMaschineVar() instanceof Double) {
         count++;
         sum += t.getStunden();
       }
@@ -51,7 +51,7 @@ public class Bauernhof{
     double sum =0;
     int count=0;
     for(Traktor t: traktoren){
-      if(t.getMaschineVar() instanceof int) {
+      if(t.getMaschineVar() instanceof Integer) {
         count++;
         sum += t.getStunden();
       }
@@ -60,6 +60,36 @@ public class Bauernhof{
     }
     retun sum/count;
   }
+
+  public double getHoursDiesel(){
+    double sum =0;
+    int count=0;
+    for(Traktor t: traktoren){
+      if(t instanceof BiogasTraktor) {
+        count++;
+        sum += t.getStunden();
+      }
+       
+
+    }
+    retun sum/count;
+  }
+
+  public double getHoursBiogas(){
+    double sum =0;
+    int count=0;
+    for(Traktor t: traktoren){
+      if(t instanceof DieselTraktor) {
+        count++;
+        sum += t.getStunden();
+      }
+       
+
+    }
+    retun sum/count;
+  }
+
+
 
   // TODO stat-werte berechnen
 }
