@@ -41,7 +41,7 @@ public class Bauernhof{
         count++;
         sum += t.getStunden();
       }
-       
+
 
     }
     retun sum/count;
@@ -55,7 +55,7 @@ public class Bauernhof{
         count++;
         sum += t.getStunden();
       }
-       
+
 
     }
     retun sum/count;
