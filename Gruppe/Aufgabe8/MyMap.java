@@ -1,6 +1,7 @@
 import java.util.NoSuchElementException;
 import java.util.Iterator;
 
+@AuthorClass(author="Julian Schrittwieser")
 public class MyMap implements Iterable {
   private class Elem {
     private final String key;
