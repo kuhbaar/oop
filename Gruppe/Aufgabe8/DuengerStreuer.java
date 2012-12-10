@@ -6,5 +6,5 @@ public class DuengerStreuer extends Maschine{
     this.behaelter = vol;
   }
 
-  public double getBehaelter() { return new Some(this.behaelter); }
+  public MaybeNumber getBehaelter() { return new Some(this.behaelter); }
 }

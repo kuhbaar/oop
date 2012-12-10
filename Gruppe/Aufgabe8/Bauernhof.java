@@ -23,5 +23,6 @@ public class Bauernhof{
     t.changeEinsatzart(m);
   }
 
+
   // TODO stat-werte berechnen
 }

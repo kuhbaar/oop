@@ -7,6 +7,6 @@ public class DrillMaschine extends Maschine{
   }
 
   @Override
-  public int getSaeschere(){ return this.saeschare;}  
+  public MaybeNumber getSaeschere(){ return new Some(this.saeschare);}
 
 }
