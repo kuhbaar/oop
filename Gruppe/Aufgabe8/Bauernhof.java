@@ -33,12 +33,12 @@ public class Bauernhof{
     return sum/traktoren.size();
   }
 
-  public double getHoursSow(){
+  /*public double getHoursSow(){
     double sum=0;
     for(Traktor t: traktoren){
-      if(t.)
+      //if(t.)
     }
-  }
+  }*/
 
   // TODO stat-werte berechnen
 }
