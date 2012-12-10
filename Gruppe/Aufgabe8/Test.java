@@ -1,13 +1,12 @@
 import java.lang.annotation.*;
 import java.lang.reflect.*;
 
-@AuthorClass(author="Julian Schrittwieser")
+@AuthorClass(author="Jakub Zarzycki")
 public class Test{
-  @AuthorMethod(author="Jakub Zarzycki")
+  @AuthorMethod(author="Julian Schrittwieser")
   public static void main(String[] args){
     Traktor t1 = new DieselTraktor("diesi");
     Traktor t2 = new BiogasTraktor("biogasi");
-
 
     printClassInfo(AuthorClass.class);
     printClassInfo(AuthorMethod.class);
