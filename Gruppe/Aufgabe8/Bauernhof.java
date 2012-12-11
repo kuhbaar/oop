@@ -46,10 +46,13 @@ public class Bauernhof{
   public double getHoursSow(){
     double sum=0;
     int count = 0;
-    for(Traktor t: traktoren){
-      if(t.getBehaelter().isDefined()) {
-        count++;
-        sum += t.getStunden();
+    for(Object o: traktoren){
+      if(o instanceof Traktor) {
+        Traktor t=(Traktor) o;
+        if(t.getBehaelter().isDefined()) {
+          count++;
+          sum += t.getStunden();
+        }
       }
 
 
@@ -60,10 +63,13 @@ public class Bauernhof{
   public double getHoursDrill(){
     double sum =0;
     int count=0;
-    for(Traktor t: traktoren){
-      if(t.getSaeSchere().isDefined()) {
-        count++;
-        sum += t.getStunden();
+    for(Object o: traktoren){
+      if(o instanceof Traktor) {
+        Traktor t=(Traktor) o;
+        if(t.getSaeschere().isDefined()) {
+          count++;
+          sum += t.getStunden();
+        }
       }
 
 
@@ -75,8 +81,9 @@ public class Bauernhof{
   public double getHoursDiesel(){
     double sum =0;
     int count=0;
-    for(Traktor t: traktoren){
-      if(t instanceof BiogasTraktor) {
+    for(Object o: traktoren){
+      if(o instanceof BiogasTraktor) {
+        Traktor t=(Traktor) o;
         count++;
         sum += t.getStunden();
       }
@@ -89,8 +96,9 @@ public class Bauernhof{
   public double getHoursBiogas(){
     double sum =0;
     int count=0;
-    for(Traktor t: traktoren){
-      if(t instanceof DieselTraktor) {
+    for(Object o: traktoren){
+      if(o instanceof DieselTraktor) {
+        Traktor t=(Traktor) o;
         count++;
         sum += t.getStunden();
       }
@@ -100,6 +108,113 @@ public class Bauernhof{
     return sum/count;
   }
 
+  public double getDieselDrill(){
+    double sum =0;
+    int count=0;
+    for(Object o: traktoren){
+
+      if(o instanceof DieselTraktor) {
+        Traktor t=(Traktor) o;
+        if(t.getSaeschere().isDefined()) {
+          count++;
+          sum += t.getVerbrauch();
+        }
+      }
+       
+
+    }
+    return sum/count;
+  }
+
+
+  public double getDieselSow(){
+    double sum =0;
+    int count=0;
+    for(Object o: traktoren){
+
+      if(o instanceof DieselTraktor) {
+        Traktor t=(Traktor) o;
+        if(t.getBehaelter().isDefined()) {
+          count++;
+          sum += t.getVerbrauch();
+        }
+      }
+       
+
+    }
+    return sum/count;
+  }
+
+   public double getDiesel(){
+    double sum =0;
+    int count=0;
+    for(Object o: traktoren){
+
+      if(o instanceof DieselTraktor) {
+        Traktor t=(Traktor) o;
+        count++;
+        sum += t.getVerbrauch();
+        
+      }
+       
+
+    }
+    return sum/count;
+  }
+
+  public double getGasDrill(){
+    double sum =0;
+    int count=0;
+    for(Object o: traktoren){
+
+      if(o instanceof BiogasTraktor) {
+        Traktor t=(Traktor) o;
+        if(t.getSaeschere().isDefined()) {
+          count++;
+          sum += t.getVerbrauch();
+        }
+      }
+       
+
+    }
+    return sum/count;
+  }
+
+
+  public double getGasSow(){
+    double sum =0;
+    int count=0;
+    for(Object o: traktoren){
+
+      if(o instanceof BiogasTraktor) {
+        Traktor t=(Traktor) o;
+        if(t.getBehaelter().isDefined()) {
+          count++;
+          sum += t.getVerbrauch();
+        }
+      }
+       
+
+    }
+    return sum/count;
+  }
+
+   public double getGas(){
+    double sum =0;
+    int count=0;
+    for(Object o: traktoren){
+
+      if(o instanceof BiogasTraktor) {
+        Traktor t=(Traktor) o;
+        count++;
+        sum += t.getVerbrauch();
+        
+      }
+       
+
+    }
+    return sum/count;
+  }
 
 
   // TODO stat-werte berechnen
