@@ -221,7 +221,7 @@ public class Bauernhof{
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t.getSaeschere().isDefined()){
-        temp=(int) t.getSaeschere().get();
+        temp=t.getSaeschere().get().intValue();
         if (temp>max)
           max=temp;
       }
@@ -237,7 +237,7 @@ public class Bauernhof{
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t.getSaeschere().isDefined()){
-        temp=(int) t.getSaeschere().get();
+        temp=t.getSaeschere().get().intValue();
         if (temp<min)
           min=temp;
       }
@@ -254,7 +254,7 @@ public class Bauernhof{
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
         if(t.getSaeschere().isDefined()){
-          temp=(int) t.getSaeschere().get();
+          temp=t.getSaeschere().get().intValue();
           if (temp>max)
             max=temp;
         }
@@ -271,7 +271,7 @@ public class Bauernhof{
       Traktor t = getTraktorForID(id);
       if(t instanceof DieselTraktor){
         if(t.getSaeschere().isDefined()){
-          temp=(int) t.getSaeschere().get();
+          temp=t.getSaeschere().get().intValue();
           if (temp>max)
             max=temp;
         }
@@ -288,7 +288,7 @@ public class Bauernhof{
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
         if(t.getSaeschere().isDefined()){
-          temp=(int) t.getSaeschere().get();
+          temp=t.getSaeschere().get().intValue();
           if (temp<min)
             min=temp;
         }
@@ -306,7 +306,7 @@ public class Bauernhof{
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
         if(t.getSaeschere().isDefined()){
-          temp=(int) t.getSaeschere().get();
+          temp=t.getSaeschere().get().intValue();
           if (temp<min)
             min=temp;
         }
@@ -325,7 +325,7 @@ public class Bauernhof{
       Traktor t = getTraktorForID(id);
       if(t instanceof DieselTraktor){
         if(t.getBehaelter().isDefined()){
-          sum+=(int) t.getBehaelter().get();
+          sum+= t.getBehaelter().get().intValue();
           count++;
         }
       }
@@ -343,7 +343,7 @@ public class Bauernhof{
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
         if(t.getBehaelter().isDefined()){
-          sum+=(int) t.getBehaelter().get();
+          sum+= t.getBehaelter().get().intValue();
           count++;
         }
       }
@@ -360,7 +360,7 @@ public class Bauernhof{
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t.getBehaelter().isDefined()){
-        sum+=(int) t.getBehaelter().get();
+        sum+= t.getBehaelter().get().intValue();
         count++;
       }
       
