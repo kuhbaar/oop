@@ -11,6 +11,7 @@ public class Bauernhof{
     this.traktoren = new MyMap();
   }
 
+  @AuthorMethod(author="Julian Schrittwieser")
   public String getName() {
     return this.name;
   }
@@ -23,14 +24,17 @@ public class Bauernhof{
     traktoren.remove(id);
   }
 
+  @AuthorMethod(author="Julian Schrittwieser")
   public void changeTraktor(String id, Maschine m){
-    getTraktor(id).changeEinsatzart(m);
+    getTraktorForID(id).changeEinsatzart(m);
   }
 
-  public Traktor getTraktor(String id) {
-    return getTraktorForID(id);
+  @AuthorMethod(author="Julian Schrittwieser")
+  public void incrStunden(String id) {
+    getTraktorForID(id).incrStunden();
   }
 
+  @AuthorMethod(author="Julian Schrittwieser")
   private Traktor getTraktorForID(Object id) {
     Object t = traktoren.get(id);
     if(t instanceof Traktor)

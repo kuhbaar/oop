@@ -3,40 +3,51 @@ import java.lang.reflect.*;
 
 @AuthorClass(author="Jakub Zarzycki")
 public class Test{
+
+  private static MyMap hoefe = new MyMap();
+
+  @AuthorMethod(author="Julian Schrittwieser")
+  private static Bauernhof getHof(Object name) {
+    Object o = hoefe.get(name);
+    if(o instanceof Bauernhof) {
+      return (Bauernhof) o;
+    } else {
+       throw new RuntimeException("invalid state - this.hoefe should only "
+        + "contain values of type Bauernhof");
+    }
+  }
+
+  @AuthorMethod(author="Julian Schrittwieser")
+  private static void addHof(Bauernhof hof) {
+    hoefe.put(hof.getName(), hof);
+  }
+
   @AuthorMethod(author="Julian Schrittwieser")
   public static void main(String[] args){
-    Traktor t1 = new DieselTraktor("diesi");
-    Traktor t2 = new BiogasTraktor("biogasi");
+    addHof(new Bauernhof("ponyhof"));
+    addHof(new Bauernhof("pferdehof"));
+    addHof(new Bauernhof("schweinezucht"));
+    addHof(new Bauernhof("getreidefarm"));
 
-    MyMap hoefe = new MyMap();
-    hoefe.put("ponyhof", new Bauernhof("ponyhof"));
-    hoefe.put("pferdehof", new Bauernhof("pferdehof"));
-    hoefe.put("schweinezucht", new Bauernhof("schweinezucht"));
-    hoefe.put("getreidefarm", new Bauernhof("getreidefarm"));
+    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-1"));
+    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-2"));
+    getHof("getreidefarm").addTraktor(new DieselTraktor("diesel-1"));
 
-    ((Bauernhof) hoefe.get("getreidefarm")).addTraktor(new BiogasTraktor("gas-1"));
-    ((Bauernhof) hoefe.get("getreidefarm")).addTraktor(new BiogasTraktor("gas-2"));
-    ((Bauernhof) hoefe.get("getreidefarm")).addTraktor(new DieselTraktor("diesel-1"));
-
-    ((Bauernhof) hoefe.get("getreidefarm")).getTraktor("diesel-1").incrStunden();
-    ((Bauernhof) hoefe.get("getreidefarm")).changeTraktor("diesel-1",
-      new DuengerStreuer(23.3));
+    getHof("getreidefarm").incrStunden("diesel-1");
+    getHof("getreidefarm").changeTraktor("diesel-1", new DuengerStreuer(23.3));
 
 
-    ((Bauernhof) hoefe.get("pferdehof")).addTraktor(new BiogasTraktor("gas-1"));
-    ((Bauernhof) hoefe.get("pferdehof")).addTraktor(new DieselTraktor("diesel-1"));
+    getHof("pferdehof").addTraktor(new BiogasTraktor("gas-1"));
+    getHof("pferdehof").addTraktor(new DieselTraktor("diesel-1"));
 
     for(Object key : hoefe) {
-      Object o = hoefe.get(key);
-      if(o instanceof Bauernhof) {
-        Bauernhof b = (Bauernhof) o;
-        System.out.println("==== " + b.getName());
-        System.out.println("-- Durschnittliche Betriebsstunden");
-        System.out.println("   gesamt:  " + b.getHoursComplete());
-        System.out.println("   saeen:   " + b.getHoursSow());
-        System.out.println("   duengen: " + b.getHoursDrill());
-        System.out.println();
-      }
+      Bauernhof b = getHof(key);
+      System.out.println("==== " + b.getName());
+      System.out.println("-- Durschnittliche Betriebsstunden");
+      System.out.println("   gesamt:  " + b.getHoursComplete());
+      System.out.println("   saeen:   " + b.getHoursSow());
+      System.out.println("   duengen: " + b.getHoursDrill());
+      System.out.println();
     }
 
     printClassInfo(AuthorClass.class);
