@@ -1,5 +1,6 @@
 import java.util.NoSuchElementException;
 
+@AuthorClass(author="Julian Schrittwieser")
 public class Some implements MaybeNumber {
   private final Number n;
 

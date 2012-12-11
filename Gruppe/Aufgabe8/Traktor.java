@@ -12,24 +12,24 @@ public abstract class Traktor {
     this.stunden = 0;
   }
 
-  @AuthorMethod(author="Kuba")
+  @AuthorMethod(author="Julian Schrittwieser")
+  public String getID() {
+    return this.id;
+  }
+
   public int getStunden(){ return this.stunden; }
 
-  @AuthorMethod(author="Kuba")
-  public MaybeNumber getSaeschere(){
+  public MaybeNumber getSaeschere() {
     return m.getSaeschere();
   }
 
-  @AuthorMethod(author="Julian")
+  @AuthorMethod(author="Julian Schrittwieser")
   public MaybeNumber getBehaelter() {
     return m.getBehaelter();
   }
 
-  @AuthorMethod(author="Kuba")
   public void incrStunden(){ this.stunden++; }
 
-
-  @AuthorMethod(author="Kuba")
   public void changeEinsatzart(Maschine m){
     this.m = m;
   }
