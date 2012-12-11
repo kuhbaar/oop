@@ -106,7 +106,7 @@ public class MyMap implements Iterable {
   public boolean contains(String key) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
-      if(iter.next() == key)
+      if(iter.next().equals(key))
         return true;
     return false;
   }
@@ -114,7 +114,7 @@ public class MyMap implements Iterable {
   public void put(String key, Object value) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext()) {
-      if(iter.next() == key) {
+      if(iter.next().equals(key)) {
         /* already have the key, change the value */
         iter.set(value);
         return;
@@ -136,18 +136,18 @@ public class MyMap implements Iterable {
     size += 1;
   }
 
-  public Object get(String key) {
+  public Object get(Object key) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
-      if(iter.next() == key)
+      if(iter.next().equals(key))
         return iter.value();
     return null;
   }
 
-  public void remove(String key) {
+  public void remove(Object key) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
-      if(iter.next() == key)
+      if(iter.next().equals(key))
         iter.remove();
   }
 
