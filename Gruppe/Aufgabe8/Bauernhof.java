@@ -11,6 +11,10 @@ public class Bauernhof{
     this.traktoren = new MyMap();
   }
 
+  public String getName() {
+    return this.name;
+  }
+
   public void addTraktor(Traktor t){
     traktoren.put(t.getID(), t);
   }
@@ -20,21 +24,19 @@ public class Bauernhof{
   }
 
   public void changeTraktor(String id, Maschine m){
-    Object o = traktoren.get(id);
-    if(o instanceof Traktor) {
-      Traktor t = (Traktor) o;
-      t.changeEinsatzart(m);
-    } else {
-      throw new RuntimeException("can never happen");
-    }
+    getTraktor(id).changeEinsatzart(m);
+  }
+
+  public Traktor getTraktor(String id) {
+    return getTraktorForID(id);
   }
 
   private Traktor getTraktorForID(Object id) {
     Object t = traktoren.get(id);
     if(t instanceof Traktor)
       return (Traktor) t;
-    else 
-      throw new RuntimeException("invalid state - this.traktoren should only " 
+    else
+      throw new RuntimeException("invalid state - this.traktoren should only "
         + "contain values of type Traktor");
   }
 
@@ -67,7 +69,7 @@ public class Bauernhof{
   public double getHoursDrill(){
     double sum =0;
     int count=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t.getSaeschere().isDefined()) {
@@ -89,7 +91,7 @@ public class Bauernhof{
         count++;
         sum += t.getStunden();
       }
-       
+
 
     }
     return sum/count;
@@ -104,7 +106,7 @@ public class Bauernhof{
         count++;
         sum += t.getStunden();
       }
-       
+
 
     }
     return sum/count;
@@ -113,7 +115,7 @@ public class Bauernhof{
   public double getDieselDrill(){
     double sum =0;
     int count=0;
-   
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof DieselTraktor) {
@@ -122,7 +124,7 @@ public class Bauernhof{
           sum += ((DieselTraktor) t).getVerbrauch();
         }
       }
-       
+
     }
     return sum/count;
   }
@@ -147,7 +149,7 @@ public class Bauernhof{
    public double getDiesel(){
     double sum =0;
     int count=0;
-   
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof DieselTraktor) {
@@ -189,7 +191,7 @@ public class Bauernhof{
           sum += ((BiogasTraktor) t).getVerbrauch();
         }
       }
-       
+
 
     }
     return sum/count;
@@ -205,9 +207,9 @@ public class Bauernhof{
       if(t instanceof BiogasTraktor) {
         count++;
         sum += ((BiogasTraktor) t).getVerbrauch();
-        
+
       }
-       
+
 
     }
     return sum/count;
@@ -217,7 +219,7 @@ public class Bauernhof{
   public int getMaxSaeschere(){
     int max=0;
     int temp=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t.getSaeschere().isDefined()){
@@ -233,7 +235,7 @@ public class Bauernhof{
   public int getMinSaeschere(){
     int min=Integer.MAX_VALUE;;
     int temp=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t.getSaeschere().isDefined()){
@@ -249,7 +251,7 @@ public class Bauernhof{
   public int getMaxSaeschereGas(){
     int max=0;
     int temp=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
@@ -266,7 +268,7 @@ public class Bauernhof{
   public int getMaxSaeschereDiesel(){
     int max=0;
     int temp=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof DieselTraktor){
@@ -283,7 +285,7 @@ public class Bauernhof{
   public int getMinSaeschereGas(){
     int min=Integer.MAX_VALUE;
     int temp=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
@@ -301,7 +303,7 @@ public class Bauernhof{
   public int getMinSaeschereDiesel(){
     int min=Integer.MAX_VALUE;
     int temp=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
@@ -320,7 +322,7 @@ public class Bauernhof{
   public double getCapacityDiesel(){
     double sum=0;
     int count=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof DieselTraktor){
@@ -338,7 +340,7 @@ public class Bauernhof{
   public double getCapacityGas(){
     double sum=0;
     int count=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
@@ -356,14 +358,14 @@ public class Bauernhof{
   public double getCapacity(){
     double sum=0;
     int count=0;
-  
+
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t.getBehaelter().isDefined()){
         sum+= t.getBehaelter().get().intValue();
         count++;
       }
-      
+
     }
 
     return sum/count;

@@ -8,6 +8,37 @@ public class Test{
     Traktor t1 = new DieselTraktor("diesi");
     Traktor t2 = new BiogasTraktor("biogasi");
 
+    MyMap hoefe = new MyMap();
+    hoefe.put("ponyhof", new Bauernhof("ponyhof"));
+    hoefe.put("pferdehof", new Bauernhof("pferdehof"));
+    hoefe.put("schweinezucht", new Bauernhof("schweinezucht"));
+    hoefe.put("getreidefarm", new Bauernhof("getreidefarm"));
+
+    ((Bauernhof) hoefe.get("getreidefarm")).addTraktor(new BiogasTraktor("gas-1"));
+    ((Bauernhof) hoefe.get("getreidefarm")).addTraktor(new BiogasTraktor("gas-2"));
+    ((Bauernhof) hoefe.get("getreidefarm")).addTraktor(new DieselTraktor("diesel-1"));
+
+    ((Bauernhof) hoefe.get("getreidefarm")).getTraktor("diesel-1").incrStunden();
+    ((Bauernhof) hoefe.get("getreidefarm")).changeTraktor("diesel-1",
+      new DuengerStreuer(23.3));
+
+
+    ((Bauernhof) hoefe.get("pferdehof")).addTraktor(new BiogasTraktor("gas-1"));
+    ((Bauernhof) hoefe.get("pferdehof")).addTraktor(new DieselTraktor("diesel-1"));
+
+    for(Object key : hoefe) {
+      Object o = hoefe.get(key);
+      if(o instanceof Bauernhof) {
+        Bauernhof b = (Bauernhof) o;
+        System.out.println("==== " + b.getName());
+        System.out.println("-- Durschnittliche Betriebsstunden");
+        System.out.println("   gesamt:  " + b.getHoursComplete());
+        System.out.println("   saeen:   " + b.getHoursSow());
+        System.out.println("   duengen: " + b.getHoursDrill());
+        System.out.println();
+      }
+    }
+
     printClassInfo(AuthorClass.class);
     printClassInfo(AuthorMethod.class);
 

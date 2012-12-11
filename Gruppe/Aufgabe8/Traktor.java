@@ -10,6 +10,7 @@ public abstract class Traktor {
   public Traktor(String name){
     this.id = name;
     this.stunden = 0;
+    this.m = new Maschine();
   }
 
   @AuthorMethod(author="Julian Schrittwieser")
