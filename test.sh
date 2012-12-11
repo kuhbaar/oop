@@ -4,7 +4,7 @@
 cd Gruppe/Aufgabe8
 
 # all required files are built recursively
-javac -Xlint:all -Werror *.java
+javac -Xlint:all *.java # -Werror 
 
 if [ $? -eq 0 ]; then
   java -enableassertions Test
