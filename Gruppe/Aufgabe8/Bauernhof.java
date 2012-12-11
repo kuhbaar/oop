@@ -37,28 +37,28 @@ public class Bauernhof{
     double sum=0;
     int count = 0;
     for(Traktor t: traktoren){
-      if(t.getMaschineVar() instanceof Double) {
+      if(t.getBehaelter().isDefined()) {
         count++;
         sum += t.getStunden();
       }
 
 
     }
-    retun sum/count;
+    return sum/count;
   }
 
   public double getHoursDrill(){
     double sum =0;
     int count=0;
     for(Traktor t: traktoren){
-      if(t.getMaschineVar() instanceof Integer) {
+      if(t.getSaeSchere().isDefined()) {
         count++;
         sum += t.getStunden();
       }
 
 
     }
-    retun sum/count;
+    return sum/count;
   }
 
   public double getHoursDiesel(){
@@ -72,7 +72,7 @@ public class Bauernhof{
        
 
     }
-    retun sum/count;
+    return sum/count;
   }
 
   public double getHoursBiogas(){
@@ -86,7 +86,7 @@ public class Bauernhof{
        
 
     }
-    retun sum/count;
+    return sum/count;
   }
 
 
