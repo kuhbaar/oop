@@ -38,7 +38,7 @@ public class Bauernhof{
         + "contain values of type Traktor");
   }
 
-
+@AuthorMethod(author="Lukas Macsek")
   public double getHoursComplete(){
     double sum=0;
 
@@ -49,7 +49,7 @@ public class Bauernhof{
 
     return sum/traktoren.size();
   }
- 
+ @AuthorMethod(author="Lukas Macsek")
   public double getHoursSow(){
     double sum=0;
     int count = 0;
@@ -63,7 +63,7 @@ public class Bauernhof{
     }
     return sum/count;
   }
-
+@AuthorMethod(author="Lukas Macsek")
   public double getHoursDrill(){
     double sum =0;
     int count=0;
@@ -78,7 +78,7 @@ public class Bauernhof{
     return sum/count;
   }
 
-
+@AuthorMethod(author="Lukas Macsek")
   public double getHoursDiesel(){
     double sum =0;
     int count=0;
@@ -94,7 +94,7 @@ public class Bauernhof{
     }
     return sum/count;
   }
-
+@AuthorMethod(author="Lukas Macsek")
   public double getHoursBiogas(){
     double sum =0;
     int count=0;
@@ -109,7 +109,7 @@ public class Bauernhof{
     }
     return sum/count;
   }
-
+@AuthorMethod(author="Lukas Macsek")
   public double getDieselDrill(){
     double sum =0;
     int count=0;
@@ -127,7 +127,7 @@ public class Bauernhof{
     return sum/count;
   }
 
-
+@AuthorMethod(author="Lukas Macsek")
   public double getDieselSow(){
     double sum =0;
     int count=0;
@@ -143,7 +143,7 @@ public class Bauernhof{
     }
     return sum/count;
   }
-
+@AuthorMethod(author="Lukas Macsek")
    public double getDiesel(){
     double sum =0;
     int count=0;
@@ -157,7 +157,7 @@ public class Bauernhof{
     }
     return sum/count;
   }
-
+@AuthorMethod(author="Lukas Macsek")
   public double getGasDrill(){
     double sum =0;
     int count=0;
@@ -175,7 +175,7 @@ public class Bauernhof{
     return sum/count;
   }
 
-
+@AuthorMethod(author="Lukas Macsek")
   public double getGasSow(){
     double sum =0;
     int count=0;
@@ -194,7 +194,7 @@ public class Bauernhof{
     }
     return sum/count;
   }
-
+@AuthorMethod(author="Lukas Macsek")
    public double getGas(){
     double sum =0;
     int count=0;
@@ -213,7 +213,7 @@ public class Bauernhof{
     return sum/count;
   }
 
-
+@AuthorMethod(author="Lukas Macsek")
   public int getMaxSaeschere(){
     int max=0;
     int temp=0;
@@ -229,7 +229,7 @@ public class Bauernhof{
     return max;
   }
 
-
+@AuthorMethod(author="Lukas Macsek")
   public int getMinSaeschere(){
     int min=Integer.MAX_VALUE;;
     int temp=0;
@@ -245,7 +245,7 @@ public class Bauernhof{
     return min;
   }
 
-
+@AuthorMethod(author="Lukas Macsek")
   public int getMaxSaeschereGas(){
     int max=0;
     int temp=0;
@@ -262,6 +262,7 @@ public class Bauernhof{
     }
     return max;
   }
+@AuthorMethod(author="Lukas Macsek")
   public int getMaxSaeschereDiesel(){
     int max=0;
     int temp=0;
@@ -278,7 +279,7 @@ public class Bauernhof{
     }
     return max;
   }
-
+@AuthorMethod(author="Lukas Macsek")
   public int getMinSaeschereGas(){
     int min=Integer.MAX_VALUE;
     int temp=0;
@@ -296,7 +297,7 @@ public class Bauernhof{
 
     return min;
   }
-
+@AuthorMethod(author="Lukas Macsek")
   public int getMinSaeschereDiesel(){
     int min=Integer.MAX_VALUE;
     int temp=0;
@@ -313,6 +314,59 @@ public class Bauernhof{
     }
 
     return min;
+  }
+
+  @AuthorMethod(author="Lukas Macsek")
+  public double getCapacityDiesel(){
+    double sum=0;
+    int count=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t instanceof DieselTraktor){
+        if(t.getBehaelter().isDefined()){
+          sum+=(int) t.getBehaelter().get();
+          count++;
+        }
+      }
+    }
+
+    return sum/count;
+  }
+
+   @AuthorMethod(author="Lukas Macsek")
+  public double getCapacityGas(){
+    double sum=0;
+    int count=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t instanceof BiogasTraktor){
+        if(t.getBehaelter().isDefined()){
+          sum+=(int) t.getBehaelter().get();
+          count++;
+        }
+      }
+    }
+
+    return sum/count;
+  }
+
+   @AuthorMethod(author="Lukas Macsek")
+  public double getCapacity(){
+    double sum=0;
+    int count=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t.getBehaelter().isDefined()){
+        sum+=(int) t.getBehaelter().get();
+        count++;
+      }
+      
+    }
+
+    return sum/count;
   }
   // TODO stat-werte berechnen
 }
