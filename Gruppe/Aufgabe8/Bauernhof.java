@@ -214,5 +214,105 @@ public class Bauernhof{
   }
 
 
+  public int getMaxSaeschere(){
+    int max=0;
+    int temp=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t.getSaeschere().isDefined()){
+        temp=(int) t.getSaeschere().get();
+        if (temp>max)
+          max=temp;
+      }
+    }
+    return max;
+  }
+
+
+  public int getMinSaeschere(){
+    int min=Integer.MAX_VALUE;;
+    int temp=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t.getSaeschere().isDefined()){
+        temp=(int) t.getSaeschere().get();
+        if (temp<min)
+          min=temp;
+      }
+    }
+    return min;
+  }
+
+
+  public int getMaxSaeschereGas(){
+    int max=0;
+    int temp=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t instanceof BiogasTraktor){
+        if(t.getSaeschere().isDefined()){
+          temp=(int) t.getSaeschere().get();
+          if (temp>max)
+            max=temp;
+        }
+      }
+    }
+    return max;
+  }
+  public int getMaxSaeschereDiesel(){
+    int max=0;
+    int temp=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t instanceof DieselTraktor){
+        if(t.getSaeschere().isDefined()){
+          temp=(int) t.getSaeschere().get();
+          if (temp>max)
+            max=temp;
+        }
+      }
+    }
+    return max;
+  }
+
+  public int getMinSaeschereGas(){
+    int min=Integer.MAX_VALUE;
+    int temp=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t instanceof BiogasTraktor){
+        if(t.getSaeschere().isDefined()){
+          temp=(int) t.getSaeschere().get();
+          if (temp<min)
+            min=temp;
+        }
+      }
+    }
+
+    return min;
+  }
+
+  public int getMinSaeschereDiesel(){
+    int min=Integer.MAX_VALUE;
+    int temp=0;
+  
+    for(Object id : traktoren) {
+      Traktor t = getTraktorForID(id);
+      if(t instanceof BiogasTraktor){
+        if(t.getSaeschere().isDefined()){
+          temp=(int) t.getSaeschere().get();
+          if (temp<min)
+            min=temp;
+        }
+      }
+    }
+
+    return min;
+  }
   // TODO stat-werte berechnen
 }
