@@ -3,6 +3,8 @@ import java.util.Iterator;
 
 @AuthorClass(author="Julian Schrittwieser")
 public class MyMap implements Iterable {
+
+  /* private wrapper class to hold entries into the map */
   private class Elem {
     private final String key;
     private final Object value;
@@ -10,6 +12,7 @@ public class MyMap implements Iterable {
     private Elem prev = null;
     private Elem next = null;
 
+    /* create a new map entry with key and value */
     private Elem(String key, Object value) {
       this.value = value;
       this.key = key;
@@ -17,24 +20,30 @@ public class MyMap implements Iterable {
 
   }
 
+  /* iterator over the map, next() returns the keys of the map */
   private class MyIterator implements Iterator {
     private Elem cur;
     private int curIdx = -1;
 
+    /* create a new iterator, starting at some element (usually the first) */
     private MyIterator(Elem start) {
       Elem temp = new Elem(null, null);
       temp.next = start;
       this.cur = temp;
     }
 
+    /* true if there are elements left to iterate over */
     public boolean hasNext() {
       return cur.next != null;
     }
 
+    /* true if there are elements previous to the current one, only used internally */
     private boolean hasPrevious() {
       return cur.prev != null;
     }
 
+    /* return the next element and advance the iterator. throws NoSuchElementException
+       if there are no more elements */
     public String next() {
       if(!hasNext())
         throw new NoSuchElementException();
@@ -44,14 +53,13 @@ public class MyMap implements Iterable {
       return cur.key;
     }
 
+    /* private method to get the value for the current element */
     private Object value() {
       return cur.value;
     }
 
-    private int nextIndex() {
-      return curIdx + 1;
-    }
-
+     /* removes the current element, or throws an exception if the iterator
+        hasn't been advanced yet */
     public void remove() {
       if(curIdx < 0)
         throw new IllegalStateException();
@@ -78,6 +86,7 @@ public class MyMap implements Iterable {
       size -= 1;
     }
 
+    /* change the value of the current element */
     private void set(Object value) {
       Elem n = new Elem(cur.key, value);
       n.next = cur.next;
@@ -95,14 +104,17 @@ public class MyMap implements Iterable {
   private Elem last = null;
   private int size = 0;
 
+  /* returns the size of the map = number of elements */
   public int size() {
     return size;
   }
 
+  /* returns an iterator over all the keys, starting with the first element */
   public Iterator iterator() {
     return new MyIterator(first);
   }
 
+  /* true if the map contains a given key, false otherwise */
   public boolean contains(String key) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
@@ -111,6 +123,8 @@ public class MyMap implements Iterable {
     return false;
   }
 
+  /* set the value for the given key to value. Overwrites the old value if the
+     key already exists */
   public void put(String key, Object value) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext()) {
@@ -136,6 +150,7 @@ public class MyMap implements Iterable {
     size += 1;
   }
 
+  /* get the value for the key, null if the key isn't in the map */
   public Object get(Object key) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
@@ -144,6 +159,7 @@ public class MyMap implements Iterable {
     return null;
   }
 
+  /* remove the entry for key from the map. If it isn't in the map, nothing happens */
   public void remove(Object key) {
     MyIterator iter = new MyIterator(first);
     while(iter.hasNext())
