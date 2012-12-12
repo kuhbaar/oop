@@ -62,7 +62,7 @@ public class Bauernhof{
       Traktor t = getTraktorForID(id);
       sum +=t.getStunden();
     }
-
+    if(traktoren.size()==0) return 0;
     return sum/traktoren.size();
   }
 
@@ -79,6 +79,7 @@ public class Bauernhof{
         sum += t.getStunden();
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -95,6 +96,7 @@ public class Bauernhof{
         sum += t.getStunden();
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -111,6 +113,7 @@ public class Bauernhof{
         sum += t.getStunden();
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -126,6 +129,7 @@ public class Bauernhof{
         sum += t.getStunden();
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -144,6 +148,7 @@ public class Bauernhof{
         }
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -162,6 +167,7 @@ public class Bauernhof{
         }
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -178,6 +184,7 @@ public class Bauernhof{
         sum += ((DieselTraktor) t).getVerbrauch();
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -197,6 +204,7 @@ public class Bauernhof{
         }
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -216,6 +224,7 @@ public class Bauernhof{
         }
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -233,6 +242,7 @@ public class Bauernhof{
         sum += ((BiogasTraktor) t).getVerbrauch();
       }
     }
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -363,7 +373,7 @@ public class Bauernhof{
         }
       }
     }
-
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -382,7 +392,7 @@ public class Bauernhof{
         }
       }
     }
-
+    if(count==0) return 0;
     return sum/count;
   }
 
@@ -399,7 +409,7 @@ public class Bauernhof{
         count++;
       }
     }
-
+    if(count==0) return 0;
     return sum/count;
   }
 }
