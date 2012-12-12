@@ -33,7 +33,7 @@ public class Test{
     getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-2", new DuengerStreuer(1.5)));
     getHof("getreidefarm").addTraktor(new DieselTraktor("diesel-1", new DrillMaschine(2)));
 
-    getHof("getreidefarm").incrStunden("diesel-1");
+    getHof("getreidefarm").changeStunden("diesel-1",5);
     getHof("getreidefarm").changeTraktor("diesel-1", new DuengerStreuer(23.3));
     getHof("getreidefarm").delTraktor("gas-1");
 

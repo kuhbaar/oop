@@ -39,8 +39,8 @@ public abstract class Traktor {
     return m.getBehaelter();
   }
 
-  /* increments the stunden +1 for each call */
-  public void incrStunden(){ this.stunden++; }
+  /* adds n to stunden */
+  public void changeStunden(int n){ this.stunden += n; }
 
   /* changes the Maschine of the Traktor to m */
   public void changeEinsatzart(Maschine m){

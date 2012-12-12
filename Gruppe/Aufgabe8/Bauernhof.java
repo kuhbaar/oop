@@ -40,9 +40,8 @@ public class Bauernhof{
   }
 
   /* increments stunden of the Traktor with given id */
-  @AuthorMethod(author="Julian Schrittwieser")
-  public void incrStunden(String id) {
-    getTraktorForID(id).incrStunden();
+  public void changeStunden(String id, int n) {
+    getTraktorForID(id).changeStunden(n);
   }
 
   /* returns the Traktor with given id from the traktoren Map,
