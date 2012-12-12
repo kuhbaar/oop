@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /* Bauernhof class with unique name and an amount of Traktors */
 @AuthorClass(author="Jakub Zarzycki")
@@ -39,9 +40,21 @@ public class Bauernhof{
     getTraktorForID(id).changeEinsatzart(m);
   }
 
-  /* increments stunden of the Traktor with given id */
+  /* add n to the stunden of the Traktor with given id */
   public void changeStunden(String id, int n) {
     getTraktorForID(id).changeStunden(n);
+  }
+
+  /* add n to the Verbrauch of Traktor with id n */
+  public void changeVerbrauch(String id, Number n) {
+    Traktor t = getTraktorForID(id);
+    if(t instanceof DieselTraktor) 
+      ((DieselTraktor) t).changeVerbrauch(n.intValue());
+    else if(t instanceof BiogasTraktor) 
+      ((BiogasTraktor) t).changeVerbrauch(n.doubleValue());
+    else 
+      throw new RuntimeException("invalid state - this.traktoren should only "
+        + "contain values of DieselTraktor or BiogasTraktor");
   }
 
   /* returns the Traktor with given id from the traktoren Map,
@@ -49,6 +62,9 @@ public class Bauernhof{
   @AuthorMethod(author="Julian Schrittwieser")
   private Traktor getTraktorForID(Object id) {
     Object t = traktoren.get(id);
+    if(t == null)
+      throw new NoSuchElementException("traktor with id '" + id + "' doesn't exist");
+
     if(t instanceof Traktor)
       return (Traktor) t;
     else
@@ -330,12 +346,10 @@ public class Bauernhof{
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
       if(t instanceof BiogasTraktor){
-        if(t.getSaeschere().isDefined()){
-          temp=t.getSaeschere().get().intValue();
-          if (temp<min)
-            min=temp;
-        }
+        temp = t.getSaeschere().getOrElse(min).intValue();
+        min = temp < min ? temp : min;
       }
+      
     }
 
     return min == Integer.MAX_VALUE ? 0 : min;
@@ -349,12 +363,9 @@ public class Bauernhof{
 
     for(Object id : traktoren) {
       Traktor t = getTraktorForID(id);
-      if(t instanceof BiogasTraktor){
-        if(t.getSaeschere().isDefined()){
-          temp=t.getSaeschere().get().intValue();
-          if (temp<min)
-            min=temp;
-        }
+      if(t instanceof DieselTraktor){
+        temp = t.getSaeschere().getOrElse(min).intValue();
+        min = temp < min ? temp : min;
       }
     }
 

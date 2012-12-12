@@ -29,16 +29,35 @@ public class Test{
     addHof(new Bauernhof("schweinezucht"));
     addHof(new Bauernhof("getreidefarm"));
 
-    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-1", new DrillMaschine(1)));
-    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-2", new DuengerStreuer(1.5)));
+    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-1", new DuengerStreuer(1.5)));
+    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-2", new DrillMaschine(1)));
     getHof("getreidefarm").addTraktor(new DieselTraktor("diesel-1", new DrillMaschine(2)));
-
-    getHof("getreidefarm").changeStunden("diesel-1",5);
+    getHof("getreidefarm").changeStunden("diesel-1", 5);
     getHof("getreidefarm").changeTraktor("diesel-1", new DuengerStreuer(23.3));
+    getHof("getreidefarm").changeVerbrauch("diesel-1", 15);
     getHof("getreidefarm").delTraktor("gas-1");
+    getHof("getreidefarm").changeStunden("gas-2", 10);
+    getHof("getreidefarm").changeVerbrauch("gas-2", 10.0);
 
     getHof("pferdehof").addTraktor(new BiogasTraktor("gas-1", new DrillMaschine(3)));
+    getHof("pferdehof").addTraktor(new BiogasTraktor("gas-2", new DuengerStreuer(5.3)));
     getHof("pferdehof").addTraktor(new DieselTraktor("diesel-1", new DuengerStreuer(2.3)));
+    getHof("pferdehof").changeVerbrauch("diesel-1", 7);
+    getHof("pferdehof").changeStunden("diesel-1", 12);
+    getHof("pferdehof").changeVerbrauch("diesel-1", 23);
+    getHof("pferdehof").changeVerbrauch("gas-1", 43.123);
+    getHof("pferdehof").changeVerbrauch("gas-2", 87.23);
+
+    getHof("ponyhof").addTraktor(new BiogasTraktor("gas-1", new DuengerStreuer(5.2)));
+    getHof("ponyhof").addTraktor(new DieselTraktor("diesel-1", new DrillMaschine(9)));
+    getHof("ponyhof").addTraktor(new DieselTraktor("diesel-2", new DuengerStreuer(7.1)));
+    getHof("ponyhof").changeVerbrauch("diesel-1", 2);
+    getHof("ponyhof").changeStunden("diesel-1", 7);
+    getHof("ponyhof").changeVerbrauch("diesel-1", 3);
+    getHof("ponyhof").changeVerbrauch("gas-1", 26.93);
+    getHof("ponyhof").changeStunden("gas-1", 6);
+    getHof("ponyhof").changeVerbrauch("diesel-2", 9);
+    getHof("ponyhof").changeStunden("diesel-2", 10);
 
 
     for(Object key : hoefe) {
@@ -51,29 +70,29 @@ public class Test{
       }
 
       System.out.println("-- Durschnittliche Betriebsstunden");
-      System.out.println("   gesamt:  " + b.getHoursComplete());
+      System.out.println("   alle:    " + b.getHoursComplete());
       System.out.println("   saeen:   " + b.getHoursDuenger());
       System.out.println("   duengen: " + b.getHoursDrill());
       System.out.println("   diesel:  " + b.getHoursDiesel());
       System.out.println("   biogas:  " + b.getHoursBiogas());
       System.out.println("-- Durschnittlicher Dieselverbrauch");
-      System.out.println("   gesamt:  " + b.getDiesel());
+      System.out.println("   alle:    " + b.getDiesel());
       System.out.println("   saeen:   " + b.getDieselDrill());
       System.out.println("   duengen: " + b.getDieselDuenger());
       System.out.println("-- Durschnittlicher Gasverbrauch");
-      System.out.println("   gesamt:  " + b.getGas());
+      System.out.println("   alle:    " + b.getGas());
       System.out.println("   saeen:   " + b.getGasDrill());
       System.out.println("   duengen: " + b.getGasDuenger());
       System.out.println("-- minimale Saescharanzahl");
-      System.out.println("   gesamt:  " + b.getMinSaeschere());
+      System.out.println("   alle:    " + b.getMinSaeschere());
       System.out.println("   diesel:  " + b.getMinSaeschereDiesel());
       System.out.println("   biogas:  " + b.getMinSaeschereGas());
       System.out.println("-- maximale Saescharanzahl");
-      System.out.println("   gesamt:  " + b.getMaxSaeschere());
+      System.out.println("   alle:    " + b.getMaxSaeschere());
       System.out.println("   diesel:  " + b.getMaxSaeschereDiesel());
       System.out.println("   biogas:  " + b.getMaxSaeschereGas());
       System.out.println("-- durchschnittliche Duengerkapazitaet");
-      System.out.println("   gesamt:  " + b.getCapacity());
+      System.out.println("   alle:    " + b.getCapacity());
       System.out.println("   diesel:  " + b.getCapacityDiesel());
       System.out.println("   biogas:  " + b.getCapacityGas());
       System.out.println();
