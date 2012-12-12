@@ -53,6 +53,7 @@ public class Bauernhof{
         + "contain values of type Traktor");
   }
 
+  /* returns the average hours of all Traktors */
   @AuthorMethod(author="Lukas Macsek")
   public double getHoursComplete(){
     double sum=0;
@@ -65,8 +66,9 @@ public class Bauernhof{
     return sum/traktoren.size();
   }
 
+  /* returns the average hours of Traktors with DuengerStreuer */
   @AuthorMethod(author="Lukas Macsek")
-  public double getHoursSow(){
+  public double getHoursDuenger(){
     double sum=0;
     int count = 0;
 
@@ -80,6 +82,7 @@ public class Bauernhof{
     return sum/count;
   }
 
+  /* returns the average hours of Traktors with DrillMaschine */
   @AuthorMethod(author="Lukas Macsek")
   public double getHoursDrill(){
     double sum =0;
@@ -95,6 +98,7 @@ public class Bauernhof{
     return sum/count;
   }
 
+  /* returns the average hours of DieselTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public double getHoursDiesel(){
     double sum =0;
@@ -106,12 +110,11 @@ public class Bauernhof{
         count++;
         sum += t.getStunden();
       }
-
-
     }
     return sum/count;
   }
 
+  /* returns the average hours of BiogasTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public double getHoursBiogas(){
     double sum =0;
@@ -122,12 +125,11 @@ public class Bauernhof{
         count++;
         sum += t.getStunden();
       }
-
-
     }
     return sum/count;
   }
 
+  /* returns the average Verbrauch of all DieselTraktors with Drillmaschine */
   @AuthorMethod(author="Lukas Macsek")
   public double getDieselDrill(){
     double sum =0;
@@ -141,13 +143,13 @@ public class Bauernhof{
           sum += ((DieselTraktor) t).getVerbrauch();
         }
       }
-
     }
     return sum/count;
   }
 
+  /* returns the average Verbrauch of all DieselTraktors with DuengerStreuer */
   @AuthorMethod(author="Lukas Macsek")
-  public double getDieselSow(){
+  public double getDieselDuenger(){
     double sum =0;
     int count=0;
 
@@ -163,6 +165,7 @@ public class Bauernhof{
     return sum/count;
   }
 
+  /* returns the average Verbrauch of all DieselTraktors */
   @AuthorMethod(author="Lukas Macsek")
    public double getDiesel(){
     double sum =0;
@@ -178,6 +181,7 @@ public class Bauernhof{
     return sum/count;
   }
 
+  /* returns the average Verbrauch of all BiogasTraktors with Drillmaschine */
   @AuthorMethod(author="Lukas Macsek")
   public double getGasDrill(){
     double sum =0;
@@ -196,8 +200,9 @@ public class Bauernhof{
     return sum/count;
   }
 
+  /* returns the average Verbrauch of all BiogasTraktors with DuengerStreuer */
   @AuthorMethod(author="Lukas Macsek")
-  public double getGasSow(){
+  public double getGasDuenger(){
     double sum =0;
     int count=0;
 
@@ -210,12 +215,11 @@ public class Bauernhof{
           sum += ((BiogasTraktor) t).getVerbrauch();
         }
       }
-
-
     }
     return sum/count;
   }
 
+  /* returns the average Verbrauch of all BiogasTraktors */
   @AuthorMethod(author="Lukas Macsek")
    public double getGas(){
     double sum =0;
@@ -227,14 +231,12 @@ public class Bauernhof{
       if(t instanceof BiogasTraktor) {
         count++;
         sum += ((BiogasTraktor) t).getVerbrauch();
-
       }
-
-
     }
     return sum/count;
   }
 
+  /* returns the max amount of saeschere of all Traktors */
   @AuthorMethod(author="Lukas Macsek")
   public int getMaxSaeschere(){
     int max=0;
@@ -251,6 +253,7 @@ public class Bauernhof{
     return max;
   }
 
+  /* returns the min amount of saeschere of all Traktors */
   @AuthorMethod(author="Lukas Macsek")
   public int getMinSaeschere(){
     int min=Integer.MAX_VALUE;;
@@ -267,6 +270,7 @@ public class Bauernhof{
     return min;
   }
 
+  /* returns the max amount of saeschere of BiogasTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public int getMaxSaeschereGas(){
     int max=0;
@@ -285,6 +289,7 @@ public class Bauernhof{
     return max;
   }
   
+  /* returns the max amount of saeschere of DieselTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public int getMaxSaeschereDiesel(){
     int max=0;
@@ -303,6 +308,7 @@ public class Bauernhof{
     return max;
   }
   
+  /* returns the min amount of saeschere of BiogasTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public int getMinSaeschereGas(){
     int min=Integer.MAX_VALUE;
@@ -322,6 +328,7 @@ public class Bauernhof{
     return min;
   }
   
+  /* returns the min amount of saeschere of DieselTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public int getMinSaeschereDiesel(){
     int min=Integer.MAX_VALUE;
@@ -341,6 +348,7 @@ public class Bauernhof{
     return min;
   }
 
+  /* returns the average behaelter value of all DieselTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public double getCapacityDiesel(){
     double sum=0;
@@ -359,6 +367,7 @@ public class Bauernhof{
     return sum/count;
   }
 
+  /* returns the average behaelter value of all BiogasTraktors */
   @AuthorMethod(author="Lukas Macsek")
   public double getCapacityGas(){
     double sum=0;
@@ -377,6 +386,7 @@ public class Bauernhof{
     return sum/count;
   }
 
+  /* returns the average behaelter value of all Traktors */
   @AuthorMethod(author="Lukas Macsek")
   public double getCapacity(){
     double sum=0;
