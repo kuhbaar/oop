@@ -36,7 +36,6 @@ public class Bauernhof{
   }
 
   /* increments stunden of the Traktor with given id */
-  @AuthorMethod(author="Julian Schrittwieser")
   public void changeStunden(String id, int n) {
     getTraktorForID(id).changeStunden(n);
   }
