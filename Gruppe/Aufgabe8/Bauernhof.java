@@ -24,6 +24,10 @@ public class Bauernhof{
     traktoren.put(t.getID(), t);
   }
 
+  public int getNumTraktors() {
+    return traktoren.size();
+  }
+
   /* removes the Traktor with the given id from traktoren Map */
   public void delTraktor(String id){
     traktoren.remove(id);

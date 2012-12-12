@@ -44,6 +44,12 @@ public class Test{
     for(Object key : hoefe) {
       Bauernhof b = getHof(key);
       System.out.println("==== " + b.getName());
+
+      if(b.getNumTraktors() == 0) {
+        System.out.println("Dieser Bauernhof hat keine Traktoren\n");
+        continue;
+      }
+
       System.out.println("-- Durschnittliche Betriebsstunden");
       System.out.println("   gesamt:  " + b.getHoursComplete());
       System.out.println("   saeen:   " + b.getHoursDuenger());
