@@ -277,7 +277,7 @@ public class Bauernhof{
           min=temp;
       }
     }
-    return min;
+    return min == Integer.MAX_VALUE ? 0 : min;
   }
 
   /* returns the max amount of saeschere of BiogasTraktors */
@@ -335,7 +335,7 @@ public class Bauernhof{
       }
     }
 
-    return min;
+    return min == Integer.MAX_VALUE ? 0 : min;
   }
   
   /* returns the min amount of saeschere of DieselTraktors */
@@ -355,7 +355,7 @@ public class Bauernhof{
       }
     }
 
-    return min;
+    return min == Integer.MAX_VALUE ? 0 : min;
   }
 
   /* returns the average behaelter value of all DieselTraktors */
