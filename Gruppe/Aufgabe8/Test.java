@@ -35,17 +35,18 @@ public class Test{
 
     getHof("getreidefarm").incrStunden("diesel-1");
     getHof("getreidefarm").changeTraktor("diesel-1", new DuengerStreuer(23.3));
-
+    getHof("getreidefarm").delTraktor("gas-1");
 
     getHof("pferdehof").addTraktor(new BiogasTraktor("gas-1", new DrillMaschine(3)));
     getHof("pferdehof").addTraktor(new DieselTraktor("diesel-1", new DuengerStreuer(2.3)));
+
 
     for(Object key : hoefe) {
       Bauernhof b = getHof(key);
       System.out.println("==== " + b.getName());
       System.out.println("-- Durschnittliche Betriebsstunden");
       System.out.println("   gesamt:  " + b.getHoursComplete());
-      System.out.println("   saeen:   " + b.getHoursSow());
+      System.out.println("   saeen:   " + b.getHoursDuenger());
       System.out.println("   duengen: " + b.getHoursDrill());
       System.out.println();
     }
