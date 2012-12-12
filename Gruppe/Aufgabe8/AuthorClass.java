@@ -5,5 +5,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 public @interface AuthorClass{
+  /* defines the Author of the given Class*/
   String author() default "none";
 }

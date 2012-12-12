@@ -22,23 +22,23 @@ public class Test{
     hoefe.put(hof.getName(), hof);
   }
 
-  @AuthorMethod(author="Julian Schrittwieser")
+  @AuthorMethod(author="Julian Schrittwieser, Jakub Zarzycki")
   public static void main(String[] args){
     addHof(new Bauernhof("ponyhof"));
     addHof(new Bauernhof("pferdehof"));
     addHof(new Bauernhof("schweinezucht"));
     addHof(new Bauernhof("getreidefarm"));
 
-    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-1"));
-    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-2"));
-    getHof("getreidefarm").addTraktor(new DieselTraktor("diesel-1"));
+    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-1", new DrillMaschine(1)));
+    getHof("getreidefarm").addTraktor(new BiogasTraktor("gas-2", new DuengerStreuer(1.5)));
+    getHof("getreidefarm").addTraktor(new DieselTraktor("diesel-1", new DrillMaschine(2)));
 
     getHof("getreidefarm").incrStunden("diesel-1");
     getHof("getreidefarm").changeTraktor("diesel-1", new DuengerStreuer(23.3));
 
 
-    getHof("pferdehof").addTraktor(new BiogasTraktor("gas-1"));
-    getHof("pferdehof").addTraktor(new DieselTraktor("diesel-1"));
+    getHof("pferdehof").addTraktor(new BiogasTraktor("gas-1", new DrillMaschine(3)));
+    getHof("pferdehof").addTraktor(new DieselTraktor("diesel-1", new DuengerStreuer(2.3)));
 
     for(Object key : hoefe) {
       Bauernhof b = getHof(key);

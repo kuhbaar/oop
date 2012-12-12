@@ -1,18 +1,18 @@
 @AuthorClass(author="Jakub Zarzycki")
 public class DieselTraktor extends Traktor {
-  private int menge = 0;
+  private int verbrauch = 0;
 
-  public DieselTraktor(String name){
-    super(name);
+  public DieselTraktor(String name, Maschine m){
+    super(name, m);
   }
 
-  @AuthorMethod(author="Julian")
+  /* adds the menge to the verbrauch of this Traktor */
   public void changeVerbrauch(int menge) {
-    this.menge += menge;
+    this.verbrauch += menge;
   }
 
-  @AuthorMethod(author="Julian")
+  /* returns the verbrauch of this Traktor */
   public int getVerbrauch() {
-    return this.menge;
+    return this.verbrauch;
   }
 }

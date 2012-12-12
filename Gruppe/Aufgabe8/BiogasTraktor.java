@@ -1,18 +1,19 @@
 @AuthorClass(author="Jakub Zarzycki")
 public class BiogasTraktor extends Traktor{
-  private double menge = 0.0;
+  private double verbrauch = 0.0;
 
-  public BiogasTraktor(String name){
-    super(name);
+  /* creates a BiogasTraktor with given name and Maschine m*/
+  public BiogasTraktor(String name, Maschine m){
+    super(name, m);
   }
 
-  @AuthorMethod(author="Julian")
+  /* adds the menge to the verbrauch */
   public void changeVerbrauch(double menge) {
-    this.menge += menge;
+    this.verbrauch += menge;
   }
 
-  @AuthorMethod(author="Julian")
+  /* returns the verbrauch */
   public double getVerbrauch() {
-    return this.menge;
+    return this.verbrauch;
   }
 }
