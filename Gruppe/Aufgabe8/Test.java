@@ -48,6 +48,28 @@ public class Test{
       System.out.println("   gesamt:  " + b.getHoursComplete());
       System.out.println("   saeen:   " + b.getHoursDuenger());
       System.out.println("   duengen: " + b.getHoursDrill());
+      System.out.println("   diesel:  " + b.getHoursDiesel());
+      System.out.println("   biogas:  " + b.getHoursBiogas());
+      System.out.println("-- Durschnittlicher Dieselverbrauch");
+      System.out.println("   gesamt:  " + b.getDiesel());
+      System.out.println("   saeen:   " + b.getDieselDrill());
+      System.out.println("   duengen: " + b.getDieselDuenger());
+      System.out.println("-- Durschnittlicher Gasverbrauch");
+      System.out.println("   gesamt:  " + b.getGas());
+      System.out.println("   saeen:   " + b.getGasDrill());
+      System.out.println("   duengen: " + b.getGasDuenger());
+      System.out.println("-- minimale Saescharanzahl");
+      System.out.println("   gesamt:  " + b.getMinSaeschere());
+      System.out.println("   diesel:  " + b.getMinSaeschereDiesel());
+      System.out.println("   biogas:  " + b.getMinSaeschereGas());
+      System.out.println("-- maximale Saescharanzahl");
+      System.out.println("   gesamt:  " + b.getMaxSaeschere());
+      System.out.println("   diesel:  " + b.getMaxSaeschereDiesel());
+      System.out.println("   biogas:  " + b.getMaxSaeschereGas());
+      System.out.println("-- durchschnittliche Duengerkapazitaet");
+      System.out.println("   gesamt:  " + b.getCapacity());
+      System.out.println("   diesel:  " + b.getCapacityDiesel());
+      System.out.println("   biogas:  " + b.getCapacityGas());
       System.out.println();
     }
 
