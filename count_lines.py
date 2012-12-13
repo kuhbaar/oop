@@ -4,7 +4,7 @@ import commands
 import re
 import operator
 
-root = "./Gruppe/Aufgabe6/"
+root = "./Gruppe/Aufgabe9/"
 authors = {}
 files_touched_by = {}
 total_lines = 0
