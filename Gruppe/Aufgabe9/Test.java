@@ -24,5 +24,9 @@ public class Test {
     klaudia.addKeks(k2);
     klaudia.addKeks(k3);
     klaudia.inhalt();
+
+    Baeckerei baeckerei = new Baeckerei();
+    Keksdose john = baeckerei.abgebeBestellung(b);
+    john.inhalt();
   }
 }
