@@ -4,7 +4,5 @@ public abstract class Keksbackmaschine implements Keksmaschine{
   public void gebeTeig(Teig t){
     this.teig = t;
   }
-  public Keks backe(){
-    return null;
-  }
+  abstract public Keks backe();
 }

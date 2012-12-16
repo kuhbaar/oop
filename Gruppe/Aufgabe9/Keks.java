@@ -23,4 +23,17 @@ public class Keks{
   public String toString(){
     return "Keks " + this.form + " " + this.teig;
   }
+
+  @Override public boolean equals(Object o) {
+    if(o instanceof Keks) {
+      Keks that = (Keks) o;
+      return this.getTeig().equals(that.getTeig()) && this.getForm().equals(that.getForm());
+    } else {
+      return false;
+    }
+  }
+
+  @Override public int hashCode() {
+    return this.getTeig().hashCode() + this.getForm().hashCode();
+  }
 }
