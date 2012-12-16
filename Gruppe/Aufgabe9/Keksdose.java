@@ -9,10 +9,7 @@ public class Keksdose{
   }
 
   public void addKeks(Keks k){
-    if(kekse.containsKey(k))
-      kekse.put(k,kekse.get(k)+1);
-    else
-      kekse.put(k,1);
+    kekse.put(k, kekse.containsKey(k) ? kekse.get(k) + 1 : 1);
   }
 
   public void inhalt(){
